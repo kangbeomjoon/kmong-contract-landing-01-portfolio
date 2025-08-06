@@ -91,16 +91,19 @@ export default function CardsSection() {
                 const cardScrollEnd = cardScrollStart + cardInterval;
                 
                 // 카드 위치 변환 - 아래에서 위로 올라오며 최종 위치에 도달
-                // 01번이 맨 뒤(위), 05번이 맨 앞(아래)에 오도록 설정
-                const finalYPosition = index * -35; // 01번이 가장 위(0), 05번이 가장 아래(-140)
+                // 01번이 맨 뒤(위쪽에 쌓임), 05번이 맨 앞(전체 화면)에 오도록 설정
+                // 카드가 위에서 아래로 쌓이는 효과를 위해 Y 위치 조정
+                const reversedIndex = stageCards.length - 1 - index;
+                const finalYPosition = reversedIndex * -20; // 01번이 -80, 02번이 -60, 03번이 -40, 04번이 -20, 05번이 0
                 const y = useTransform(
                   scrollYProgress,
                   [0, cardScrollStart, cardScrollEnd, 1],
                   [600, 600, finalYPosition, finalYPosition]
                 );
                 
-                // 카드 크기 변환 - 01번이 가장 작고 05번이 가장 크게
-                const finalScale = 0.82 + (index * 0.035);
+                // 카드 크기 변환 - 01번이 가장 작고 05번이 전체 화면
+                // 05번 카드는 1.0으로 전체 화면, 나머지는 점점 작아짐
+                const finalScale = index === 4 ? 1.0 : 0.88 + (index * 0.02);
                 const scale = useTransform(
                   scrollYProgress,
                   [0, cardScrollStart, cardScrollEnd, 1],
