@@ -1,201 +1,232 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { ExternalLink } from 'lucide-react';
 
-const carouselData = [
+const youtubeChannels = [
   {
     id: 1,
-    title: "유튜브 채널 'VETIVER' | VVR",
-    description: "온라인 스토어 상품이 유튜브 영상, 라이브, 숏츠, 스토어 탭에도 노출되어서 마케팅 비용을 줄일 수 있었어요!",
-    image: "/api/placeholder/600/400",
-    brand: "VETIVER",
-    stats: "+500% 매출 증가"
+    name: "소신사장",
+    handle: "@소신사장_SoshinTV",
+    url: "https://www.youtube.com/@소신사장_SoshinTV",
+    category: "비즈니스",
+    color: "from-red-500 to-orange-500"
   },
   {
     id: 2,
-    title: "패션 브랜드 성공사례",
-    description: "유튜브 쇼핑과 연동하여 브랜드 인지도와 매출이 동시에 증가했습니다.",
-    image: "/api/placeholder/600/400",
-    brand: "SPAO",
-    stats: "+300% 매출 증가"
+    name: "공구왕황부장",
+    handle: "@Hwangbujang",
+    url: "https://www.youtube.com/@Hwangbujang",
+    category: "DIY/공구",
+    color: "from-blue-500 to-cyan-500"
   },
   {
     id: 3,
-    title: "뷰티 크리에이터 협업",
-    description: "라이브 커머스를 통한 실시간 상품 소개로 구독자와 매출이 크게 늘었습니다.",
-    image: "/api/placeholder/600/400",
-    brand: "예주가TV3iPD",
-    stats: "+400% 구독자 증가"
+    name: "원룸만들기",
+    handle: "@oneroommake",
+    url: "https://www.youtube.com/@oneroommake",
+    category: "인테리어",
+    color: "from-green-500 to-emerald-500"
+  },
+  {
+    id: 4,
+    name: "애주가TV참PD",
+    handle: "@ilovechampd",
+    url: "https://www.youtube.com/@ilovechampd",
+    category: "라이프스타일",
+    color: "from-purple-500 to-pink-500"
+  },
+  {
+    id: 5,
+    name: "SPAO",
+    handle: "@SPAOKOREA",
+    url: "https://www.youtube.com/@SPAOKOREA",
+    category: "패션",
+    color: "from-indigo-500 to-blue-500"
+  },
+  {
+    id: 6,
+    name: "영자씨의 부엌",
+    handle: "@youngjas_kitchen",
+    url: "https://www.youtube.com/@youngjas_kitchen",
+    category: "요리",
+    color: "from-yellow-500 to-orange-500"
+  },
+  {
+    id: 7,
+    name: "에이치덱스",
+    handle: "@hdex_",
+    url: "https://www.youtube.com/@hdex_",
+    category: "테크",
+    color: "from-gray-500 to-slate-500"
+  },
+  {
+    id: 8,
+    name: "VETIVER",
+    handle: "@VETIVER",
+    url: "https://www.youtube.com/@VETIVER",
+    category: "패션/뷰티",
+    color: "from-rose-500 to-pink-500"
+  },
+  {
+    id: 9,
+    name: "NICKY니키",
+    handle: "@Nicky__YHJ",
+    url: "https://www.youtube.com/@Nicky__YHJ",
+    category: "브이로그",
+    color: "from-teal-500 to-cyan-500"
+  },
+  {
+    id: 10,
+    name: "신사용",
+    handle: "@sinsayong",
+    url: "https://www.youtube.com/@sinsayong",
+    category: "남성 패션",
+    color: "from-amber-500 to-yellow-500"
+  },
+  {
+    id: 11,
+    name: "콜리젯TV",
+    handle: "@COLIZET",
+    url: "https://www.youtube.com/@COLIZET",
+    category: "게임/엔터",
+    color: "from-violet-500 to-purple-500"
   }
 ];
 
-const brandLogos = [
-  { name: "예주가TV3iPD", logo: "/api/placeholder/120/60" },
-  { name: "SPAO", logo: "/api/placeholder/120/60" },
-  { name: "영자씨의 부업", logo: "/api/placeholder/120/60" },
-  { name: "에이저니즈", logo: "/api/placeholder/120/60" },
-  { name: "VETIVER", logo: "/api/placeholder/120/60" },
-  { name: "NICKYLAB지", logo: "/api/placeholder/120/60" },
-  { name: "신사용", logo: "/api/placeholder/120/60" },
-  { name: "골리앤제프", logo: "/api/placeholder/120/60" }
-];
-
 export default function CarouselSection() {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // 브랜드 로고 무한 스크롤을 위해 아이템을 두 번 복제
-  const duplicatedLogos = [...brandLogos, ...brandLogos];
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % carouselData.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + carouselData.length) % carouselData.length);
-  };
-
-  // 자동 슬라이드 효과
-  useEffect(() => {
-    if (!isPaused) {
-      const interval = setInterval(nextSlide, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [isPaused]);
+  // 무한 스크롤을 위해 채널 배열을 3번 복제
+  const duplicatedChannels = [...youtubeChannels, ...youtubeChannels, ...youtubeChannels];
 
   return (
-    <section className="py-20 bg-black text-white overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-hidden">
       <div className="container mx-auto px-4">
-        {/* 메인 슬라이드 섹션 */}
-        <div className="relative h-[600px] rounded-2xl overflow-hidden mb-16">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-700"
-              initial={{ opacity: 0, x: 300 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -300 }}
-              transition={{ duration: 0.6, ease: 'easeInOut' }}
-            >
-              <div className="flex h-full">
-                {/* 좌측 텍스트 영역 */}
-                <div className="w-1/2 p-12 flex flex-col justify-center">
-                  <motion.h2
-                    className="text-4xl md:text-5xl font-bold mb-6 leading-tight"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                  >
-                    {carouselData[currentSlide].title}
-                  </motion.h2>
-                  
-                  <motion.p
-                    className="text-xl text-gray-300 mb-8 leading-relaxed"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                  >
-                    {carouselData[currentSlide].description}
-                  </motion.p>
+        {/* 섹션 제목 */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            성공하는 유튜브 채널들
+          </h2>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            다양한 분야에서 활발하게 활동하는 크리에이터들의 채널을 만나보세요
+          </p>
+        </motion.div>
 
-                  <motion.div
-                    className="inline-flex items-center space-x-4"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6, duration: 0.6 }}
-                  >
-                    <span className="bg-blue-600 px-4 py-2 rounded-full text-sm font-medium">
-                      {carouselData[currentSlide].stats}
-                    </span>
-                    <button className="border border-white px-6 py-2 rounded-full hover:bg-white hover:text-black transition-colors">
-                      자세히 보기
-                    </button>
-                  </motion.div>
-                </div>
-
-                {/* 우측 이미지 영역 */}
-                <div className="w-1/2 relative">
-                  <motion.div
-                    className="absolute inset-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl"
-                    initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                    transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
-                  />
-                  <motion.div
-                    className="absolute inset-8 bg-white rounded-xl shadow-2xl"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5, duration: 0.6 }}
-                  >
-                    <div className="p-6 text-black">
-                      <div className="text-sm text-gray-500 mb-2">Success Story</div>
-                      <div className="text-lg font-bold text-gray-900">{carouselData[currentSlide].brand}</div>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* 화살표 네비게이션 */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors z-10"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
+        {/* 무한 스크롤 캐러셀 */}
+        <div className="relative">
+          {/* 좌측 그라데이션 */}
+          <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent z-10 pointer-events-none" />
+          {/* 우측 그라데이션 */}
+          <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-gray-900 via-gray-900/80 to-transparent z-10 pointer-events-none" />
           
-          <button
-            onClick={nextSlide}
-            className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors z-10"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          {/* 슬라이드 인디케이터 */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
-            {carouselData.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentSlide ? 'bg-white' : 'bg-white/40'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* 브랜드 로고 무한 스크롤 */}
-        <div className="relative overflow-hidden">
-          <motion.div
-            className="flex space-x-8 items-center"
-            animate={{
-              x: isPaused ? 0 : -960,
-            }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 30,
-                ease: "linear",
-              },
-            }}
+          <div 
+            className="overflow-hidden py-8"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            {duplicatedLogos.map((brand, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 w-32 h-16 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors"
-              >
-                <span className="text-sm font-medium text-gray-300">{brand.name}</span>
-              </div>
-            ))}
-          </motion.div>
+            <motion.div
+              className="flex space-x-6"
+              animate={{
+                x: isPaused ? 0 : -1320, // 11개 채널 * 120px = 1320px
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 44, // 30px/초 속도로 계산 (1320px / 30px = 44초)
+                  ease: "linear",
+                },
+              }}
+            >
+              {duplicatedChannels.map((channel, index) => (
+                <motion.a
+                  key={`${channel.id}-${index}`}
+                  href={channel.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`
+                    flex-shrink-0 w-64 h-32 rounded-xl bg-gradient-to-br ${channel.color} 
+                    p-4 relative overflow-hidden group cursor-pointer
+                    hover:scale-105 transition-transform duration-300
+                  `}
+                  whileHover={{ y: -5 }}
+                  title={`${channel.name} 유튜브 채널 방문하기`}
+                >
+                  {/* 배경 장식 */}
+                  <div className="absolute -top-10 -right-10 w-24 h-24 bg-white/10 rounded-full" />
+                  <div className="absolute -bottom-5 -left-5 w-16 h-16 bg-white/10 rounded-full" />
+                  
+                  {/* 콘텐츠 */}
+                  <div className="relative z-10 h-full flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="font-bold text-lg text-white">
+                          {channel.name}
+                        </h3>
+                        <ExternalLink className="w-4 h-4 text-white/70 group-hover:text-white transition-colors" />
+                      </div>
+                      <p className="text-xs text-white/80 mb-1">
+                        {channel.handle}
+                      </p>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-white/70 bg-white/10 px-2 py-1 rounded-full">
+                        {channel.category}
+                      </span>
+                      <span className="text-xs text-white/70">
+                        YouTube
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* 호버 오버레이 */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </motion.a>
+              ))}
+            </motion.div>
+          </div>
         </div>
+
+        {/* 설명 텍스트 */}
+        <motion.div
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <p className="text-gray-400 text-sm">
+            마우스를 올리면 일시정지 • 클릭하면 채널로 이동합니다
+          </p>
+        </motion.div>
+
+        {/* CTA 버튼 */}
+        <motion.div
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <motion.button
+            className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full font-bold transition-all duration-300 inline-flex items-center space-x-2 group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => window.open('https://www.youtube.com/feed/storefront', '_blank')}
+          >
+            <span>YouTube 쇼핑 시작하기</span>
+            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );

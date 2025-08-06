@@ -35,46 +35,55 @@ export default function ProgressSection() {
   const [currentStep, setCurrentStep] = useState(0);
   const [stepProgresses, setStepProgresses] = useState<number[]>([0, 0, 0]);
   const [completedSteps, setCompletedSteps] = useState<boolean[]>([false, false, false]);
+  const [activeTimer, setActiveTimer] = useState<NodeJS.Timeout | null>(null);
 
+  // 특정 스텝의 프로그레스를 실행하는 함수
+  const runProgressForStep = (stepIndex: number) => {
+    // 이전 타이머가 있다면 정리
+    if (activeTimer) {
+      clearInterval(activeTimer);
+    }
+
+    // 모든 프로그레스 초기화
+    setStepProgresses([0, 0, 0]);
+    setCompletedSteps([false, false, false]);
+    setCurrentStep(stepIndex);
+
+    // 선택된 스텝만 프로그레스 실행
+    const timer = setInterval(() => {
+      setStepProgresses(prev => {
+        const newProgresses = [...prev];
+        if (newProgresses[stepIndex] >= 100) {
+          setCompletedSteps(prevCompleted => {
+            const newCompleted = [...prevCompleted];
+            newCompleted[stepIndex] = true;
+            return newCompleted;
+          });
+          clearInterval(timer);
+          setActiveTimer(null);
+          return newProgresses;
+        }
+        newProgresses[stepIndex] += 2; // 프로그레스 속도
+        return newProgresses;
+      });
+    }, 50); // 애니메이션 속도
+
+    setActiveTimer(timer);
+  };
+
+  // 컴포넌트 언마운트 시 타이머 정리
+  useEffect(() => {
+    return () => {
+      if (activeTimer) {
+        clearInterval(activeTimer);
+      }
+    };
+  }, [activeTimer]);
+
+  // 초기 로드 시 첫 번째 스텝 자동 실행
   useEffect(() => {
     if (inView) {
-      const runCycle = () => {
-        // 모든 상태 초기화
-        setStepProgresses([0, 0, 0]);
-        setCompletedSteps([false, false, false]);
-        setCurrentStep(0);
-
-        progressSteps.forEach((step, index) => {
-          setTimeout(() => {
-            setCurrentStep(index);
-            
-            const timer = setInterval(() => {
-              setStepProgresses(prev => {
-                const newProgresses = [...prev];
-                if (newProgresses[index] >= 100) {
-                  setCompletedSteps(prevCompleted => {
-                    const newCompleted = [...prevCompleted];
-                    newCompleted[index] = true;
-                    return newCompleted;
-                  });
-                  clearInterval(timer);
-                  return newProgresses;
-                }
-                newProgresses[index] += 1; // 더 느리게 (2% -> 1%)
-                return newProgresses;
-              });
-            }, 80); // 더 느리게 (40ms -> 80ms)
-          }, index * 4000); // 각 단계별 4초 간격
-        });
-      };
-
-      // 첫 실행
-      runCycle();
-      
-      // 12초마다 무한 반복 (3단계 * 4초)
-      const cycleInterval = setInterval(runCycle, 12000);
-      
-      return () => clearInterval(cycleInterval);
+      runProgressForStep(0);
     }
   }, [inView]);
 
@@ -156,12 +165,13 @@ export default function ProgressSection() {
               return (
                 <motion.div
                   key={step.id}
-                  className={`bg-gray-800 rounded-xl p-6 text-white transition-all duration-500 ${
+                  className={`bg-gray-800 rounded-xl p-6 text-white transition-all duration-500 cursor-pointer hover:bg-gray-700 ${
                     isActive ? 'ring-2 ring-blue-400 scale-105' : 'scale-100'
                   }`}
                   initial={{ opacity: 0, x: 50 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.2 + 0.6 }}
+                  onClick={() => runProgressForStep(index)}
                 >
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-4">
@@ -171,11 +181,16 @@ export default function ProgressSection() {
                         <IconComponent className="w-6 h-6" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-lg">{step.title}</h4>
+                        <h4 className={`font-bold text-lg transition-colors ${
+                          isActive ? 'text-blue-400' : 'text-white'
+                        }`}>{step.title}</h4>
                         <p className="text-gray-400 text-sm">
                           {index === 0 && "고품질 이미지 업로드"}
                           {index === 1 && "판매 설정 완료"}
                           {index === 2 && "스토어 오픈 준비"}
+                        </p>
+                        <p className="text-xs text-blue-300 mt-1">
+                          클릭하여 진행 상황 확인
                         </p>
                       </div>
                     </div>
