@@ -1,53 +1,53 @@
 'use client';
 
-import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
-const cards = [
+const stageCards = [
   {
-    id: 1,
-    number: '01',
-    title: '간편한 쇼핑몰 제작',
-    subtitle: '몇 분 만에 시작하세요',
-    description: '복잡한 설정 없이 클릭 몇 번으로 전문적인 쇼핑몰을 만들 수 있어요. 누구나 쉽게 시작할 수 있는 직관적인 인터페이스를 제공합니다.',
-    bgColor: 'from-blue-500 to-purple-600',
-    shadowColor: 'shadow-blue-500/20'
+    id: '01',
+    title: '대규모 유저 접근',
+    subtitle: '글로벌 플랫폼 진출',
+    tag: 'Reach',
+    description: '20억 명 이상의 유튜브 사용자에게 당신의 상품을 노출시킬 수 있습니다.',
+    color: 'from-purple-600 to-purple-400',
+    bgColor: 'bg-purple-100'
   },
   {
-    id: 2,
-    number: '02',
-    title: '스마트한 상품 관리',
-    subtitle: '자동화로 시간 절약',
-    description: '상품 등록부터 재고 관리까지 모든 과정이 자동으로 처리됩니다. 효율적인 관리 시스템으로 더 많은 시간을 판매에 집중하세요.',
-    bgColor: 'from-purple-500 to-pink-600',
-    shadowColor: 'shadow-purple-500/20'
+    id: '02',
+    title: '콘텐츠 커머스',
+    subtitle: '영상과 쇼핑의 결합',
+    tag: 'Content',
+    description: '제품 리뷰, 언박싱, 튜토리얼 등 다양한 콘텐츠와 함께 자연스럽게 상품을 홍보합니다.',
+    color: 'from-blue-600 to-blue-400',
+    bgColor: 'bg-blue-100'
   },
   {
-    id: 3,
-    number: '03',
-    title: '크리에이터와의 협업',
-    subtitle: '새로운 판매 채널 개척',
-    description: '유명 인플루언서들과 함께 제품을 홍보하고 판매하세요. 다양한 협업 기회를 통해 브랜드 가치를 높일 수 있습니다.',
-    bgColor: 'from-green-500 to-blue-600',
-    shadowColor: 'shadow-green-500/20'
+    id: '03',
+    title: '실시간 라이브 커머스',
+    subtitle: '인터랙티브 쇼핑 경험',
+    tag: 'Live',
+    description: '실시간 방송을 통해 고객과 소통하며 제품을 소개하고 즉각적인 구매 전환을 이끌어냅니다.',
+    color: 'from-green-600 to-green-400',
+    bgColor: 'bg-green-100'
   },
   {
-    id: 4,
-    number: '04',
-    title: '글로벌 진출 지원',
-    subtitle: '전 세계가 여러분의 시장',
-    description: '다국어 지원과 현지화 서비스로 해외 시장 진출을 도와드려요. 전 세계 고객들에게 여러분의 상품을 선보이세요.',
-    bgColor: 'from-orange-500 to-red-600',
-    shadowColor: 'shadow-orange-500/20'
+    id: '04',
+    title: 'AI 추천 시스템',
+    subtitle: '맞춤형 상품 노출',
+    tag: 'AI',
+    description: '유튜브의 강력한 AI 알고리즘이 관심사가 맞는 잠재 고객에게 자동으로 상품을 추천합니다.',
+    color: 'from-orange-600 to-orange-400',
+    bgColor: 'bg-orange-100'
   },
   {
-    id: 5,
-    number: '05',
-    title: '실시간 데이터 분석',
-    subtitle: '성공을 위한 인사이트',
-    description: '매출, 트래픽, 고객 행동 등 모든 데이터를 한눈에 확인하세요. 데이터 기반의 의사결정으로 비즈니스를 더욱 성장시키세요.',
-    bgColor: 'from-indigo-500 to-purple-600',
-    shadowColor: 'shadow-indigo-500/20'
+    id: '05',
+    title: '크리에이터 협업을 통한\n새로운 판매 채널 확장',
+    subtitle: '크리에이터 ↔ 브랜드',
+    tag: '♥ Creator X Brand',
+    description: '판매할 상품이 있다면 다양한 크리에이터들과 협업하여\n내 콘텐츠와 어울리는 브랜드를\n상품 연동, 판매, 운영으로 새로운 수익 모델을\n만들어 보세요.',
+    color: 'from-red-600 to-pink-400',
+    bgColor: 'bg-red-50'
   }
 ];
 
@@ -59,192 +59,124 @@ export default function CardsSection() {
   });
 
   return (
-    <section ref={containerRef} className="min-h-screen bg-gray-50 py-20">
-      <div className="container mx-auto px-4 max-w-4xl">
-        {/* 제목 */}
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
-        >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-            서비스가 어떻게 새로워졌을까요?
-          </h2>
-          <p className="text-gray-600 mt-6 text-lg">
-            혁신적인 기능들로 더욱 강력해진 서비스를 확인하세요
-          </p>
-        </motion.div>
+    <section ref={containerRef} className="relative bg-white">
+      {/* 스크롤 높이를 위한 컨테이너 - 카드가 순차적으로 나타나도록 충분한 높이 확보 */}
+      <div className="relative h-[500vh]">
+        {/* 고정된 뷰포트 컨테이너 */}
+        <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
+          <div className="container mx-auto px-4 max-w-6xl">
+            {/* 섹션 제목 */}
+            <motion.div
+              className="text-center mb-20"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+                유튜브 쇼핑의 5가지 성공 전략
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                카페24와 함께라면 유튜브 쇼핑 성공이 더 가까워집니다
+              </p>
+            </motion.div>
 
-        {/* 3D 스택 카드 컨테이너 */}
-        <div className="relative h-[800px] md:h-[600px]">
-          <div className="sticky top-1/2 -translate-y-1/2">
-            <div className="relative w-full max-w-2xl mx-auto">
-              {cards.map((card, index) => {
-                // 스크롤 진행도에 따른 카드 등장 순서: 01→02→03→04→05
-                const startProgress = index * 0.18;
-                const endProgress = Math.min(startProgress + 0.3, 0.9);
+            {/* 스택 카드 컨테이너 */}
+            <div className="relative h-[500px] flex items-center justify-center">
+              {stageCards.map((card, index) => {
+                // 각 카드가 순차적으로 나타나도록 스크롤 진행도 설정
+                // 전체 스크롤의 80%를 5개 카드에 균등 분배
+                const cardInterval = 0.16; // 각 카드당 16%의 스크롤 구간
+                const cardScrollStart = index * cardInterval + 0.1; // 0.1부터 시작 (초기 여백)
+                const cardScrollEnd = cardScrollStart + cardInterval;
                 
-                // 최종 스택에서의 위치 계산 (05번이 맨 앞에)
-                const stackOrder = cards.length - 1 - index; // 05:4, 04:3, 03:2, 02:1, 01:0
-                
-                // 최종 카드 크기: 05번(1.0) → 01번(0.80)
-                const finalScale = 1.0 - (stackOrder * 0.05);
-                
-                // 최종 Y 위치: 뒤로 갈수록 위로 올라가는 계단식
-                const finalY = stackOrder * -12;
-                
-                // 최종 투명도: 뒤로 갈수록 흐려짐
-                const finalOpacity = 1.0 - (stackOrder * 0.1);
-                
-                // 애니메이션 변환값
+                // 카드 위치 변환 - 아래에서 위로 올라오며 최종 위치에 도달
+                // 01번이 맨 뒤(위), 05번이 맨 앞(아래)에 오도록 설정
+                const finalYPosition = index * -35; // 01번이 가장 위(0), 05번이 가장 아래(-140)
                 const y = useTransform(
                   scrollYProgress,
-                  [0, startProgress, endProgress, 1],
-                  [200, 200, finalY, finalY]
+                  [0, cardScrollStart, cardScrollEnd, 1],
+                  [600, 600, finalYPosition, finalYPosition]
                 );
                 
+                // 카드 크기 변환 - 01번이 가장 작고 05번이 가장 크게
+                const finalScale = 0.82 + (index * 0.035);
                 const scale = useTransform(
                   scrollYProgress,
-                  [0, startProgress, startProgress + 0.15, endProgress, 1],
-                  [0.7, 0.7, finalScale * 0.95, finalScale, finalScale]
+                  [0, cardScrollStart, cardScrollEnd, 1],
+                  [0.75, 0.75, finalScale, finalScale]
                 );
                 
+                // 불투명도 변환 - 각 카드가 나타날 때만 보이도록
                 const opacity = useTransform(
                   scrollYProgress,
-                  [0, startProgress, startProgress + 0.1, endProgress, 1],
-                  [0, 0, 1, finalOpacity, finalOpacity]
+                  [cardScrollStart - 0.02, cardScrollStart, cardScrollEnd, 1],
+                  [0, 0, 1, 1]
                 );
-                
-                const rotate = useTransform(
-                  scrollYProgress,
-                  [startProgress, startProgress + 0.15, endProgress],
-                  [index * 5, index * 2, 0]
-                );
+
+                // z-index 설정 - 05번이 맨 앞(5), 01번이 맨 뒤(1)
+                const zIndex = index + 1;
 
                 return (
                   <motion.div
                     key={card.id}
-                    className="absolute inset-0 w-full"
+                    className="absolute w-full max-w-4xl"
                     style={{
-                      zIndex: index + 1, // 05번이 z-index 5로 맨 앞에
                       y,
                       scale,
                       opacity,
-                      rotate,
+                      zIndex
                     }}
                   >
-                    <motion.div
-                      className={`
-                        relative overflow-hidden rounded-3xl bg-gradient-to-br ${card.bgColor} 
-                        p-8 md:p-10 text-white backdrop-blur-sm border border-white/10
-                      `}
-                      style={{
-                        transformStyle: 'preserve-3d',
-                        boxShadow: `
-                          0 ${8 + stackOrder * 4}px ${24 + stackOrder * 8}px rgba(0, 0, 0, 0.15),
-                          0 ${4 + stackOrder * 2}px ${12 + stackOrder * 4}px rgba(0, 0, 0, 0.1),
-                          0 2px 8px rgba(0, 0, 0, 0.05)
-                        `,
-                      }}
-                      whileHover={{ 
-                        scale: 1.02,
-                        y: -8,
-                        rotateY: 3,
-                        rotateX: 3,
-                        boxShadow: `
-                          0 ${16 + stackOrder * 6}px ${32 + stackOrder * 10}px rgba(0, 0, 0, 0.2),
-                          0 ${8 + stackOrder * 3}px ${16 + stackOrder * 6}px rgba(0, 0, 0, 0.15),
-                          0 4px 12px rgba(0, 0, 0, 0.1)
-                        `,
-                        transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }
-                      }}
-                    >
-                      {/* 배경 패턴 */}
-                      <div className="absolute inset-0 opacity-10">
-                        <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-white/20 -translate-y-32 translate-x-32" />
-                        <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-white/10 translate-y-24 -translate-x-24" />
-                      </div>
+                    <div className={`
+                      ${card.bgColor} rounded-2xl shadow-2xl p-8 md:p-10
+                      border border-gray-200 relative overflow-hidden
+                    `}>
+                      {/* 배경 장식 */}
+                      <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-gradient-to-br from-white/40 to-transparent -translate-y-32 translate-x-32" />
+                      <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-gradient-to-tr from-white/30 to-transparent translate-y-24 -translate-x-24" />
                       
-                      {/* 카드 콘텐츠 */}
                       <div className="relative z-10">
-                        <div className="flex items-center justify-between mb-6">
-                          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm text-white rounded-2xl font-bold text-2xl border border-white/20">
-                            {card.number}
+                        <div className="flex items-start gap-6">
+                          {/* 번호 */}
+                          <div className={`
+                            w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br ${card.color}
+                            flex items-center justify-center text-white font-bold text-xl md:text-2xl
+                            shadow-lg flex-shrink-0
+                          `}>
+                            {card.id}
                           </div>
-                          <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20" />
+                          
+                          {/* 제목 영역 */}
+                          <div className="flex-1">
+                            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 whitespace-pre-line">
+                              {card.title}
+                            </h3>
+                            <p className="text-base md:text-lg text-gray-600 mb-3">
+                              {card.subtitle}
+                            </p>
+                            {card.tag && (
+                              <span className={`
+                                inline-block px-3 py-1 md:px-4 md:py-2 rounded-full text-sm font-semibold
+                                bg-gradient-to-r ${card.color} text-white shadow-md
+                              `}>
+                                {card.tag}
+                              </span>
+                            )}
+                          </div>
                         </div>
-                        
-                        <div className="mb-6">
-                          <h3 className="text-2xl md:text-3xl font-bold mb-2 leading-tight">
-                            {card.title}
-                          </h3>
-                          <p className="text-white/80 text-lg font-medium">
-                            {card.subtitle}
-                          </p>
-                        </div>
-                        
-                        <p className="text-white/90 leading-relaxed text-base md:text-lg">
+
+                        {/* 설명 */}
+                        <p className="text-gray-700 text-base md:text-lg leading-relaxed mt-6 whitespace-pre-line">
                           {card.description}
                         </p>
-                        
-                        {/* 장식적 요소 */}
-                        <div className="absolute bottom-6 right-6 w-24 h-1 bg-white/30 rounded-full" />
-                      </div>
 
-                      {/* 글래스모피즘 효과 */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-                      
-                      {/* 테두리 하이라이트 */}
-                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-50 pointer-events-none" />
-                    </motion.div>
+                      </div>
+                    </div>
                   </motion.div>
                 );
               })}
             </div>
-          </div>
-        </div>
-
-        {/* 스크롤 인디케이터 */}
-        <div className="flex justify-center mt-16">
-          <div className="flex space-x-3">
-            {cards.map((card, index) => {
-              const startProgress = index * 0.18;
-              const endProgress = Math.min(startProgress + 0.3, 0.9);
-              
-              return (
-                <motion.div
-                  key={card.id}
-                  className="relative"
-                >
-                  {/* 배경 점 */}
-                  <div className="w-3 h-3 rounded-full bg-gray-300" />
-                  
-                  {/* 활성 상태 점 */}
-                  <motion.div
-                    className="absolute inset-0 w-3 h-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 shadow-lg"
-                    style={{
-                      opacity: useTransform(
-                        scrollYProgress,
-                        [startProgress - 0.05, startProgress + 0.1, endProgress, endProgress + 0.1],
-                        [0, 1, 1, 0.7]
-                      ),
-                      scale: useTransform(
-                        scrollYProgress,
-                        [startProgress - 0.05, startProgress + 0.1, endProgress],
-                        [0.8, 1.2, 1]
-                      ),
-                    }}
-                  />
-                  
-                  {/* 카드 번호 */}
-                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium text-gray-500">
-                    {card.number}
-                  </div>
-                </motion.div>
-              );
-            })}
           </div>
         </div>
       </div>
