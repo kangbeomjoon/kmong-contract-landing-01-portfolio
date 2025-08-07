@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Camera, Settings, Play } from 'lucide-react';
 
 const progressSteps = [
@@ -38,11 +38,14 @@ export default function ProgressSection() {
   const [activeTimer, setActiveTimer] = useState<NodeJS.Timeout | null>(null);
 
   // 특정 스텝의 프로그레스를 실행하는 함수
-  const runProgressForStep = (stepIndex: number) => {
+  const runProgressForStep = useCallback((stepIndex: number) => {
     // 이전 타이머가 있다면 정리
-    if (activeTimer) {
-      clearInterval(activeTimer);
-    }
+    setActiveTimer(prevTimer => {
+      if (prevTimer) {
+        clearInterval(prevTimer);
+      }
+      return null;
+    });
 
     // 모든 프로그레스 초기화
     setStepProgresses([0, 0, 0]);
@@ -69,7 +72,7 @@ export default function ProgressSection() {
     }, 50); // 애니메이션 속도
 
     setActiveTimer(timer);
-  };
+  }, [setActiveTimer, setStepProgresses, setCompletedSteps, setCurrentStep]);
 
   // 컴포넌트 언마운트 시 타이머 정리
   useEffect(() => {
@@ -85,7 +88,7 @@ export default function ProgressSection() {
     if (inView) {
       runProgressForStep(0);
     }
-  }, [inView]);
+  }, [inView, runProgressForStep]);
 
   return (
     <section ref={ref} className="min-h-screen bg-gray-900 py-20 flex items-center">

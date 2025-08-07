@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
+
 const stageCards = [
   {
     id: '01',
@@ -58,6 +59,35 @@ export default function CardsSection() {
     offset: ["start end", "end start"]
   });
 
+  // Animation transforms - all hooks called at component top level
+  const card0Y = useTransform(scrollYProgress, [0, 0.1, 0.26, 1], [600, 600, -80, -80]);
+  const card0Scale = useTransform(scrollYProgress, [0, 0.1, 0.26, 1], [0.75, 0.75, 0.88, 0.88]);
+  const card0Opacity = useTransform(scrollYProgress, [0.08, 0.1, 0.26, 1], [0, 0, 1, 1]);
+
+  const card1Y = useTransform(scrollYProgress, [0, 0.26, 0.42, 1], [600, 600, -60, -60]);
+  const card1Scale = useTransform(scrollYProgress, [0, 0.26, 0.42, 1], [0.75, 0.75, 0.9, 0.9]);
+  const card1Opacity = useTransform(scrollYProgress, [0.24, 0.26, 0.42, 1], [0, 0, 1, 1]);
+
+  const card2Y = useTransform(scrollYProgress, [0, 0.42, 0.58, 1], [600, 600, -40, -40]);
+  const card2Scale = useTransform(scrollYProgress, [0, 0.42, 0.58, 1], [0.75, 0.75, 0.92, 0.92]);
+  const card2Opacity = useTransform(scrollYProgress, [0.4, 0.42, 0.58, 1], [0, 0, 1, 1]);
+
+  const card3Y = useTransform(scrollYProgress, [0, 0.58, 0.74, 1], [600, 600, -20, -20]);
+  const card3Scale = useTransform(scrollYProgress, [0, 0.58, 0.74, 1], [0.75, 0.75, 0.94, 0.94]);
+  const card3Opacity = useTransform(scrollYProgress, [0.56, 0.58, 0.74, 1], [0, 0, 1, 1]);
+
+  const card4Y = useTransform(scrollYProgress, [0, 0.74, 0.9, 1], [600, 600, 0, 0]);
+  const card4Scale = useTransform(scrollYProgress, [0, 0.74, 0.9, 1], [0.75, 0.75, 1.0, 1.0]);
+  const card4Opacity = useTransform(scrollYProgress, [0.72, 0.74, 0.9, 1], [0, 0, 1, 1]);
+
+  const cardAnimations = [
+    { y: card0Y, scale: card0Scale, opacity: card0Opacity, zIndex: 1 },
+    { y: card1Y, scale: card1Scale, opacity: card1Opacity, zIndex: 2 },
+    { y: card2Y, scale: card2Scale, opacity: card2Opacity, zIndex: 3 },
+    { y: card3Y, scale: card3Scale, opacity: card3Opacity, zIndex: 4 },
+    { y: card4Y, scale: card4Scale, opacity: card4Opacity, zIndex: 5 }
+  ];
+
   return (
     <section ref={containerRef} className="relative bg-white">
       {/* 스크롤 높이를 위한 컨테이너 - 카드가 순차적으로 나타나도록 충분한 높이 확보 */}
@@ -84,41 +114,7 @@ export default function CardsSection() {
             {/* 스택 카드 컨테이너 */}
             <div className="relative h-[500px] flex items-center justify-center">
               {stageCards.map((card, index) => {
-                // 각 카드가 순차적으로 나타나도록 스크롤 진행도 설정
-                // 전체 스크롤의 80%를 5개 카드에 균등 분배
-                const cardInterval = 0.16; // 각 카드당 16%의 스크롤 구간
-                const cardScrollStart = index * cardInterval + 0.1; // 0.1부터 시작 (초기 여백)
-                const cardScrollEnd = cardScrollStart + cardInterval;
-                
-                // 카드 위치 변환 - 아래에서 위로 올라오며 최종 위치에 도달
-                // 01번이 맨 뒤(위쪽에 쌓임), 05번이 맨 앞(전체 화면)에 오도록 설정
-                // 카드가 위에서 아래로 쌓이는 효과를 위해 Y 위치 조정
-                const reversedIndex = stageCards.length - 1 - index;
-                const finalYPosition = reversedIndex * -20; // 01번이 -80, 02번이 -60, 03번이 -40, 04번이 -20, 05번이 0
-                const y = useTransform(
-                  scrollYProgress,
-                  [0, cardScrollStart, cardScrollEnd, 1],
-                  [600, 600, finalYPosition, finalYPosition]
-                );
-                
-                // 카드 크기 변환 - 01번이 가장 작고 05번이 전체 화면
-                // 05번 카드는 1.0으로 전체 화면, 나머지는 점점 작아짐
-                const finalScale = index === 4 ? 1.0 : 0.88 + (index * 0.02);
-                const scale = useTransform(
-                  scrollYProgress,
-                  [0, cardScrollStart, cardScrollEnd, 1],
-                  [0.75, 0.75, finalScale, finalScale]
-                );
-                
-                // 불투명도 변환 - 각 카드가 나타날 때만 보이도록
-                const opacity = useTransform(
-                  scrollYProgress,
-                  [cardScrollStart - 0.02, cardScrollStart, cardScrollEnd, 1],
-                  [0, 0, 1, 1]
-                );
-
-                // z-index 설정 - 05번이 맨 앞(5), 01번이 맨 뒤(1)
-                const zIndex = index + 1;
+                const { y, scale, opacity, zIndex } = cardAnimations[index];
 
                 return (
                   <motion.div
