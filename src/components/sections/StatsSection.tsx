@@ -37,21 +37,15 @@ export default function StatsSection() {
       ref={containerRef} 
       className="min-h-screen py-20 relative"
       style={{
-        backgroundImage: 'url("/images/stats/con_2.png")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed'
+        background: 'linear-gradient(to bottom, #000000 0%, #1a1a1a 60%, #2a2a1a 80%, #F6DE35 100%)'
       }}
     >
-      {/* Background overlay for content readability */}
-      <div className="absolute inset-0 bg-white/60" />
       <div ref={ref} className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* 좌측 고정 텍스트 (원래 크기로 복원) */}
           <div className="lg:sticky lg:top-1/2 lg:transform lg:-translate-y-1/2">
             <motion.h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
               initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -67,7 +61,7 @@ export default function StatsSection() {
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-50 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all hover:bg-white"
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ 
