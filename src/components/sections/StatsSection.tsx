@@ -5,10 +5,11 @@ import { useInView } from 'react-intersection-observer';
 import { useRef } from 'react';
 
 const stats = [
-  { label: '월간 활성 사용자', value: '20억 명', icon: '👥' },
-  { label: '일일 시청 시간', value: '10억 시간', icon: '⏰' },
-  { label: '크리에이터 수', value: '200만 명', icon: '🎬' },
-  { label: '서비스 국가', value: '100개국 이상', icon: '🌍' }
+  { label: '진행 클라이언트 고객', value: '1000', suffix: ' +', description: '프로젝트 진행 고객 수' },
+  { label: '분양현장', value: '500', suffix: ' +', description: '성공적인 분양 사례' },
+  { label: '유의미 리드 고객', value: '90', suffix: ' %', description: '고품질 리드 비율' },
+  { label: '평균 계약전환율', value: '15', suffix: ' %', description: '업계 최고 수준' },
+  { label: '연간 광고 집행 예산', value: '20억', suffix: '', description: '광고 운영 규모' }
 ];
 
 export default function StatsSection() {
@@ -28,58 +29,58 @@ export default function StatsSection() {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const y3 = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const y4 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const y5 = useTransform(scrollYProgress, [0, 1], [0, -250]);
 
-  const parallaxYs = [y1, y2, y3, y4];
+  const parallaxYs = [y1, y2, y3, y4, y5];
 
   return (
     <section 
       id="stats"
       ref={containerRef} 
-      className="min-h-screen py-20 relative"
+      className="py-20 relative"
       style={{
-        background: 'linear-gradient(to bottom, #000000 0%, #1a1a1a 60%, #2a2a1a 80%, #F6DE35 100%)'
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 10%, rgba(123,111,27,0.05) 50%, rgba(246,222,53,0.3) 100%)',
+        minHeight: '140vh'
       }}
     >
       <div ref={ref} className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* 좌측 고정 텍스트 (원래 크기로 복원) */}
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* 좌측 고정 텍스트 */}
           <div className="lg:sticky lg:top-1/2 lg:transform lg:-translate-y-1/2">
-            <motion.h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
+            <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
-              전 세계에서 사용하는<br />
-              <span className="text-red-500">압도적 1위 플랫폼</span><br />
-              유튜브
-            </motion.h2>
+              <div className="figma-subtitle mb-8">ABOUT US</div>
+              <h2 className="figma-heading-lg leading-tight">
+                부동산 종합광고 대행<br />
+                <span className="text-white">1위 기업 버즈비</span>
+              </h2>
+            </motion.div>
           </div>
 
-          {/* 우측 통계 카드들 - parallax 효과 적용 */}
-          <div className="space-y-8">
+          {/* 우측 통계 목록 - Figma 스타일 */}
+          <div className="space-y-0">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all hover:bg-white"
+                className="py-8 border-b border-white/20 last:border-b-0"
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ 
                   duration: 0.6, 
-                  delay: index * 0.2,
+                  delay: index * 0.15,
                   ease: 'easeOut'
                 }}
                 style={{ y: parallaxYs[index] }}
               >
-                <div className="flex items-center space-x-6">
-                  <div className="text-4xl">{stat.icon}</div>
-                  <div>
-                    <div className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-blue-600 leading-none">
-                      {stat.value}
-                    </div>
-                    <div className="text-lg text-gray-600 font-medium mt-2">
-                      {stat.label}
-                    </div>
+                <div className="text-right">
+                  <div className="figma-stats-number mb-4">
+                    {stat.value}{stat.suffix}
+                  </div>
+                  <div className="figma-body-lg text-white mb-2">
+                    {stat.label}
                   </div>
                 </div>
               </motion.div>

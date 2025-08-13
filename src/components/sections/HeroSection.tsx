@@ -2,13 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
 
 const messages = [
-  "새로운 유튜브 쇼핑을 시작하세요",
-  "전 세계 20억 사용자와 만나세요", 
-  "간편한 스토어 구축부터",
-  "매출 증대까지 한번에"
+  "버즈비 애드 전문가들과 함께 해보세요",
+  "부동산 종합광고 대행 1위 기업", 
+  "온라인 광고의 새로운 시작",
+  "효과적인 광고 솔루션을 만나보세요"
 ];
 
 const navigationItems = [
@@ -100,7 +99,7 @@ export default function HeroSection() {
       id="hero"
       className="min-h-screen flex items-center justify-center relative"
       style={{
-        backgroundImage: 'url("/images/hero/con_1.png")',
+        backgroundImage: 'url("http://localhost:3845/assets/cee35f5c45c570984cc0b1bacbd40bca3a683c9d.png")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
@@ -117,13 +116,11 @@ export default function HeroSection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Image
-                src="/images/hero/logo 1.png"
-                alt="Logo"
-                width={120}
-                height={40}
-                className="h-10 w-auto"
-                priority
+              <div
+                className="h-12 w-40 bg-center bg-cover bg-no-repeat"
+                style={{
+                  backgroundImage: 'url("http://localhost:3845/assets/e165a1c2d8980fa0000db1c35be2faec39a06f94.png")'
+                }}
               />
             </motion.div>
 
@@ -133,7 +130,7 @@ export default function HeroSection() {
                 <motion.button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-white font-medium transition-colors duration-200 hover:text-white/80 ${
+                  className={`figma-button text-white transition-colors duration-200 hover:text-white/80 ${
                     activeSection === item.id ? 'text-white' : 'text-white/70'
                   }`}
                   whileHover={{ scale: 1.05 }}
@@ -142,52 +139,67 @@ export default function HeroSection() {
                   {item.label}
                 </motion.button>
               ))}
+              
+              {/* 구분선 */}
+              <div className="w-px h-4 bg-white/30" />
+              
+              {/* 포트폴리오 메뉴 (드롭다운) */}
+              <div className="relative" ref={dropdownRef}>
+                <motion.button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="figma-button text-white transition-colors duration-200 hover:text-white/80 flex items-center gap-2"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  포트폴리오
+                  <svg 
+                    className="w-4 h-4 transition-transform duration-200"
+                    style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </motion.button>
+                
+                {/* 드롭다운 메뉴 */}
+                <motion.div
+                  className={`absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg ${
+                    isDropdownOpen ? 'block' : 'hidden'
+                  }`}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ 
+                    opacity: isDropdownOpen ? 1 : 0, 
+                    y: isDropdownOpen ? 0 : -10 
+                  }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="py-2">
+                    {dropdownItems.map((item) => (
+                      <motion.button
+                        key={item.id}
+                        onClick={() => scrollToSection(item.id)}
+                        className={`block w-full text-left px-4 py-2 text-gray-800 font-medium transition-colors duration-200 hover:bg-gray-100 ${
+                          activeSection === item.id ? 'bg-gray-100 text-blue-600' : ''
+                        }`}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        {item.label}
+                      </motion.button>
+                    ))}
+                  </div>
+                </motion.div>
+              </div>
             </div>
 
             {/* 우측 메뉴 버튼 (데스크톱 전용) */}
-            <div className="hidden lg:block relative" ref={dropdownRef}>
-              <motion.button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Image
-                  src="/images/hero/btn_menu.png"
-                  alt="Menu Button"
-                  width={40}
-                  height={40}
-                  className="h-10 w-auto"
-                />
-              </motion.button>
-
-              {/* 드롭다운 메뉴 */}
-              <motion.div
-                className={`absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg ${
-                  isDropdownOpen ? 'block' : 'hidden'
-                }`}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ 
-                  opacity: isDropdownOpen ? 1 : 0, 
-                  y: isDropdownOpen ? 0 : -10 
+            <div className="hidden lg:block">
+              <div
+                className="h-6 w-6 bg-center bg-cover bg-no-repeat cursor-pointer"
+                style={{
+                  backgroundImage: 'url("http://localhost:3845/assets/b1f03d20d6e148bb9f4b91a7ca980f0e506a9e02.svg")'
                 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="py-2">
-                  {dropdownItems.map((item) => (
-                    <motion.button
-                      key={item.id}
-                      onClick={() => scrollToSection(item.id)}
-                      className={`block w-full text-left px-4 py-2 text-gray-800 font-medium transition-colors duration-200 hover:bg-gray-100 ${
-                        activeSection === item.id ? 'bg-gray-100 text-blue-600' : ''
-                      }`}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {item.label}
-                    </motion.button>
-                  ))}
-                </div>
-              </motion.div>
+              />
             </div>
 
             {/* 모바일 메뉴 버튼 */}
@@ -244,13 +256,30 @@ export default function HeroSection() {
         </div>
       </nav>
 
-      {/* 오버레이 추가로 텍스트 가독성 향상 */}
-      <div className="absolute inset-0 bg-black/30" />
-      
-      <div className="text-center px-4 relative z-10 mt-16">
+      {/* 메인 콘텐츠 영역 */}
+      <div className="text-center px-4 relative z-10 mt-16 max-w-4xl mx-auto">
+        {/* 수직선 */}
+        <motion.div 
+          className="w-px h-28 bg-white mx-auto mb-8"
+          initial={{ height: 0 }}
+          animate={{ height: 112 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        />
+        
+        {/* 서브타이틀 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="figma-subtitle mb-8"
+        >
+          온라인 광고
+        </motion.div>
+        
+        {/* 메인 텍스트 */}
         <motion.h1
           key={currentIndex}
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg"
+          className="figma-heading-xl text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -258,6 +287,24 @@ export default function HeroSection() {
         >
           {messages[currentIndex]}
         </motion.h1>
+        
+        {/* CTA 버튼 */}
+        <motion.button
+          className="bg-white text-black px-12 py-4 rounded-full figma-button hover:bg-white/90 transition-colors duration-200 inline-flex items-center gap-3"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          문의하기
+          {/* 화살표 아이콘 */}
+          <div className="flex items-center">
+            <div className="w-3 h-0.5 bg-black rounded-full" />
+            <div className="w-0.5 h-3 bg-black rounded-full ml-2 transform rotate-45 origin-bottom" />
+            <div className="w-0.5 h-3 bg-black rounded-full ml-1 transform -rotate-45 origin-top" />
+          </div>
+        </motion.button>
       </div>
     </section>
   );
