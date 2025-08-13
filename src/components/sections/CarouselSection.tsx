@@ -131,11 +131,9 @@ export default function CarouselSection() {
         >
           <button className="border border-white rounded-full px-8 py-3 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3">
             자세히 보기
-            <div className="flex items-center">
-              <div className="w-3 h-0.5 bg-white rounded-full" />
-              <div className="w-0.5 h-3 bg-white rounded-full ml-2 transform rotate-45 origin-bottom" />
-              <div className="w-0.5 h-3 bg-white rounded-full ml-1 transform -rotate-45 origin-top" />
-            </div>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
+              <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </button>
         </motion.div>
 

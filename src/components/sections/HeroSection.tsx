@@ -298,12 +298,9 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           문의하기
-          {/* 화살표 아이콘 */}
-          <div className="flex items-center">
-            <div className="w-3 h-0.5 bg-black rounded-full" />
-            <div className="w-0.5 h-3 bg-black rounded-full ml-2 transform rotate-45 origin-bottom" />
-            <div className="w-0.5 h-3 bg-black rounded-full ml-1 transform -rotate-45 origin-top" />
-          </div>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
+            <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </motion.button>
       </div>
     </section>
