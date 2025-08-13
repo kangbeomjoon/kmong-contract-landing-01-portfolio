@@ -89,11 +89,22 @@ export default function CardsSection() {
   ];
 
   return (
-    <section ref={containerRef} className="relative bg-white">
+    <section 
+      ref={containerRef} 
+      className="relative"
+      style={{
+        backgroundImage: 'url("/images/cards/con_5.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Background overlay for content readability */}
+      <div className="absolute inset-0 bg-white/90" />
       {/* 스크롤 높이를 위한 컨테이너 - 카드가 순차적으로 나타나도록 충분한 높이 확보 */}
       <div className="relative h-[500vh]">
         {/* 고정된 뷰포트 컨테이너 */}
-        <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
+        <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center relative z-10">
           <div className="container mx-auto px-4 max-w-6xl">
             {/* 섹션 제목 */}
             <motion.div

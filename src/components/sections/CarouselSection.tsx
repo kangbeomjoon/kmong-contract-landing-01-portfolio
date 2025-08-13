@@ -102,8 +102,18 @@ export default function CarouselSection() {
   const duplicatedChannels = [...youtubeChannels, ...youtubeChannels, ...youtubeChannels];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section 
+      className="py-20 text-white overflow-hidden relative"
+      style={{
+        backgroundImage: 'url("/images/carousel/con_4.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Background overlay to maintain dark theme and readability */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/85 via-black/85 to-gray-900/85" />
+      <div className="container mx-auto px-4 relative z-10">
         {/* 섹션 제목 */}
         <motion.div
           className="text-center mb-16"

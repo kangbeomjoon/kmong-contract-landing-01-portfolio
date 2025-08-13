@@ -32,8 +32,20 @@ export default function StatsSection() {
   const parallaxYs = [y1, y2, y3, y4];
 
   return (
-    <section ref={containerRef} className="min-h-screen bg-white py-20">
-      <div ref={ref} className="container mx-auto px-4">
+    <section 
+      ref={containerRef} 
+      className="min-h-screen py-20 relative"
+      style={{
+        backgroundImage: 'url("/images/stats/con_2.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Background overlay for content readability */}
+      <div className="absolute inset-0 bg-white/60" />
+      <div ref={ref} className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* 좌측 고정 텍스트 (원래 크기로 복원) */}
           <div className="lg:sticky lg:top-1/2 lg:transform lg:-translate-y-1/2">
