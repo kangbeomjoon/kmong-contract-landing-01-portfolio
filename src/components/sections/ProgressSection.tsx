@@ -91,7 +91,7 @@ export default function ProgressSection() {
   }, [inView, runProgressForStep]);
 
   return (
-    <section ref={ref} className="min-h-screen bg-gray-900 py-20 flex items-center">
+    <section id="progress" ref={ref} className="min-h-screen bg-gray-900 py-20 flex items-center">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <motion.p

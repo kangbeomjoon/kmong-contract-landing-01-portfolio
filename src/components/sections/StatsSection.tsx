@@ -33,6 +33,7 @@ export default function StatsSection() {
 
   return (
     <section 
+      id="stats"
       ref={containerRef} 
       className="min-h-screen py-20 relative"
       style={{

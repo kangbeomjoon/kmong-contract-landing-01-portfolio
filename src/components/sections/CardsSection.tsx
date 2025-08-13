@@ -90,6 +90,7 @@ export default function CardsSection() {
 
   return (
     <section 
+      id="cards"
       ref={containerRef} 
       className="relative"
       style={{

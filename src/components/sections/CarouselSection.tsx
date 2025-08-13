@@ -103,6 +103,7 @@ export default function CarouselSection() {
 
   return (
     <section 
+      id="carousel"
       className="py-20 text-white overflow-hidden relative"
       style={{
         backgroundImage: 'url("/images/carousel/con_4.png")',
