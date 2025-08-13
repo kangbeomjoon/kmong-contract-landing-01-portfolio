@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+// Pretendard 폰트를 외부 CDN에서 로드하기 위한 설정
+// globals.css에서 @import 대신 HTML head에서 로드
+
+export const viewport = "width=device-width, initial-scale=1";
 
 export const metadata: Metadata = {
   title: "카페24 유튜브 쇼핑 - 전 세계 20억 사용자와 만나세요",
@@ -23,7 +22,6 @@ export const metadata: Metadata = {
     title: "카페24 유튜브 쇼핑",
     description: "새로운 유튜브 쇼핑을 시작하세요. 전 세계 20억 사용자와 만나보세요.",
   },
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
 };
 
@@ -34,9 +32,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body
-        className={`${inter.variable} font-sans antialiased`}
-      >
+      <head>
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="font-sans antialiased">
         {children}
       </body>
     </html>

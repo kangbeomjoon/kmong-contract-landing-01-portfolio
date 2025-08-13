@@ -131,8 +131,6 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap');
-
 @layer base {
   * {
     @apply border-border outline-ring/50;

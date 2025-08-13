@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
 
 const portfolioItems = [
   {
@@ -57,18 +56,9 @@ const portfolioItems = [
 
 export default function CarouselSection() {
   const [isPaused, setIsPaused] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   // 무한 스크롤을 위해 포트폴리오 배열을 3번 복제
   const duplicatedItems = [...portfolioItems, ...portfolioItems, ...portfolioItems];
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % portfolioItems.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + portfolioItems.length) % portfolioItems.length);
-  };
 
   return (
     <section 
@@ -109,7 +99,6 @@ export default function CarouselSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <button 
-              onClick={prevSlide}
               className="w-15 h-15 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors"
             >
               <div
@@ -120,7 +109,6 @@ export default function CarouselSection() {
               />
             </button>
             <button 
-              onClick={nextSlide}
               className="w-15 h-15 rounded-full bg-[var(--color-brand-accent)] flex items-center justify-center hover:bg-[var(--color-brand-accent)]/80 transition-colors"
             >
               <div
