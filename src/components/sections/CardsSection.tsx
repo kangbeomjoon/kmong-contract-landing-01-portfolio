@@ -28,59 +28,77 @@ export default function CardsSection() {
         id="cards"
         className="py-20 bg-[var(--color-bg-secondary)]"
       >
+        {/* 상단 제목 - 섹션 맨 위 */}
+        <div className="text-center mb-20">
+          <motion.div
+            className="figma-subtitle mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Future
+          </motion.div>
+          <motion.h2
+            className="figma-heading-lg leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            버즈비는<br />
+            어떻게 새로워졌을까?
+          </motion.h2>
+        </div>
+
+        {/* 하단 컨텐츠 영역 */}
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-            {/* 좌측 텍스트 */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="figma-subtitle mb-8">Future</div>
-              <h2 className="figma-heading-lg leading-tight mb-8">
-                버즈비는<br />
-                어떻게 새로워졌을까?
-              </h2>
-              
-              <div className="mb-12">
-                <div className="w-12 h-2.5 mb-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+              {/* 좌측 텍스트 */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <div className="mb-12">
+                  <div className="w-12 h-2.5 mb-4">
+                    <div
+                      className="w-full h-full bg-center bg-cover bg-no-repeat"
+                      style={{
+                        backgroundImage: 'url("http://localhost:3845/assets/81530fd841cbeef2b56afd2a285004316f9be22d.svg")'
+                      }}
+                    />
+                  </div>
+                  <div className="text-[var(--color-brand-accent)] figma-heading-sm mb-4">01</div>
+                  <h3 className="figma-heading-md text-white mb-6 whitespace-pre-line">
+                    {futureFeatures[0].title}
+                  </h3>
+                  <p className="figma-body text-[var(--color-text-secondary)] whitespace-pre-line">
+                    {futureFeatures[0].description}
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* 우측 이미지 */}
+              <motion.div
+                className="relative"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <div className="bg-gradient-to-b from-[var(--color-brand-accent)] to-[var(--color-bg-secondary)] p-8 rounded-3xl">
                   <div
-                    className="w-full h-full bg-center bg-cover bg-no-repeat"
+                    className="w-full h-96 bg-center bg-cover bg-no-repeat rounded-2xl overflow-hidden"
                     style={{
-                      backgroundImage: 'url("http://localhost:3845/assets/81530fd841cbeef2b56afd2a285004316f9be22d.svg")'
+                      backgroundImage: `url(${futureFeatures[0].image})`
                     }}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-b from-[rgba(246,222,53,0.1)] to-[var(--color-bg-secondary)] to-[96.635%] rounded-3xl" />
                 </div>
-                <div className="text-[var(--color-brand-accent)] figma-heading-sm mb-4">01</div>
-                <h3 className="figma-heading-md text-white mb-6 whitespace-pre-line">
-                  {futureFeatures[0].title}
-                </h3>
-                <p className="figma-body text-[var(--color-text-secondary)] whitespace-pre-line">
-                  {futureFeatures[0].description}
-                </p>
-              </div>
-            </motion.div>
-
-            {/* 우측 이미지 */}
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <div className="bg-gradient-to-b from-[var(--color-brand-accent)] to-[var(--color-bg-secondary)] p-8 rounded-3xl">
-                <div
-                  className="w-full h-96 bg-center bg-cover bg-no-repeat rounded-2xl overflow-hidden"
-                  style={{
-                    backgroundImage: `url(${futureFeatures[0].image})`
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-[rgba(246,222,53,0.1)] to-[var(--color-bg-secondary)] to-[96.635%] rounded-3xl" />
-              </div>
-            </motion.div>
-          </div>
+              </motion.div>
+            </div>
         </div>
       </section>
 
