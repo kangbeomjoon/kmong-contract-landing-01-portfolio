@@ -120,7 +120,7 @@ export default function MobileCardsSection() {
 
         {/* 하단 배경 이미지 컨테이너 - 모바일 최적화 */}
         <div className="container mx-auto px-4">
-          <div className="w-full max-w-lg h-80 relative mx-auto">
+          <div className="w-full max-w-lg h-96 relative mx-auto">
             {/* 배경 이미지 */}
             <div 
               className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-lg"
