@@ -42,39 +42,42 @@ export default function MobileFAQSection() {
     <section id="faq" className="py-20 bg-[var(--color-bg-secondary)]">
       <div className="container mx-auto px-4">
         {/* 제목 영역 */}
-        <div className="text-center mb-16 max-w-lg mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="figma-subtitle mb-8">Q & A</div>
-            <h2 className="figma-heading-lg leading-tight mb-8">
-              궁금한 점이 있으면<br />
-              문의해 주세요
-            </h2>
-          </motion.div>
-
-          {/* 더보기 버튼 */}
-          <motion.div
-            className="flex justify-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <motion.button 
-              className="border border-white rounded-full px-8 py-3 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+        <div className="mb-16 max-w-lg mx-auto">
+          <div className="flex items-end justify-between mb-12">
+            {/* 왼쪽 제목 */}
+            <motion.div
+              className="text-left"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
             >
-              더보기
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
-                <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </motion.button>
-          </motion.div>
+              <div className="figma-subtitle mb-8">Q & A</div>
+              <h2 className="figma-heading-lg leading-tight">
+                궁금한 점이 있으면<br />
+                문의해 주세요
+              </h2>
+            </motion.div>
+
+            {/* 오른쪽 더보기 버튼 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <motion.button 
+                className="border border-white rounded-full px-8 py-3 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                더보기
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
+                  <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </motion.button>
+            </motion.div>
+          </div>
         </div>
 
         {/* FAQ 목록 */}
