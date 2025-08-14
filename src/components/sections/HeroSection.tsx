@@ -31,8 +31,10 @@ export default function HeroSection() {
   const [activeSection, setActiveSection] = useState('hero');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const hamburgerRef = useRef<HTMLDivElement>(null);
 
   // 텍스트 모핑 애니메이션 (사용자가 애니메이션을 선호하지 않는 경우 처리)
   useEffect(() => {
@@ -53,6 +55,9 @@ export default function HeroSection() {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsDropdownOpen(false);
+      }
+      if (hamburgerRef.current && !hamburgerRef.current.contains(event.target as Node)) {
+        setIsHamburgerMenuOpen(false);
       }
     };
 
@@ -204,25 +209,72 @@ export default function HeroSection() {
             </div>
 
             {/* 우측 햄버거 메뉴 버튼 */}
-            <motion.button
-              className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
+            <div className="relative" ref={hamburgerRef}>
+              <motion.button
+                onClick={() => setIsHamburgerMenuOpen(!isHamburgerMenuOpen)}
+                className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </motion.button>
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </motion.button>
+
+              {/* 햄버거 메뉴 드롭다운 */}
+              <AnimatePresence>
+                {isHamburgerMenuOpen && (
+                  <motion.div
+                    className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg z-50"
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="py-2">
+                      {navigationItems.map((item) => (
+                        <motion.button
+                          key={item.id}
+                          onClick={() => {
+                            scrollToSection(item.id);
+                            setIsHamburgerMenuOpen(false);
+                          }}
+                          className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 transition-colors figma-button"
+                          whileHover={{ x: 4 }}
+                        >
+                          {item.label}
+                        </motion.button>
+                      ))}
+                      
+                      {/* 구분선 */}
+                      <div className="border-t border-gray-200 my-2" />
+                      
+                      {/* 포트폴리오 메뉴 */}
+                      <motion.button
+                        onClick={() => {
+                          scrollToSection('carousel');
+                          setIsHamburgerMenuOpen(false);
+                        }}
+                        className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 transition-colors figma-button"
+                        whileHover={{ x: 4 }}
+                      >
+                        포트폴리오
+                      </motion.button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             {/* 모바일 메뉴 버튼 */}
             <div className="lg:hidden">
