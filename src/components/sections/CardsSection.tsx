@@ -8,7 +8,7 @@ const futureFeatures = [
     id: '01',
     title: '버즈비 관리에\n최적화된 전용 스토어',
     description: '상품 등록부터 결제, 고객관리, 마케팅,\n애널리스트까지 모든 것을 한곳에서 처리하세요.\n새롭게 통합된 전용 스토어로 더 편리하게 이용하고\n시간도 절약해 보세요.',
-    image: 'http://localhost:3845/assets/9a6cc1fa1f6b5e4116cd9fd6a1f00feaf1f2378c.png'
+    image: '/images/cards/con_5.png'
   }
 ];
 
@@ -17,7 +17,7 @@ const ctaSection = {
   subtitle: 'Future',
   description: '버즈비 애드 전문가들과 함께 해보세요.',
   buttonText: '바로가기',
-  image: 'http://localhost:3845/assets/bab29d3f438aee5dbf96ae12d177e4199ab39a2c.png'
+  image: '/images/cards/con_5.png'
 };
 
 export default function CardsSection() {
@@ -66,7 +66,7 @@ export default function CardsSection() {
                     <div
                       className="w-full h-full bg-center bg-cover bg-no-repeat"
                       style={{
-                        backgroundImage: 'url("http://localhost:3845/assets/81530fd841cbeef2b56afd2a285004316f9be22d.svg")'
+                        backgroundImage: 'url("/images/hero/btn_menu.png")'
                       }}
                     />
                   </div>
@@ -88,15 +88,14 @@ export default function CardsSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <div className="bg-gradient-to-b from-[var(--color-brand-accent)] to-[var(--color-bg-secondary)] p-8 rounded-3xl">
-                  <div
-                    className="w-full h-96 bg-center bg-cover bg-no-repeat rounded-2xl overflow-hidden"
-                    style={{
-                      backgroundImage: `url(${futureFeatures[0].image})`
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-[rgba(246,222,53,0.1)] to-[var(--color-bg-secondary)] to-[96.635%] rounded-3xl" />
-                </div>
+                <div
+                  className="bg-center bg-cover bg-no-repeat rounded-3xl"
+                  style={{
+                    width: '700px',
+                    height: '450px',
+                    backgroundImage: 'url("/images/cards/img_con.png")'
+                  }}
+                />
               </motion.div>
             </div>
         </div>
@@ -135,14 +134,14 @@ export default function CardsSection() {
             <div 
               className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-lg"
               style={{
-                backgroundImage: `url(${ctaSection.image})`
+                backgroundImage: 'url("/images/cards/Mask group.png")'
               }}
             />
             {/* 선명한 오버레이 */}
             <div className="absolute inset-0 bg-black/40 rounded-lg" />
             
             {/* 배경 위 텍스트 컨텐츠 - 왼쪽 정렬 */}
-            <div className="absolute inset-0 flex flex-col items-start justify-center text-left px-16">
+            <div className="absolute inset-0 flex flex-col items-start justify-center text-left px-8">
               <motion.div
                 className="figma-heading-sm text-white mb-4"
                 initial={{ opacity: 0, y: -20 }}

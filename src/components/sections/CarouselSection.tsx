@@ -7,49 +7,49 @@ const portfolioItems = [
   {
     id: 1,
     title: "부동산 광고",
-    image: "http://localhost:3845/assets/22995cd5b64305a7d5c32b2e2b16f9386eb4655d.png",
+    image: "/images/progress/img_1.png",
     category: "분양 마케팅"
   },
   {
     id: 2,
     title: "부동산 광고",
-    image: "http://localhost:3845/assets/e0a6f266159c345a5840f74943993d10057e4498.png",
+    image: "/images/progress/img_2.png",
     category: "매매 광고"
   },
   {
     id: 3,
     title: "부동산 광고",
-    image: "http://localhost:3845/assets/22995cd5b64305a7d5c32b2e2b16f9386eb4655d.png",
+    image: "/images/progress/img_1.png",
     category: "임대 광고"
   },
   {
     id: 4,
     title: "부동산 광고",
-    image: "http://localhost:3845/assets/e0a6f266159c345a5840f74943993d10057e4498.png",
+    image: "/images/progress/img_2.png",
     category: "상업 부동산"
   },
   {
     id: 5,
     title: "부동산 광고",
-    image: "http://localhost:3845/assets/22995cd5b64305a7d5c32b2e2b16f9386eb4655d.png",
+    image: "/images/progress/img_1.png",
     category: "주택 분양"
   },
   {
     id: 6,
     title: "부동산 광고",
-    image: "http://localhost:3845/assets/e0a6f266159c345a5840f74943993d10057e4498.png",
+    image: "/images/progress/img_2.png",
     category: "오피스텔"
   },
   {
     id: 7,
     title: "부동산 광고",
-    image: "http://localhost:3845/assets/22995cd5b64305a7d5c32b2e2b16f9386eb4655d.png",
+    image: "/images/progress/img_1.png",
     category: "분양 마케팅"
   },
   {
     id: 8,
     title: "부동산 광고",
-    image: "http://localhost:3845/assets/e0a6f266159c345a5840f74943993d10057e4498.png",
+    image: "/images/progress/img_2.png",
     category: "매매 광고"
   }
 ];
@@ -123,46 +123,47 @@ export default function CarouselSection() {
       id="carousel"
       className="py-20 relative overflow-hidden"
       style={{
-        backgroundImage: 'url("http://localhost:3845/assets/e8e56a06e856ebc7bed1992bc75be53f64db75e0.png")',
+        backgroundImage: 'url("/images/carousel/con_4.png")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
       }}
     >
       {/* 배경 오버레이 */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/60 to-black/90" />
+      <div className="absolute inset-0 bg-black" />
       
       <div className="container mx-auto px-4 relative z-10">
-        {/* 섹션 제목 */}
-        <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="figma-subtitle mb-8">Portfolio</div>
-          <h2 className="figma-heading-lg leading-tight">
-            버즈비의 포트폴리오를<br />
-            소개합니다
-          </h2>
-        </motion.div>
-
-        {/* 자세히 보기 버튼 */}
-        <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <button className="border border-white rounded-full px-8 py-3 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3">
-            자세히 보기
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
-              <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </motion.div>
+        <div className="max-w-7xl mx-auto">
+          {/* 섹션 제목과 자세히 보기 버튼 */}
+          <motion.div
+            className="mb-16"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="figma-subtitle mb-8">Portfolio</div>
+            <h2 className="figma-heading-lg leading-tight mb-8">
+              버즈비의 포트폴리오를<br />
+              소개합니다
+            </h2>
+            
+            {/* 자세히 보기 버튼 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <button className="border border-white rounded-full px-8 py-3 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3">
+                자세히 보기
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
+                  <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </motion.div>
+          </motion.div>
+        </div>
 
         {/* 네비게이션 버튼들 - 캐러셀 바로 위에 위치 */}
         <motion.div

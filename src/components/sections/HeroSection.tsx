@@ -1,14 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 
-const messages = [
-  "버즈비 애드 전문가들과 함께 해보세요",
-  "부동산 종합광고 대행 1위 기업", 
-  "온라인 광고의 새로운 시작",
-  "효과적인 광고 솔루션을 만나보세요"
-];
 
 const navigationItems = [
   { id: 'stats', label: '섹션1' },
@@ -25,19 +19,33 @@ const dropdownItems = [
   { id: 'faq', label: '포트폴리오' }
 ];
 
+// 메인 텍스트 모핑 애니메이션용 메시지
+const morphingMessages = [
+  "버즈비 애드 전문가들과 함께",
+  "성공적인 온라인 광고를",
+  "데이터 기반의 마케팅 전략을", 
+  "차별화된 부동산 광고를"
+];
+
 export default function HeroSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [activeSection, setActiveSection] = useState('hero');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // 텍스트 모핑 애니메이션 (사용자가 애니메이션을 선호하지 않는 경우 처리)
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % messages.length);
-    }, 3000);
+    // 사용자가 애니메이션을 선호하지 않는 경우 텍스트 변경 비활성화
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (!prefersReducedMotion) {
+      const interval = setInterval(() => {
+        setCurrentMessageIndex((prev) => (prev + 1) % morphingMessages.length);
+      }, 4000); // 4초마다 변경
 
-    return () => clearInterval(interval);
+      return () => clearInterval(interval);
+    }
   }, []);
 
   // 드롭다운 외부 클릭 감지
@@ -99,11 +107,14 @@ export default function HeroSection() {
       id="hero"
       className="min-h-screen flex items-center justify-center relative"
       style={{
-        backgroundImage: 'url("http://localhost:3845/assets/cee35f5c45c570984cc0b1bacbd40bca3a683c9d.png")',
+        backgroundImage: 'url("/images/hero/main_bg_1 1.png")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
       }}
+      // SEO 및 접근성 개선
+      role="banner"
+      aria-label="히어로 섹션 - 온라인 광고 서비스 소개"
     >
       {/* 새로운 네비게이션 바 - 배경에 자연스럽게 녹아들게 */}
       <nav className="fixed top-0 left-0 right-0 z-50 pt-4">
@@ -119,7 +130,7 @@ export default function HeroSection() {
               <div
                 className="h-12 w-40 bg-center bg-cover bg-no-repeat"
                 style={{
-                  backgroundImage: 'url("http://localhost:3845/assets/e165a1c2d8980fa0000db1c35be2faec39a06f94.png")'
+                  backgroundImage: 'url("/images/hero/logo 1.png")',
                 }}
               />
             </motion.div>
@@ -197,7 +208,7 @@ export default function HeroSection() {
               <div
                 className="h-6 w-6 bg-center bg-cover bg-no-repeat cursor-pointer"
                 style={{
-                  backgroundImage: 'url("http://localhost:3845/assets/b1f03d20d6e148bb9f4b91a7ca980f0e506a9e02.svg")'
+                  backgroundImage: 'url("/images/hero/btn_menu.png")',
                 }}
               />
             </div>
@@ -256,53 +267,147 @@ export default function HeroSection() {
         </div>
       </nav>
 
-      {/* 메인 콘텐츠 영역 */}
-      <div className="text-center px-4 relative z-10 mt-16 max-w-4xl mx-auto">
-        {/* 수직선 */}
-        <motion.div 
-          className="w-px h-28 bg-white mx-auto mb-8"
-          initial={{ height: 0 }}
-          animate={{ height: 112 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        />
-        
-        {/* 서브타이틀 */}
+      {/* 메인 콘텐츠 영역 - 피그마 CSS 스펙 적용 */}
+      <div className="relative z-20 w-full h-screen">
+        {/* 수직선 - Rectangle 5 */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className="absolute bg-white"
+          style={{
+            width: '1px',
+            height: '111px',
+            left: '981px',
+            top: '84px'
+          }}
+          initial={{ opacity: 0, scaleY: 0 }}
+          animate={{ opacity: 1, scaleY: 1 }}
+          transition={{ 
+            duration: 1.2, 
+            delay: 0.5,
+            ease: "easeOut"
+          }}
+        />
+
+        {/* 온라인 광고 텍스트 */}
+        <motion.div
+          className="absolute text-white"
+          style={{
+            width: '250px',
+            height: '43px',
+            left: 'calc(981px - 250px/2)',
+            top: '225px',
+            fontFamily: 'Pretendard',
+            fontStyle: 'normal',
+            fontWeight: '600',
+            fontSize: '36px',
+            lineHeight: '43px',
+            color: '#FFFFFF',
+            whiteSpace: 'nowrap',
+            textAlign: 'center'
+          }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="figma-subtitle mb-8"
+          transition={{ 
+            duration: 0.8, 
+            delay: 1.2,
+            ease: "easeOut"
+          }}
         >
           온라인 광고
         </motion.div>
-        
-        {/* 메인 텍스트 */}
-        <motion.h1
-          key={currentIndex}
-          className="figma-heading-xl text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+
+        {/* 메인 텍스트 - 버즈비 애드 전문가들과 함께 해보세요 */}
+        <motion.div
+          className="absolute text-white"
+          style={{
+            width: '885px',
+            height: '72px',
+            left: '539px',
+            top: '318px',
+            fontFamily: 'Pretendard',
+            fontStyle: 'normal',
+            fontWeight: '700',
+            fontSize: '60px',
+            lineHeight: '72px',
+            textAlign: 'center',
+            color: '#FFFFFF'
+          }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
+          transition={{ 
+            duration: 1, 
+            delay: 1.5,
+            ease: "easeOut"
+          }}
         >
-          {messages[currentIndex]}
-        </motion.h1>
-        
-        {/* CTA 버튼 */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentMessageIndex}
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -30, scale: 0.9 }}
+              transition={{ 
+                duration: 0.6,
+                ease: "easeInOut"
+              }}
+              aria-live="polite"
+              aria-label={`${morphingMessages[currentMessageIndex]} 해보세요`}
+            >
+              {morphingMessages[currentMessageIndex]} 해보세요
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+
+        {/* CTA 버튼 - Rectangle 9 */}
         <motion.button
-          className="bg-white text-black px-12 py-4 rounded-full figma-button hover:bg-white/90 transition-colors duration-200 inline-flex items-center gap-3"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, y: 20 }}
+          className="absolute bg-white text-black font-medium flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer"
+          style={{
+            width: '200px',
+            height: '56px',
+            left: '881px',
+            top: '829px',
+            borderRadius: '999px'
+          }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ 
+            duration: 0.8, 
+            delay: 2,
+            ease: "easeOut"
+          }}
+          whileHover={{ 
+            scale: 1.05,
+            boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)"
+          }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => {
+            const contactSection = document.getElementById('faq');
+            if (contactSection) {
+              contactSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          }}
+          aria-label="문의하기 - FAQ 섹션으로 이동"
         >
           문의하기
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
-            <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <motion.svg
+            className="w-4 h-4 transition-transform duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            whileHover={{ x: 3 }}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17 8l4 4m0 0l-4 4m4-4H3"
+            />
+          </motion.svg>
         </motion.button>
       </div>
+
     </section>
   );
 }

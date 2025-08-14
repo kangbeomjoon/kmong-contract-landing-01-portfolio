@@ -84,12 +84,12 @@ export default function ProgressSection() {
           {/* 우측 이미지 및 콘텐츠 */}
           <div className="relative">
             <motion.div
-              className="relative h-96 rounded-2xl overflow-hidden bg-gradient-to-b from-black/10 to-black/80"
+              className="relative h-96 rounded-2xl overflow-hidden"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
               style={{
-                backgroundImage: 'url("http://localhost:3845/assets/cf1153605fe5ccdea0462492abbee14dee6187c7.png")',
+                backgroundImage: 'url("/images/cards/img_con.png")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}
@@ -97,30 +97,19 @@ export default function ProgressSection() {
               {/* 오버레이 */}
               <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/80" />
               
-              {/* 재생 버튼 */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  className="w-32 h-32 bg-center bg-cover bg-no-repeat cursor-pointer"
-                  style={{
-                    backgroundImage: 'url("http://localhost:3845/assets/90ee5763b70ad7eff6e0ec58bb36d2f14910706c.svg")'
-                  }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                />
-              </div>
+              {/* 전체 클릭 버튼 */}
+              <motion.div
+                className="absolute inset-0 cursor-pointer"
+                style={{
+                  backgroundImage: 'url("/images/progress/list.png")',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              />
               
-              {/* 하단 텍스트 */}
-              <div className="absolute bottom-8 left-8 right-8">
-                <motion.h3
-                  key={activeStep}
-                  className="text-white text-2xl font-bold leading-tight mb-2"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {progressSteps[activeStep].description}
-                </motion.h3>
-              </div>
             </motion.div>
           </div>
         </div>

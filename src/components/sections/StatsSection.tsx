@@ -44,7 +44,7 @@ export default function StatsSection() {
       }}
     >
       <div ref={ref} className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
           {/* 좌측 고정 텍스트 */}
           <div className="lg:sticky lg:top-1/2 lg:transform lg:-translate-y-1/2">
             <motion.div
