@@ -7,7 +7,7 @@ const futureFeatures = [
   {
     id: '01',
     title: '버즈비 관리에\n최적화된 전용 스토어',
-    description: '상품 등록부터 결제, 고객관리, 마케팅,\n애널리스트까지 모든 것을 한곳에서 처리하세요.\n새롭게 통합된 전용 스토어로 더 편리하게 이용하고\n시간도 절약해 보세요.',
+    description: '상품 등록부터 결제, 고객관리, 마케팅,애널리스트까지 모든 것을 한곳에서 처리하세요.\n새롭게 통합된 전용 스토어로 더 편리하게 이용하고시간도 절약해 보세요.',
     image: '/images/cards/con_5.png'
   }
 ];
@@ -54,12 +54,29 @@ export default function MobileCardsSection() {
         {/* 하단 컨텐츠 영역 */}
         <div className="container mx-auto px-4">
           <div className="max-w-lg mx-auto">
+            {/* 이미지 */}
+            <motion.div
+              className="relative flex justify-center mb-12"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <div
+                className="bg-center bg-cover bg-no-repeat rounded-3xl w-full max-w-sm"
+                style={{
+                  height: '200px',
+                  backgroundImage: 'url("/images/cards/img_con.png")'
+                }}
+              />
+            </motion.div>
+
             {/* 텍스트 및 콘텐츠 */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
               <div className="mb-12">
                 <div className="w-12 h-2.5 mb-4 mx-auto">
@@ -78,23 +95,6 @@ export default function MobileCardsSection() {
                   {futureFeatures[0].description}
                 </p>
               </div>
-            </motion.div>
-
-            {/* 이미지 */}
-            <motion.div
-              className="relative flex justify-center"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <div
-                className="bg-center bg-cover bg-no-repeat rounded-3xl w-full max-w-sm"
-                style={{
-                  height: '200px',
-                  backgroundImage: 'url("/images/cards/img_con.png")'
-                }}
-              />
             </motion.div>
           </div>
         </div>
