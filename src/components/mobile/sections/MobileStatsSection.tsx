@@ -24,12 +24,12 @@ export default function MobileStatsSection() {
     offset: ["start end", "end start"]
   });
 
-  // 통계 카드들의 parallax 효과
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const y5 = useTransform(scrollYProgress, [0, 1], [0, -250]);
+  // 통계 카드들의 parallax 효과 - 데스크탑과 유사한 강도로 조정
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -90]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const y5 = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   const parallaxYs = [y1, y2, y3, y4, y5];
 

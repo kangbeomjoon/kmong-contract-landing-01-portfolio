@@ -1,14 +1,39 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { MobileNavigation } from '../ui/MobileNavigation'
+
+// 메인 텍스트 모핑 애니메이션용 메시지
+const morphingMessages = [
+  "성공적인 온라인 광고를\n해보세요",
+  "버즈비 애드 전문가들과 함께\n해보세요", 
+  "차별화된 부동산 광고를\n해보세요"
+];
 
 export function MobileHeroSection() {
   const [mounted, setMounted] = useState(false)
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0)
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  // 텍스트 모핑 애니메이션
+  useEffect(() => {
+    if (!mounted) return
+
+    // 사용자가 애니메이션을 선호하지 않는 경우 텍스트 변경 비활성화
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    
+    if (!prefersReducedMotion) {
+      const interval = setInterval(() => {
+        setCurrentMessageIndex((prev) => (prev + 1) % morphingMessages.length)
+      }, 4000) // 4초마다 변경
+
+      return () => clearInterval(interval)
+    }
+  }, [mounted])
 
   if (!mounted) {
     return null
@@ -41,16 +66,23 @@ export function MobileHeroSection() {
               <h2 className="text-2xl font-semibold text-white mb-6">
                 온라인 광고
               </h2>
-              <div className="space-y-2">
-                <p className="text-3xl font-bold text-white leading-tight">
-                  성공적인 온라인 광고를<br />해보세요
-                </p>
-                <p className="text-3xl font-bold text-white leading-tight">
-                  버즈비 애드 전문가들과 함께<br />해보세요
-                </p>
-                <p className="text-3xl font-bold text-white leading-tight">
-                  차별화된 부동산 광고를<br />해보세요
-                </p>
+              {/* 애니메이션 텍스트 */}
+              <div className="h-32 flex items-center justify-center">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={currentMessageIndex}
+                    className="text-3xl font-bold text-white leading-tight text-center whitespace-pre-line"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{
+                      duration: 0.6,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    {morphingMessages[currentMessageIndex]}
+                  </motion.p>
+                </AnimatePresence>
               </div>
             </div>
           </div>
