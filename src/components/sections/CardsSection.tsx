@@ -15,7 +15,7 @@ const futureFeatures = [
 const ctaSection = {
   title: '티켓광고,\n버즈비와 함께라면 더 쉬워져요',
   subtitle: 'Future',
-  description: '온라인 광고는 처음이신가요?\n버즈비 애드 전문가들과 함께 해보세요.',
+  description: '버즈비 애드 전문가들과 함께 해보세요.',
   buttonText: '바로가기',
   image: 'http://localhost:3845/assets/bab29d3f438aee5dbf96ae12d177e4199ab39a2c.png'
 };
@@ -104,42 +104,81 @@ export default function CardsSection() {
 
       {/* CTA Section (con_6) */}
       <section 
-        className="py-20 relative"
-        style={{
-          backgroundImage: `url(${ctaSection.image})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
+        className="py-20 bg-black"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/60 to-black/80" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-            {/* 좌측 텍스트 */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="figma-subtitle mb-8">Future</div>
-              <h2 className="figma-heading-lg text-center leading-tight mb-8 whitespace-pre-line">
-                {ctaSection.title}
-              </h2>
+        {/* 상단 제목 - 섹션 맨 위 가운데 */}
+        <div className="text-center mb-20">
+          <motion.div
+            className="figma-subtitle mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Future
+          </motion.div>
+          <motion.h2
+            className="figma-heading-lg text-center leading-tight mb-8 whitespace-pre-line"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {ctaSection.title}
+          </motion.h2>
+        </div>
+
+        {/* 하단 배경 이미지 컨테이너 - 1200 x 400 */}
+        <div className="flex justify-center">
+          <div className="w-full max-w-[1200px] h-[400px] relative mx-auto">
+            {/* 배경 이미지 */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-lg"
+              style={{
+                backgroundImage: `url(${ctaSection.image})`
+              }}
+            />
+            {/* 선명한 오버레이 */}
+            <div className="absolute inset-0 bg-black/40 rounded-lg" />
+            
+            {/* 배경 위 텍스트 컨텐츠 - 왼쪽 정렬 */}
+            <div className="absolute inset-0 flex flex-col items-start justify-center text-left px-16">
+              <motion.div
+                className="figma-heading-sm text-white mb-4"
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                운영대행
+              </motion.div>
               
-              <div className="mb-8">
-                <div className="figma-heading-sm text-white mb-4">운영대행</div>
-                <h3 className="figma-heading-md text-white mb-6">
-                  온라인 광고는 처음이신가요?
-                </h3>
-                <p className="figma-body-lg text-white mb-8 whitespace-pre-line">
-                  {ctaSection.description}
-                </p>
-              </div>
+              <motion.h3
+                className="figma-heading-md text-white mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                온라인 광고는 처음이신가요?
+              </motion.h3>
+              
+              <motion.p
+                className="figma-body-lg text-white mb-8 whitespace-pre-line"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              >
+                {ctaSection.description}
+              </motion.p>
 
               <motion.button
                 className="bg-[var(--color-brand-accent)] text-black px-12 py-4 rounded-full figma-button hover:bg-[var(--color-brand-accent)]/90 transition-colors duration-200 inline-flex items-center gap-3"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 1.0 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -148,10 +187,7 @@ export default function CardsSection() {
                   <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </motion.button>
-            </motion.div>
-
-            {/* 우측 여백 (배경 이미지 보이도록) */}
-            <div />
+            </div>
           </div>
         </div>
       </section>
