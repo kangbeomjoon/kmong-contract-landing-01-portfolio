@@ -9,12 +9,11 @@ const MobileFooter: React.FC = () => {
         {/* 로고 */}
         <div className="mb-8">
           <div 
-            className="mx-auto w-40 h-12 bg-center bg-contain bg-no-repeat mb-2"
+            className="mx-auto w-40 h-12 bg-center bg-contain bg-no-repeat"
             style={{
               backgroundImage: 'url("/images/hero/logo 1.png")',
             }}
           />
-          <p className="text-sm text-gray-400">버즈비</p>
         </div>
 
         {/* 정책 링크 */}
