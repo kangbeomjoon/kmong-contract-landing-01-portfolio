@@ -1,218 +1,194 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
-import { ChevronRight, BarChart3, Brain, TrendingUp } from 'lucide-react';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 
-interface Card {
-  id: number;
-  title: string;
-  description: string;
-  icon: React.ComponentType<{ className?: string; size?: number; strokeWidth?: number }>;
-  bgGradient: string;
-  textColor: string;
-  buttonColor: string;
-  imagePath: string;
-  imageAlt: string;
-}
 
-const cards: Card[] = [
+const futureFeatures = [
   {
-    id: 1,
-    title: "바즈비 콘텐츠 최적화 솔루션",
-    description: "유튜브 알고리즘을 분석하여 콘텐츠의 노출도를 극대화하고, 시청자 참여도를 높이는 맞춤형 최적화 솔루션을 제공합니다.",
-    icon: BarChart3,
-    bgGradient: "from-blue-50 to-blue-100",
-    textColor: "text-blue-900",
-    buttonColor: "bg-blue-600 hover:bg-blue-700",
-    imagePath: "/images/mobile/cards/card-1@2x.png",
-    imageAlt: "콘텐츠 최적화 솔루션"
-  },
-  {
-    id: 2,
-    title: "AI 기반 시청자 분석",
-    description: "딥러닝 기술을 활용한 시청자 행동 패턴 분석으로 타겟 오디언스를 정확히 파악하고 맞춤형 콘텐츠 전략을 수립합니다.",
-    icon: Brain,
-    bgGradient: "from-yellow-50 to-amber-100",
-    textColor: "text-amber-900",
-    buttonColor: "bg-amber-600 hover:bg-amber-700",
-    imagePath: "/images/mobile/cards/card-2@2x.png",
-    imageAlt: "AI 기반 시청자 분석"
-  },
-  {
-    id: 3,
-    title: "실시간 수익 최적화",
-    description: "실시간 데이터 분석을 통해 수익화 전략을 최적화하고, 광고 수익과 후원 수익을 극대화하는 인사이트를 제공합니다.",
-    icon: TrendingUp,
-    bgGradient: "from-red-50 to-rose-100",
-    textColor: "text-red-900",
-    buttonColor: "bg-red-600 hover:bg-red-700",
-    imagePath: "/images/mobile/cards/card-3@2x.png",
-    imageAlt: "실시간 수익 최적화"
+    id: '01',
+    title: '버즈비 관리에\n최적화된 전용 스토어',
+    description: '상품 등록부터 결제, 고객관리, 마케팅,\n애널리스트까지 모든 것을 한곳에서 처리하세요.\n새롭게 통합된 전용 스토어로 더 편리하게 이용하고\n시간도 절약해 보세요.',
+    image: '/images/cards/con_5.png'
   }
 ];
 
-const MobileCardsSection = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-  const [imageErrors, setImageErrors] = useState<{[key: number]: boolean}>({});
-
-  const handleImageError = (cardId: number) => {
-    setImageErrors(prev => ({ ...prev, [cardId]: true }));
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 }
-  };
-
-  const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 60,
-      scale: 0.9
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      scale: 1
-    }
-  };
-
-  const titleVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0
-    }
-  };
-
-  return (
-    <section 
-      ref={sectionRef}
-      className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-16 px-4"
-    >
-      <div className="max-w-md mx-auto">
-        {/* 섹션 제목 */}
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={titleVariants}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-2xl font-bold text-gray-900 leading-tight mb-4">
-            바즈비는 어떤 새로운 가치를
-            <br />
-            제공할까요?
-          </h2>
-          <p className="text-gray-600 text-sm">
-            AI 기반 유튜브 최적화 플랫폼으로 크리에이터의 성공을 지원합니다
-          </p>
-        </motion.div>
-
-        {/* 카드 리스트 */}
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={containerVariants}
-          transition={{ 
-            staggerChildren: 0.2,
-            delayChildren: 0.1
-          }}
-          className="space-y-6"
-        >
-          {cards.map((card, index) => {
-            const IconComponent = card.icon;
-            
-            return (
-              <motion.div
-                key={card.id}
-                variants={cardVariants}
-                transition={{ 
-                  duration: 0.6,
-                  ease: "easeOut"
-                }}
-                className={`bg-gradient-to-br ${card.bgGradient} rounded-2xl p-6 shadow-lg border border-white/50 backdrop-blur-sm`}
-                whileHover={{ 
-                  scale: 1.02,
-                  transition: { duration: 0.2 }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {/* 카드 헤더 - 아이콘과 이미지 */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`p-3 rounded-xl bg-white/80 ${card.textColor}`}>
-                    <IconComponent size={24} strokeWidth={2} />
-                  </div>
-                  
-                  {/* 카드 이미지 */}
-                  <div className="w-16 h-16 relative">
-                    {!imageErrors[card.id] ? (
-                      <Image
-                        src={card.imagePath}
-                        alt={card.imageAlt}
-                        fill
-                        className="object-contain"
-                        onError={() => handleImageError(card.id)}
-                      />
-                    ) : (
-                      <div className={`w-full h-full rounded-lg bg-white/80 flex items-center justify-center ${card.textColor}`}>
-                        <IconComponent size={32} strokeWidth={1.5} />
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* 카드 콘텐츠 */}
-                <div className="mb-6">
-                  <h3 className={`text-lg font-bold ${card.textColor} mb-3`}>
-                    {card.title}
-                  </h3>
-                  <p className={`text-sm ${card.textColor} opacity-80 leading-relaxed`}>
-                    {card.description}
-                  </p>
-                </div>
-
-                {/* CTA 버튼 */}
-                <motion.button
-                  className={`w-full ${card.buttonColor} text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-lg`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span>자세히 보기</span>
-                  <ChevronRight size={18} strokeWidth={2} />
-                </motion.button>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-        {/* 하단 CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          className="text-center mt-12"
-        >
-          <p className="text-gray-600 text-sm mb-4">
-            지금 바로 바즈비와 함께 시작하세요
-          </p>
-          <motion.button
-            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-4 px-8 rounded-full shadow-lg"
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            무료로 시작하기
-          </motion.button>
-        </motion.div>
-      </div>
-    </section>
-  );
+const ctaSection = {
+  title: '티켓광고,\n버즈비와 함께라면 더 쉬워져요',
+  subtitle: 'Future',
+  description: '버즈비 애드 전문가들과 함께 해보세요.',
+  buttonText: '바로가기',
+  image: '/images/cards/con_5.png'
 };
 
-export default MobileCardsSection;
+export default function MobileCardsSection() {
+  return (
+    <>
+      {/* Future Section (con_5) */}
+      <section 
+        id="cards"
+        className="py-20 bg-[var(--color-bg-secondary)]"
+      >
+        {/* 상단 제목 - 섹션 맨 위 */}
+        <div className="text-center mb-20">
+          <motion.div
+            className="figma-subtitle mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Future
+          </motion.div>
+          <motion.h2
+            className="figma-heading-lg leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            버즈비는<br />
+            어떻게 새로워졌을까?
+          </motion.h2>
+        </div>
+
+        {/* 하단 컨텐츠 영역 */}
+        <div className="container mx-auto px-4">
+          <div className="max-w-lg mx-auto">
+            {/* 텍스트 및 콘텐츠 */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <div className="mb-12">
+                <div className="w-12 h-2.5 mb-4 mx-auto">
+                  <div
+                    className="w-full h-full bg-center bg-cover bg-no-repeat"
+                    style={{
+                      backgroundImage: 'url("/images/hero/btn_menu.png")'
+                    }}
+                  />
+                </div>
+                <div className="text-[var(--color-brand-accent)] figma-heading-sm mb-4 text-center">01</div>
+                <h3 className="figma-heading-md text-white mb-6 whitespace-pre-line text-center">
+                  {futureFeatures[0].title}
+                </h3>
+                <p className="figma-body text-[var(--color-text-secondary)] whitespace-pre-line text-center">
+                  {futureFeatures[0].description}
+                </p>
+              </div>
+            </motion.div>
+
+            {/* 이미지 */}
+            <motion.div
+              className="relative flex justify-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <div
+                className="bg-center bg-cover bg-no-repeat rounded-3xl w-full max-w-sm"
+                style={{
+                  height: '200px',
+                  backgroundImage: 'url("/images/cards/img_con.png")'
+                }}
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section (con_6) */}
+      <section 
+        className="py-20 bg-black"
+      >
+        {/* 상단 제목 - 섹션 맨 위 가운데 */}
+        <div className="text-center mb-20">
+          <motion.div
+            className="figma-subtitle mb-8"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Future
+          </motion.div>
+          <motion.h2
+            className="figma-heading-lg text-center leading-tight mb-8 whitespace-pre-line"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {ctaSection.title}
+          </motion.h2>
+        </div>
+
+        {/* 하단 배경 이미지 컨테이너 - 모바일 최적화 */}
+        <div className="container mx-auto px-4">
+          <div className="w-full max-w-lg h-64 relative mx-auto">
+            {/* 배경 이미지 */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-lg"
+              style={{
+                backgroundImage: 'url("/images/cards/Mask group.png")'
+              }}
+            />
+            {/* 선명한 오버레이 */}
+            <div className="absolute inset-0 bg-black/40 rounded-lg" />
+            
+            {/* 배경 위 텍스트 컨텐츠 - 중앙 정렬 */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+              <motion.div
+                className="figma-heading-sm text-white mb-4"
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                운영대행
+              </motion.div>
+              
+              <motion.h3
+                className="figma-heading-md text-white mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                온라인 광고는 처음이신가요?
+              </motion.h3>
+              
+              <motion.p
+                className="figma-body-lg text-white mb-8 whitespace-pre-line"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              >
+                {ctaSection.description}
+              </motion.p>
+
+              <motion.button
+                className="bg-[var(--color-brand-accent)] text-black px-8 py-3 rounded-full figma-button hover:bg-[var(--color-brand-accent)]/90 transition-colors duration-200 inline-flex items-center gap-3"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 1.0 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {ctaSection.buttonText}
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
+                  <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </motion.button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

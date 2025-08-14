@@ -1,148 +1,135 @@
 'use client';
 
-import React, { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import MobileContactForm from './MobileContactForm';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
-interface FAQItem {
-  id: number;
-  question: string;
-  answer: string;
-}
-
-const faqData: FAQItem[] = [
+const faqs = [
   {
-    id: 1,
-    question: "바즈비 플랫폼 이용 요금은 어떻게 되나요?",
-    answer: "바즈비는 기본 이용료 무료로 시작하실 수 있습니다. 추가 기능이나 고급 분석 도구는 월 구독제로 제공되며, 자세한 요금 정보는 문의를 통해 안내드리고 있습니다."
+    question: "새로운 유튜브 쇼핑, 어떤 게 달라졌나요?",
+    answer: "카페24와 유튜브가 함께 개편한 유튜브 쇼핑에서는 별도의 디자인 작업 없이 손쉽게 스토어를 만들 수 있고, 상품 관리 및 주문/배송 관리 등 간편하게 스토어를 관리할 수 있는 기능들이 제공돼요.\n\n또한, 구매자는 여러 스토어에서 배송지 매번 입력할 필요 없이 자동으로 입력되어 더욱 편리하게 주문할 수 있어요.",
+    isExpanded: true
   },
   {
-    id: 2,
-    question: "콘텐츠 업로드에 제한이 있나요?",
-    answer: "기본 플랜에서는 월 100개의 콘텐츠 업로드가 가능하며, 프리미엄 플랜에서는 무제한 업로드를 지원합니다. 파일 크기는 개당 최대 2GB까지 지원됩니다."
+    question: "부동산 광고 대행 서비스는 어떤 것들이 있나요?",
+    answer: "버즈비에서는 온라인 광고 전략 수립부터 크리에이티브 제작, 광고 집행, 성과 분석까지 원스톱 서비스를 제공합니다. 네이버, 구글, 페이스북, 인스타그램 등 주요 플랫폼에서 효과적인 광고를 진행할 수 있습니다.",
+    isExpanded: false
   },
   {
-    id: 3,
-    question: "수익 정산 주기는 어떻게 되나요?",
-    answer: "수익 정산은 매월 말일 기준으로 계산되어 익월 15일에 지급됩니다. 최소 정산 금액은 50,000원이며, 세금계산서 발행도 가능합니다."
+    question: "광고 효과는 어떻게 측정하나요?",
+    answer: "실시간 대시보드를 통해 광고 성과를 확인할 수 있으며, 클릭률, 전환율, 리드 생성률 등 다양한 지표로 광고 효과를 측정합니다. 정기적인 성과 리포트도 제공해드립니다.",
+    isExpanded: false
   },
   {
-    id: 4,
-    question: "기업용 솔루션도 제공하나요?",
-    answer: "네, 기업 고객을 위한 전용 솔루션을 제공합니다. 대량 콘텐츠 관리, 팀 협업 기능, 전담 고객지원 등 기업 맞춤형 서비스를 이용하실 수 있습니다."
+    question: "최소 광고 예산은 얼마인가요?",
+    answer: "프로젝트 규모와 목표에 따라 광고 예산이 달라집니다. 자세한 견적은 무료 상담을 통해 맞춤형으로 제안해드리며, 합리적인 비용으로 최대 효과를 낼 수 있도록 도와드립니다.",
+    isExpanded: false
   },
   {
-    id: 5,
-    question: "API 연동이 가능한가요?",
-    answer: "RESTful API를 통해 다양한 시스템과 연동이 가능합니다. 개발자 문서와 SDK를 제공하며, 기술 지원팀이 연동 과정을 도와드립니다."
-  },
-  {
-    id: 6,
-    question: "사용자 데이터는 안전하게 보호되나요?",
-    answer: "SSL 암호화, 정기적인 보안 점검, GDPR 준수 등 엄격한 보안 정책을 적용하고 있습니다. 사용자의 개인정보와 콘텐츠는 안전하게 보호됩니다."
-  },
-  {
-    id: 7,
-    question: "모바일 앱도 제공되나요?",
-    answer: "iOS와 Android용 모바일 앱을 제공하며, 웹과 동일한 기능을 모바일에서도 편리하게 이용하실 수 있습니다. 앱스토어와 플레이스토어에서 다운로드 가능합니다."
-  },
-  {
-    id: 8,
-    question: "고객 지원은 어떻게 받을 수 있나요?",
-    answer: "평일 오전 9시부터 오후 6시까지 실시간 채팅, 이메일, 전화 지원을 제공합니다. 긴급한 문제의 경우 24시간 지원도 가능합니다."
+    question: "계약 기간은 어떻게 되나요?",
+    answer: "일반적으로 3개월 이상의 계약을 권장드리며, 프로젝트 특성에 따라 유연하게 조정 가능합니다. 단기간 캠페인부터 장기간 브랜딩까지 다양한 옵션을 제공합니다.",
+    isExpanded: false
   }
 ];
 
-const FAQAccordionItem: React.FC<{ item: FAQItem; isOpen: boolean; onToggle: () => void }> = ({
-  item,
-  isOpen,
-  onToggle
-}) => {
-  return (
-    <div className="border-b border-gray-700">
-      <button
-        onClick={onToggle}
-        className="w-full text-left py-6 px-0 flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset rounded-lg"
-        aria-expanded={isOpen}
-      >
-        <h3 className="text-lg font-medium text-white pr-4 leading-relaxed">
-          {item.question}
-        </h3>
-        <div className="flex-shrink-0 ml-2">
-          {isOpen ? (
-            <ChevronUp className="w-5 h-5 text-blue-400" />
-          ) : (
-            <ChevronDown className="w-5 h-5 text-gray-400" />
-          )}
-        </div>
-      </button>
-      {isOpen && (
-        <div className="pb-6 px-0">
-          <p className="text-gray-300 leading-relaxed text-base">
-            {item.answer}
-          </p>
-        </div>
-      )}
-    </div>
-  );
-};
+export default function MobileFAQSection() {
+  const [expandedIndex, setExpandedIndex] = useState(0); // First item expanded by default
 
-const MobileFAQSection: React.FC = () => {
-  const [openItems, setOpenItems] = useState<Set<number>>(new Set());
-
-  const toggleItem = (id: number) => {
-    const newOpenItems = new Set(openItems);
-    if (newOpenItems.has(id)) {
-      newOpenItems.delete(id);
-    } else {
-      newOpenItems.add(id);
-    }
-    setOpenItems(newOpenItems);
+  const toggleExpanded = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? -1 : index);
   };
 
   return (
-    <div className="w-full">
-      {/* FAQ Section */}
-      <section className="bg-black py-16 px-5">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              궁금한 점이 있으시나요?
+    <section id="faq" className="py-20 bg-[var(--color-bg-secondary)]">
+      <div className="container mx-auto px-4">
+        {/* 제목 영역 */}
+        <div className="text-center mb-16 max-w-lg mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="figma-subtitle mb-8">Q & A</div>
+            <h2 className="figma-heading-lg leading-tight mb-8">
+              궁금한 점이 있으면<br />
+              문의해 주세요
             </h2>
-            <p className="text-gray-400 text-lg">
-              자주 묻는 질문들을 확인해보세요
-            </p>
-          </div>
+          </motion.div>
 
-          <div className="space-y-0">
-            {faqData.map((item) => (
-              <FAQAccordionItem
-                key={item.id}
-                item={item}
-                isOpen={openItems.has(item.id)}
-                onToggle={() => toggleItem(item.id)}
-              />
-            ))}
-          </div>
+          {/* 더보기 버튼 */}
+          <motion.div
+            className="flex justify-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.button 
+              className="border border-white rounded-full px-8 py-3 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              더보기
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
+                <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </motion.button>
+          </motion.div>
         </div>
-      </section>
 
-      {/* Contact Form Section */}
-      <section className="bg-gray-100 py-16 px-5">
-        <div className="max-w-md mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">
-              문의하기
-            </h2>
-            <p className="text-gray-600">
-              더 궁금한 점이 있으시면 언제든 연락주세요
-            </p>
-          </div>
-          <MobileContactForm />
+        {/* FAQ 목록 */}
+        <div className="max-w-lg mx-auto space-y-4">
+          {faqs.map((faq, index) => (
+            <motion.div
+              key={index}
+              className="bg-[rgba(0,0,0,0.3)] rounded-[10px] overflow-hidden cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              onClick={() => toggleExpanded(index)}
+            >
+              <div className="p-6">
+                {/* 질문 */}
+                <div className="flex items-center justify-between">
+                  <h3 className="figma-body-lg text-white font-semibold leading-relaxed text-sm">
+                    Q. {faq.question}
+                  </h3>
+                  
+                  {/* 펼침/접힘 아이콘 */}
+                  <div className="ml-4 flex-shrink-0">
+                    <div className="relative w-4 h-4 flex items-center justify-center">
+                      <div className="w-4 h-0.5 bg-white rounded-full" />
+                      <div 
+                        className={`absolute w-0.5 h-4 bg-white rounded-full transition-transform duration-300 ${
+                          expandedIndex === index ? 'rotate-0 opacity-0' : 'rotate-90 opacity-100'
+                        }`} 
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* 답변 */}
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: expandedIndex === index ? 'auto' : 0,
+                    opacity: expandedIndex === index ? 1 : 0
+                  }}
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  className="overflow-hidden"
+                >
+                  <div className="pt-4">
+                    <p className="figma-body text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line text-xs">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
-};
-
-export default MobileFAQSection;
+}

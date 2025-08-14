@@ -1,163 +1,92 @@
 'use client';
 
-import { useMobileCounter, easingFunctions, formatStatNumber } from '@/hooks/useMobileCounter';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { useRef } from 'react';
 
-interface StatItem {
-  id: string;
-  value: number;
-  type: 'default' | 'percentage' | 'currency';
-  label: string;
-  description?: string;
-  delay?: number;
-}
-
-const statsData: StatItem[] = [
-  {
-    id: 'platform-usage',
-    value: 1000,
-    type: 'default',
-    label: '바즈비 플랫폼을 네번 1개 기업 이용수',
-    delay: 0
-  },
-  {
-    id: 'active-users',
-    value: 500,
-    type: 'default',
-    label: '활성 이용 기업수',
-    delay: 200
-  },
-  {
-    id: 'satisfaction',
-    value: 90,
-    type: 'percentage',
-    label: '고객 만족도',
-    delay: 400
-  },
-  {
-    id: 'growth-rate',
-    value: 15,
-    type: 'percentage',
-    label: '월 평균 성장률',
-    delay: 600
-  },
-  {
-    id: 'annual-revenue',
-    value: 200000,
-    type: 'currency',
-    label: '연간 거래액',
-    delay: 800
-  }
+const stats = [
+  { label: '진행 클라이언트 고객', value: '1000', suffix: ' +', description: '프로젝트 진행 고객 수' },
+  { label: '분양현장', value: '500', suffix: ' +', description: '성공적인 분양 사례' },
+  { label: '유의미 리드 고객', value: '90', suffix: ' %', description: '고품질 리드 비율' },
+  { label: '평균 계약전환율', value: '15', suffix: ' %', description: '업계 최고 수준' },
+  { label: '연간 광고 집행 예산', value: '20억', suffix: '', description: '광고 운영 규모' }
 ];
 
-const StatCard: React.FC<{ stat: StatItem; index: number }> = ({ stat, index }) => {
-  const { count, ref, isVisible } = useMobileCounter({
-    target: stat.value,
-    duration: 2500,
-    easing: easingFunctions.easeOutQuart,
-    startDelay: stat.delay || 0
+export default function MobileStatsSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { ref, inView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true
   });
 
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // 통계 카드들의 parallax 효과
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const y5 = useTransform(scrollYProgress, [0, 1], [0, -250]);
+
+  const parallaxYs = [y1, y2, y3, y4, y5];
+
   return (
-    <div
-      ref={ref}
-      className={`
-        flex flex-col items-center text-center py-8 px-6
-        transform transition-all duration-1000 ease-out
-        ${isVisible 
-          ? 'translate-y-0 opacity-100' 
-          : 'translate-y-8 opacity-0'
-        }
-      `}
+    <section 
+      id="stats"
+      ref={containerRef} 
+      className="py-20 relative"
       style={{
-        transitionDelay: `${(stat.delay || 0) + 100}ms`
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 10%, rgba(123,111,27,0.05) 50%, rgba(246,222,53,0.3) 100%)',
+        minHeight: '140vh'
       }}
     >
-      {/* Number Display */}
-      <div className="mb-4">
-        <div className="text-4xl md:text-5xl font-bold text-white mb-2 tabular-nums">
-          {formatStatNumber(count, stat.type)}
-        </div>
-        
-        {/* Progress indicator for visual feedback */}
-        <div className="w-16 h-0.5 bg-gray-700 rounded-full overflow-hidden mx-auto">
-          <div 
-            className="h-full bg-red-500 transition-all duration-2000 ease-out"
-            style={{
-              width: isVisible ? '100%' : '0%',
-              transitionDelay: `${stat.delay || 0}ms`
-            }}
-          />
-        </div>
-      </div>
+      <div ref={ref} className="container mx-auto px-4 relative z-10">
+        <div className="max-w-lg mx-auto">
+          {/* 헤더 섹션 */}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <div className="figma-subtitle mb-8">ABOUT US</div>
+            <h2 className="figma-heading-lg leading-tight">
+              부동산 종합광고 대행<br />
+              <span className="text-white">1위 기업 버즈비</span>
+            </h2>
+          </motion.div>
 
-      {/* Label */}
-      <div className="space-y-2">
-        <h3 className="text-white text-sm md:text-base font-medium leading-relaxed">
-          {stat.label}
-        </h3>
-        
-        {stat.description && (
-          <p className="text-gray-400 text-xs md:text-sm">
-            {stat.description}
-          </p>
-        )}
-      </div>
-    </div>
-  );
-};
-
-const MobileStatsSection: React.FC = () => {
-  return (
-    <section className="relative bg-black py-16 md:py-20 overflow-hidden">
-      {/* Background Image - Optional */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="w-full h-full bg-gradient-to-b from-gray-900/50 to-black/80" />
-      </div>
-
-      <div className="relative z-10 container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            신뢰할 수 있는 성과
-          </h2>
-          <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-            바즈비와 함께한 기업들의 실제 성과와 만족도를 확인해보세요
-          </p>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 gap-2 max-w-lg mx-auto">
-          {statsData.map((stat, index) => (
-            <StatCard
-              key={stat.id}
-              stat={stat}
-              index={index}
-            />
-          ))}
-        </div>
-
-        {/* Bottom Decorative Element */}
-        <div className="flex justify-center mt-12 md:mt-16">
-          <div className="flex space-x-2">
-            {[0, 1, 2].map((i) => (
-              <div
-                key={i}
-                className="w-2 h-2 bg-red-500 rounded-full animate-pulse"
-                style={{
-                  animationDelay: `${i * 200}ms`,
-                  animationDuration: '2s'
+          {/* 통계 목록 */}
+          <div className="space-y-0">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                className="py-8 border-b border-white/20 last:border-b-0"
+                initial={{ opacity: 0, y: 50 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.15,
+                  ease: 'easeOut'
                 }}
-              />
+                style={{ y: parallaxYs[index] }}
+              >
+                <div className="text-center">
+                  <div className="figma-stats-number mb-4">
+                    {stat.value}{stat.suffix}
+                  </div>
+                  <div className="figma-body-lg text-white mb-2">
+                    {stat.label}
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
-
-      {/* Gradient Overlays for Visual Polish */}
-      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
     </section>
   );
-};
-
-export default MobileStatsSection;
+}

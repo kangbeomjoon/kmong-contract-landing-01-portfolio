@@ -44,7 +44,75 @@ export const useResponsive = (): ResponsiveState => {
 
 // Helper hooks for specific breakpoints
 export const useIsMobile = (): boolean => {
-  const { isMobile } = useResponsive();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const updateMobileState = () => {
+      // 개발 환경에서만 URL 파라미터 확인
+      if (process.env.NODE_ENV === 'development') {
+        const params = new URLSearchParams(window.location.search);
+        const mobileParam = params.get('mobile');
+        
+        if (mobileParam === 'true') {
+          setIsMobile(true);
+          return;
+        }
+        
+        if (mobileParam === 'false') {
+          setIsMobile(false);
+          return;
+        }
+      }
+      
+      // URL 파라미터가 없거나 프로덕션 환경에서는 자동 감지
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+    };
+
+    // Initial check
+    updateMobileState();
+
+    // URL 변경 감지 (개발 환경에서만)
+    if (process.env.NODE_ENV === 'development') {
+      const handlePopState = () => {
+        updateMobileState();
+      };
+      window.addEventListener('popstate', handlePopState);
+      
+      // pushState, replaceState 감지를 위한 커스텀 이벤트
+      const originalPushState = history.pushState;
+      const originalReplaceState = history.replaceState;
+      
+      history.pushState = function(...args) {
+        originalPushState.apply(history, args);
+        setTimeout(updateMobileState, 0);
+      };
+      
+      history.replaceState = function(...args) {
+        originalReplaceState.apply(history, args);
+        setTimeout(updateMobileState, 0);
+      };
+      
+      // Cleanup
+      const cleanup = () => {
+        window.removeEventListener('popstate', handlePopState);
+        history.pushState = originalPushState;
+        history.replaceState = originalReplaceState;
+      };
+      
+      return cleanup;
+    }
+
+    // 프로덕션 환경에서는 resize 이벤트만 감지
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return isMobile;
 };
 
