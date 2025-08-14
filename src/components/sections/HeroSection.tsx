@@ -203,15 +203,26 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* 우측 메뉴 버튼 (데스크톱 전용) */}
-            <div className="hidden lg:block">
-              <div
-                className="h-6 w-6 bg-center bg-cover bg-no-repeat cursor-pointer"
-                style={{
-                  backgroundImage: 'url("/images/hero/btn_menu.png")',
-                }}
-              />
-            </div>
+            {/* 우측 햄버거 메뉴 버튼 */}
+            <motion.button
+              className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </motion.button>
 
             {/* 모바일 메뉴 버튼 */}
             <div className="lg:hidden">

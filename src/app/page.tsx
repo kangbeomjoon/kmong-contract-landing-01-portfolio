@@ -1,21 +1,15 @@
-import HeroSection from '@/components/sections/HeroSection';
-import StatsSection from '@/components/sections/StatsSection';
-import ProgressSection from '@/components/sections/ProgressSection';
-import CarouselSection from '@/components/sections/CarouselSection';
-import CardsSection from '@/components/sections/CardsSection';
-import FAQSection from '@/components/sections/FAQSection';
-import Footer from '@/components/sections/Footer';
+'use client';
+
+import { useIsMobile } from '@/hooks';
+import DesktopLayout from '@/components/layouts/DesktopLayout';
+import { MobileLayout } from '@/components/mobile';
 
 export default function Home() {
-  return (
-    <div className="min-h-screen">
-      <HeroSection />
-      <StatsSection />
-      <ProgressSection />
-      <CarouselSection />
-      <CardsSection />
-      <FAQSection />
-      <Footer />
-    </div>
-  );
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return <MobileLayout />;
+  }
+
+  return <DesktopLayout />;
 }
