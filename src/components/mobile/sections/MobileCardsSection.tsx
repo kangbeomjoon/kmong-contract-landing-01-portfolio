@@ -79,14 +79,6 @@ export default function MobileCardsSection() {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <div className="mb-12">
-                <div className="w-12 h-2.5 mb-4 mx-auto">
-                  <div
-                    className="w-full h-full bg-center bg-cover bg-no-repeat"
-                    style={{
-                      backgroundImage: 'url("/images/hero/btn_menu.png")'
-                    }}
-                  />
-                </div>
                 <div className="text-[var(--color-brand-accent)] figma-heading-sm mb-4 text-center">01</div>
                 <h3 className="figma-heading-md text-white mb-6 whitespace-pre-line text-center">
                   {futureFeatures[0].title}
