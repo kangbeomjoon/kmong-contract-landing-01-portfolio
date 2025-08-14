@@ -36,7 +36,7 @@ export default function ProgressSection() {
   return (
     <section id="progress" ref={ref} className="py-20 relative bg-black">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto">
           {/* 좌측 텍스트 및 메뉴 */}
           <div>
             <motion.div
@@ -82,7 +82,7 @@ export default function ProgressSection() {
           </div>
 
           {/* 우측 이미지 및 콘텐츠 */}
-          <div className="relative">
+          <div className="relative mt-52">
             <motion.div
               className="relative h-96 rounded-2xl overflow-hidden"
               initial={{ opacity: 0, scale: 0.9 }}
