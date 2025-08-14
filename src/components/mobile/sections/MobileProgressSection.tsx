@@ -51,31 +51,28 @@ export default function MobileProgressSection() {
             </h2>
           </motion.div>
 
-          {/* 탭 메뉴 */}
-          <div className="space-y-4 mb-12">
+          {/* 탭 메뉴 - 가로 배치 */}
+          <div className="flex flex-wrap gap-2 mb-12 justify-center">
             {progressSteps.map((step, index) => (
               <motion.button
                 key={step.id}
-                className={`block w-full text-left transition-all duration-300 ${
+                className={`flex-1 min-w-0 text-center transition-all duration-300 px-2 py-3 ${
                   activeStep === index 
                     ? 'border-b-2 border-[var(--color-brand-accent)] pb-2' 
                     : 'text-[var(--color-text-muted)] hover:text-white'
                 }`}
                 onClick={() => setActiveStep(index)}
-                initial={{ opacity: 0, x: -30 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                initial={{ opacity: 0, y: -20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className={`figma-heading-sm ${
+                <div className={`figma-heading-sm text-xs sm:text-sm ${
                   activeStep === index 
                     ? 'text-[var(--color-brand-accent)]' 
                     : 'text-[var(--color-text-muted)]'
                 }`}>
                   {step.title}
                 </div>
-                {activeStep === index && (
-                  <div className="w-16 h-1 bg-[var(--color-brand-accent)] mt-2 rounded" />
-                )}
               </motion.button>
             ))}
           </div>
@@ -83,7 +80,7 @@ export default function MobileProgressSection() {
           {/* 이미지 및 콘텐츠 */}
           <div className="relative">
             <motion.div
-              className="relative h-64 rounded-2xl overflow-hidden"
+              className="relative h-80 rounded-2xl overflow-hidden"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}

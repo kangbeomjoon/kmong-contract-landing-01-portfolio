@@ -39,7 +39,7 @@ export default function MobileStatsSection() {
       ref={containerRef} 
       className="py-20 relative"
       style={{
-        background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 10%, rgba(123,111,27,0.2) 50%, rgba(246,222,53,0.6) 100%)',
+        background: 'linear-gradient(to bottom, #000000 0%, #000000 85%, rgba(246,222,53,0.3) 100%)',
         minHeight: '140vh'
       }}
     >
