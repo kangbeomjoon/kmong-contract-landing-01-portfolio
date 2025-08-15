@@ -40,12 +40,14 @@ export default function ProgressSection() {
           {/* 좌측 텍스트 및 메뉴 */}
           <div>
             <motion.div
+              className="text-left mb-12"
+              style={{ paddingLeft: '30px' }}
               initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
               <div className="figma-subtitle mb-8">HOW TO</div>
-              <h2 className="figma-heading-lg leading-tight mb-12">
+              <h2 className="figma-heading-lg leading-tight">
                 부동산 종합광고 대행<br />
                 어떻게 시작하면 되나요?
               </h2>

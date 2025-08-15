@@ -50,7 +50,7 @@ export default function MobileStatsSection() {
             initial={{ opacity: 0, y: -50 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-left mb-16" style={{paddingLeft: '30px'}}
           >
             <div className="figma-subtitle mb-8">ABOUT US</div>
             <h2 className="figma-heading-lg leading-tight">
@@ -74,7 +74,7 @@ export default function MobileStatsSection() {
                 }}
                 style={{ y: parallaxYs[index] }}
               >
-                <div className="text-center">
+                <div className="text-left" style={{paddingLeft: '30px'}}>
                   <div className="figma-stats-number mb-4">
                     {stat.value}{stat.suffix}
                   </div>

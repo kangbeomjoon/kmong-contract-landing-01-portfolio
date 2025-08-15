@@ -298,7 +298,8 @@ export default function MobileHeroSection() {
           className="bg-white text-black font-medium flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer px-8 py-4 rounded-full"
           style={{
             minWidth: '160px',
-            height: '48px'
+            height: '48px',
+            marginBottom: '70px'
           }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}

@@ -242,4 +242,36 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
   }
+  
+  /* 모바일 전용 폰트 크기 조정 */
+  @media (max-width: 1023px) {
+    .figma-subtitle {
+      font-size: 24px;
+    }
+    
+    .figma-heading-lg {
+      font-size: 45px;
+    }
+    
+    .figma-heading-md {
+      font-size: 45px;
+    }
+    
+    .figma-body-lg {
+      font-size: 24px;
+    }
+    
+    .figma-heading-sm {
+      font-size: 30px;
+    }
+    
+    .figma-body {
+      font-size: 20px;
+    }
+    
+    /* FAQ 섹션 h3 태그 폰트 크기 */
+    h3.figma-body-lg {
+      font-size: 33px;
+    }
+  }
 }

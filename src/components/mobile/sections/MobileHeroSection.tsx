@@ -61,17 +61,17 @@ export function MobileHeroSection() {
           </div>
 
           {/* 메인 타이틀 */}
-          <div className="mb-12">
+          <div style={{marginTop: '60px', marginBottom: '94px'}}>
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-semibold text-white mb-6">
+              <h2 className="text-4xl font-semibold text-white mb-6">
                 온라인 광고
               </h2>
               {/* 애니메이션 텍스트 */}
-              <div className="h-32 flex items-center justify-center">
+              <div className="h-32 flex items-center justify-center" style={{marginTop: '30px'}}>
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={currentMessageIndex}
-                    className="text-3xl font-bold text-white leading-tight text-center whitespace-pre-line"
+                    className="text-5xl font-bold text-white leading-tight text-center whitespace-pre-line"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
