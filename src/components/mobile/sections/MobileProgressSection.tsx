@@ -42,7 +42,7 @@ export default function MobileProgressSection() {
             initial={{ opacity: 0, y: -50 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center mb-12"
+            className="text-left mb-12"
           >
             <div className="figma-subtitle mb-8">HOW TO</div>
             <h2 className="figma-heading-lg leading-tight">
