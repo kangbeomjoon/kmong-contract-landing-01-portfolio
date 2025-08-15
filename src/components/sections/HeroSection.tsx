@@ -330,9 +330,8 @@ export default function HeroSection() {
           style={{
             width: '1px',
             height: '111px',
-            left: '50%',
-            top: '84px',
-            transform: 'translateX(-50%)'
+            left: '981px',
+            top: '84px'
           }}
           initial={{ opacity: 0, scaleY: 0 }}
           animate={{ opacity: 1, scaleY: 1 }}
@@ -349,9 +348,8 @@ export default function HeroSection() {
           style={{
             width: '250px',
             height: '43px',
-            left: '50%',
+            left: 'calc(981px - 250px/2)',
             top: '225px',
-            transform: 'translateX(-50%)',
             fontFamily: 'Pretendard',
             fontStyle: 'normal',
             fontWeight: '600',
@@ -378,9 +376,8 @@ export default function HeroSection() {
           style={{
             width: '885px',
             height: '72px',
-            left: '50%',
+            left: '539px',
             top: '318px',
-            transform: 'translateX(-50%)',
             fontFamily: 'Pretendard',
             fontStyle: 'normal',
             fontWeight: '700',
@@ -421,10 +418,9 @@ export default function HeroSection() {
           style={{
             width: '200px',
             height: '56px',
-            left: '50%',
+            left: '881px',
             top: '829px',
-            borderRadius: '999px',
-            transform: 'translateX(-50%)'
+            borderRadius: '999px'
           }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
