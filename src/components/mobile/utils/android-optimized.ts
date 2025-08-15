@@ -58,9 +58,9 @@ export const androidScaleVariants = {
 
 // Intersection Observer settings optimized for Android
 export const androidInViewOptions = {
-  threshold: 0.2, // Lower threshold for Android performance
+  amount: 0.2, // Lower threshold for Android performance
   rootMargin: '-5% 0px -5% 0px',
-  triggerOnce: true,
+  once: true,
   delay: 50 // Small delay for Android rendering
 };
 
@@ -116,11 +116,37 @@ export const getOptimizedAnimationConfig = () => {
   };
 };
 
+// Framer Motion variants type definition
+type MotionVariants = {
+  [key: string]: {
+    opacity?: number;
+    y?: number;
+    x?: number;
+    scale?: number;
+    transition?: {
+      duration?: number;
+      ease?: string;
+      type?: string;
+      delay?: number;
+      staggerChildren?: number;
+    };
+  };
+};
+
+// Custom transition type definition
+type CustomTransition = {
+  duration?: number;
+  ease?: string;
+  type?: string;
+  delay?: number;
+  staggerChildren?: number;
+};
+
 // Android-optimized Framer Motion props generator
 export const createAndroidMotionProps = (
-  variants: any,
+  variants: MotionVariants,
   delay: number = 0,
-  customTransition?: any
+  customTransition?: CustomTransition
 ) => {
   const optimizedTransition = {
     ...androidTransition,
@@ -199,7 +225,7 @@ export const androidViewportUtils = {
 };
 
 // Export all Android optimization utilities
-export default {
+const androidOptimizationUtils = {
   androidGPUConfig,
   androidTransition,
   androidScrollVariants,
@@ -216,3 +242,5 @@ export default {
   AndroidAnimationFrame,
   androidViewportUtils
 };
+
+export default androidOptimizationUtils;
