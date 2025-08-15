@@ -41,7 +41,7 @@ export function MobileHeroSection() {
 
   return (
     <section 
-      className="relative min-h-screen bg-cover bg-center bg-no-repeat overflow-hidden"
+      className="relative min-h-screen bg-cover bg-center bg-no-repeat overflow-hidden gpu-accelerated smooth-scroll"
       style={{
         backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url("/images/hero/main_bg_1 1.png")',
         backgroundSize: 'cover',
@@ -71,13 +71,19 @@ export function MobileHeroSection() {
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={currentMessageIndex}
-                    className="text-5xl font-bold text-white leading-tight text-center whitespace-pre-line"
+                    className="text-5xl font-bold text-white leading-tight text-center whitespace-pre-line gpu-accelerated"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{
-                      duration: 0.6,
-                      ease: "easeInOut"
+                      duration: 0.5, // Android에서 더 빠른 애니메이션
+                      ease: "easeInOut",
+                      type: "tween" // Android에서 더 부드러운 애니메이션
+                    }}
+                    style={{
+                      willChange: 'opacity, transform',
+                      backfaceVisibility: 'hidden',
+                      transform: 'translate3d(0, 0, 0)'
                     }}
                   >
                     {morphingMessages[currentMessageIndex]}
@@ -89,7 +95,9 @@ export function MobileHeroSection() {
 
           {/* CTA 버튼 */}
           <div className="mb-16 flex justify-center">
-            <button className="bg-white text-black font-medium py-4 px-12 rounded-full transition-all duration-300 hover:bg-gray-100 hover:shadow-lg inline-flex items-center gap-3">
+            <button className="bg-white text-black font-medium py-4 px-12 rounded-full transition-all duration-300 hover:bg-gray-100 hover:shadow-lg inline-flex items-center gap-3 touch-optimized gpu-accelerated"
+              style={{ minHeight: '44px', minWidth: '44px' }} // Android 터치 타겟 최소 크기
+            >
               문의하기
               <svg className="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>

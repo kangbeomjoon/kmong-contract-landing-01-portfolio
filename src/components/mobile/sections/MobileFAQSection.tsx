@@ -39,18 +39,27 @@ export default function MobileFAQSection() {
   };
 
   return (
-    <section id="faq" className="py-20 bg-[var(--color-bg-secondary)]">
+    <section id="faq" className="py-20 bg-[var(--color-bg-secondary)] gpu-accelerated smooth-scroll">
       <div className="container mx-auto px-4">
         {/* 제목 영역 */}
         <div className="mb-16 max-w-lg mx-auto">
           <div className="flex items-center justify-between gap-4 mb-12">
             {/* 왼쪽 제목 */}
             <motion.div
-              className="text-left flex-1 min-w-0"
-              initial={{ opacity: 0, y: 30 }}
+              className="text-left flex-1 min-w-0 gpu-accelerated"
+              initial={{ opacity: 0, y: 20 }} // Android에서 더 부드러운 시작
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true, threshold: 0.2 }}
+              transition={{ 
+                duration: 0.6, // Android에서 더 빠른 애니메이션
+                type: 'tween',
+                ease: 'easeOut'
+              }}
+              style={{
+                willChange: 'transform, opacity',
+                backfaceVisibility: 'hidden',
+                transform: 'translate3d(0, 0, 0)'
+              }}
             >
               <div className="figma-subtitle mb-4">Q & A</div>
               <h2 className="figma-heading-md leading-tight">
@@ -61,16 +70,32 @@ export default function MobileFAQSection() {
 
             {/* 오른쪽 더보기 버튼 */}
             <motion.div
-              className="flex-shrink-0"
-              initial={{ opacity: 0, y: 20 }}
+              className="flex-shrink-0 gpu-accelerated"
+              initial={{ opacity: 0, y: 15 }} // Android에서 더 부드러운 시작
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true, threshold: 0.2 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: 0.15, // 더 짧은 딜레이
+                type: 'tween',
+                ease: 'easeOut'
+              }}
+              style={{
+                willChange: 'transform, opacity',
+                backfaceVisibility: 'hidden',
+                transform: 'translate3d(0, 0, 0)'
+              }}
             >
               <motion.button 
-                className="border border-white rounded-full px-6 py-2.5 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-2 text-sm whitespace-nowrap"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="border border-white rounded-full px-6 py-2.5 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-2 text-sm whitespace-nowrap touch-optimized gpu-accelerated"
+                whileHover={{ scale: 1.02 }} // Android에서 더 부드러운 호버
+                whileTap={{ scale: 0.98 }} // Android에서 더 부드러운 탭
+                transition={{ type: 'tween', duration: 0.15 }}
+                style={{ 
+                  minHeight: '44px', // Android 터치 타겟 최소 크기
+                  willChange: 'transform',
+                  backfaceVisibility: 'hidden'
+                }}
               >
                 더보기
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5">
@@ -86,12 +111,24 @@ export default function MobileFAQSection() {
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
-              className="bg-[rgba(0,0,0,0.3)] rounded-[10px] overflow-hidden cursor-pointer"
-              initial={{ opacity: 0, y: 20 }}
+              className="bg-[rgba(0,0,0,0.3)] rounded-[10px] overflow-hidden cursor-pointer touch-optimized gpu-accelerated"
+              initial={{ opacity: 0, y: 15 }} // Android에서 더 부드러운 시작
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true, threshold: 0.2 }}
+              transition={{ 
+                duration: 0.5, // Android에서 더 빠른 애니메이션
+                delay: index * 0.08, // 더 짧은 딜레이
+                type: 'tween',
+                ease: 'easeOut'
+              }}
               onClick={() => toggleExpanded(index)}
+              whileTap={{ scale: 0.98 }} // Android 터치 피드백
+              style={{
+                minHeight: '44px', // Android 터치 타겟 최소 크기
+                willChange: 'transform, opacity',
+                backfaceVisibility: 'hidden',
+                transform: 'translate3d(0, 0, 0)'
+              }}
             >
               <div className="p-6">
                 {/* 질문 */}
@@ -120,8 +157,16 @@ export default function MobileFAQSection() {
                     height: expandedIndex === index ? 'auto' : 0,
                     opacity: expandedIndex === index ? 1 : 0
                   }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="overflow-hidden"
+                  transition={{ 
+                    duration: 0.25, // Android에서 더 빠른 전환
+                    ease: 'easeInOut',
+                    type: 'tween'
+                  }}
+                  className="overflow-hidden gpu-accelerated"
+                  style={{
+                    willChange: 'height, opacity',
+                    backfaceVisibility: 'hidden'
+                  }}
                 >
                   <div className="pt-4">
                     <p className="figma-body text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-line text-xs">

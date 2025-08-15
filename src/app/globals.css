@@ -273,5 +273,77 @@
     h3.figma-body-lg {
       font-size: 33px;
     }
+    
+    /* Android optimization for mobile */
+    * {
+      /* Hardware acceleration for better performance */
+      -webkit-transform: translate3d(0, 0, 0);
+      -webkit-backface-visibility: hidden;
+      -webkit-perspective: 1000px;
+    }
+
+    html {
+      /* Smooth scrolling with Android compatibility */
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      /* Prevent zoom on double-tap */
+      touch-action: manipulation;
+      /* Android-specific height fix */
+      min-height: -webkit-fill-available;
+    }
+
+    body {
+      /* Optimize rendering on Android */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      /* Prevent horizontal scroll */
+      overflow-x: hidden;
+      /* Better touch responsiveness */
+      touch-action: pan-y;
+      /* Android-specific height fix */
+      min-height: -webkit-fill-available;
+    }
+
+    /* Android-specific button fixes */
+    button {
+      -webkit-appearance: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    /* Input focus fixes for Android */
+    input, textarea {
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+    
+    /* Line clamp Android compatibility */
+    .line-clamp-1, .line-clamp-2, .line-clamp-3, .line-clamp-4 {
+      /* Fallback for older Android browsers */
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      /* Webkit line clamp for modern browsers */
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      white-space: normal;
+    }
+  }
+
+  /* Android-optimized animation utilities */
+  .gpu-accelerated {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform;
+  }
+  
+  .touch-optimized {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
   }
 }

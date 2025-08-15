@@ -4,7 +4,14 @@ import "./globals.css";
 // Pretendard 폰트를 외부 CDN에서 로드하기 위한 설정
 // globals.css에서 @import 대신 HTML head에서 로드
 
-export const viewport = "width=device-width, initial-scale=1";
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  minimumScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: 'cover'
+};
 
 export const metadata: Metadata = {
   title: "카페24 유튜브 쇼핑 - 전 세계 20억 사용자와 만나세요",
@@ -33,6 +40,14 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        {/* Android optimization meta tags */}
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="renderer" content="webkit" />
+        <meta name="force-rendering" content="webkit" />
+        
+        {/* Font optimization */}
         <link
           rel="preconnect"
           href="https://fonts.googleapis.com"

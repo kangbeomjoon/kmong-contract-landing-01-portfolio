@@ -19,7 +19,18 @@ export const useResponsive = (): ResponsiveState => {
 
   useEffect(() => {
     const updateScreenSize = () => {
-      const width = window.innerWidth;
+      // Android-optimized viewport detection
+      const width = Math.max(
+        document.documentElement.clientWidth || 0,
+        window.innerWidth || 0
+      );
+      
+      // Handle Android dynamic viewport (address bar hide/show)
+      const height = Math.max(
+        document.documentElement.clientHeight || 0,
+        window.innerHeight || 0,
+        window.screen?.height || 0
+      );
       
       setState({
         isMobile: width < 768,
@@ -32,11 +43,24 @@ export const useResponsive = (): ResponsiveState => {
     // Initial check
     updateScreenSize();
 
+    // Android-optimized resize handling with debouncing
+    let timeoutId: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(updateScreenSize, 100); // 100ms debounce for Android
+    };
+
     // Add event listener
-    window.addEventListener('resize', updateScreenSize);
+    window.addEventListener('resize', handleResize);
+    // Also listen for orientation changes on mobile
+    window.addEventListener('orientationchange', updateScreenSize);
 
     // Cleanup
-    return () => window.removeEventListener('resize', updateScreenSize);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', updateScreenSize);
+    };
   }, []);
 
   return state;
@@ -65,7 +89,11 @@ export const useIsMobile = (): boolean => {
       }
       
       // URL 파라미터가 없거나 프로덕션 환경에서는 자동 감지
-      const width = window.innerWidth;
+      // Android-optimized viewport detection
+      const width = Math.max(
+        document.documentElement.clientWidth || 0,
+        window.innerWidth || 0
+      );
       setIsMobile(width < 768);
     };
 
@@ -105,7 +133,11 @@ export const useIsMobile = (): boolean => {
 
     // 프로덕션 환경에서는 resize 이벤트만 감지
     const handleResize = () => {
-      const width = window.innerWidth;
+      // Android-optimized viewport detection
+      const width = Math.max(
+        document.documentElement.clientWidth || 0,
+        window.innerWidth || 0
+      );
       setIsMobile(width < 768);
     };
     

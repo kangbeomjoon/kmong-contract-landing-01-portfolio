@@ -26,25 +26,44 @@ export default function MobileCardsSection() {
       {/* Future Section (con_5) */}
       <section 
         id="cards"
-        className="py-20 bg-[var(--color-bg-secondary)]"
+        className="py-20 bg-[var(--color-bg-secondary)] gpu-accelerated smooth-scroll"
       >
         {/* 상단 제목 - 섹션 맨 위 */}
         <div className="text-center mb-20">
           <motion.div
-            className="figma-subtitle mb-8"
-            initial={{ opacity: 0, y: -20 }}
+            className="figma-subtitle mb-8 gpu-accelerated"
+            initial={{ opacity: 0, y: -15 }} // Android에서 더 부드러운 시작
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, threshold: 0.2 }}
+            transition={{ 
+              duration: 0.5, // Android에서 더 빠른 애니메이션
+              type: 'tween',
+              ease: 'easeOut'
+            }}
+            style={{
+              willChange: 'transform, opacity',
+              backfaceVisibility: 'hidden',
+              transform: 'translate3d(0, 0, 0)'
+            }}
           >
             Future
           </motion.div>
           <motion.h2
-            className="figma-heading-lg leading-tight"
-            initial={{ opacity: 0, y: 20 }}
+            className="figma-heading-lg leading-tight gpu-accelerated"
+            initial={{ opacity: 0, y: 15 }} // Android에서 더 부드러운 시작
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, threshold: 0.2 }}
+            transition={{ 
+              duration: 0.6, // Android에서 더 빠른 애니메이션
+              delay: 0.15, // 더 짧은 딜레이
+              type: 'tween',
+              ease: 'easeOut'
+            }}
+            style={{
+              willChange: 'transform, opacity',
+              backfaceVisibility: 'hidden',
+              transform: 'translate3d(0, 0, 0)'
+            }}
           >
             버즈비는<br />
             어떻게 새로워졌을까?
@@ -56,11 +75,21 @@ export default function MobileCardsSection() {
           <div className="max-w-lg mx-auto">
             {/* 이미지 */}
             <motion.div
-              className="relative flex justify-center mb-12"
-              initial={{ opacity: 0, scale: 0.9 }}
+              className="relative flex justify-center mb-12 gpu-accelerated"
+              initial={{ opacity: 0, scale: 0.95 }} // Android에서 더 부드러운 스케일
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true, threshold: 0.2 }}
+              transition={{ 
+                duration: 0.6, // Android에서 더 빠른 애니메이션
+                delay: 0.3, // 더 짧은 딜레이
+                type: 'tween',
+                ease: 'easeOut'
+              }}
+              style={{
+                willChange: 'transform, opacity',
+                backfaceVisibility: 'hidden',
+                transform: 'translate3d(0, 0, 0)'
+              }}
             >
               <div
                 className="bg-center bg-cover bg-no-repeat rounded-3xl w-full max-w-sm"
@@ -73,10 +102,21 @@ export default function MobileCardsSection() {
 
             {/* 텍스트 및 콘텐츠 */}
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
+              className="gpu-accelerated"
+              initial={{ opacity: 0, y: 30 }} // Android에서 더 부드러운 시작
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true, threshold: 0.2 }}
+              transition={{ 
+                duration: 0.6, // Android에서 더 빠른 애니메이션
+                delay: 0.4, // 더 짧은 딜레이
+                type: 'tween',
+                ease: 'easeOut'
+              }}
+              style={{
+                willChange: 'transform, opacity',
+                backfaceVisibility: 'hidden',
+                transform: 'translate3d(0, 0, 0)'
+              }}
             >
               <div className="mb-12">
                 <div className="text-[var(--color-brand-accent)] figma-heading-sm mb-4 text-center">01</div>
@@ -94,25 +134,44 @@ export default function MobileCardsSection() {
 
       {/* CTA Section (con_6) */}
       <section 
-        className="py-20 bg-black"
+        className="py-20 bg-black gpu-accelerated smooth-scroll"
       >
         {/* 상단 제목 - 섹션 맨 위 가운데 */}
         <div className="text-center mb-20">
           <motion.div
-            className="figma-subtitle mb-8"
-            initial={{ opacity: 0, y: -20 }}
+            className="figma-subtitle mb-8 gpu-accelerated"
+            initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, threshold: 0.2 }}
+            transition={{ 
+              duration: 0.5,
+              type: 'tween',
+              ease: 'easeOut'
+            }}
+            style={{
+              willChange: 'transform, opacity',
+              backfaceVisibility: 'hidden',
+              transform: 'translate3d(0, 0, 0)'
+            }}
           >
             Future
           </motion.div>
           <motion.h2
-            className="figma-heading-lg text-center leading-tight mb-8 whitespace-pre-line"
-            initial={{ opacity: 0, y: 20 }}
+            className="figma-heading-lg text-center leading-tight mb-8 whitespace-pre-line gpu-accelerated"
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, threshold: 0.2 }}
+            transition={{ 
+              duration: 0.6,
+              delay: 0.15,
+              type: 'tween',
+              ease: 'easeOut'
+            }}
+            style={{
+              willChange: 'transform, opacity',
+              backfaceVisibility: 'hidden',
+              transform: 'translate3d(0, 0, 0)'
+            }}
           >
             {ctaSection.title}
           </motion.h2>
@@ -134,43 +193,83 @@ export default function MobileCardsSection() {
             {/* 배경 위 텍스트 컨텐츠 - 중앙 정렬 */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
               <motion.div
-                className="figma-heading-sm text-white mb-4"
-                initial={{ opacity: 0, y: -20 }}
+                className="figma-heading-sm text-white mb-4 gpu-accelerated"
+                initial={{ opacity: 0, y: -15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true, threshold: 0.2 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: 0.3,
+                  type: 'tween',
+                  ease: 'easeOut'
+                }}
+                style={{
+                  willChange: 'transform, opacity',
+                  backfaceVisibility: 'hidden',
+                  transform: 'translate3d(0, 0, 0)'
+                }}
               >
                 운영대행
               </motion.div>
               
               <motion.h3
-                className="figma-heading-md text-white mb-6"
-                initial={{ opacity: 0, y: 20 }}
+                className="figma-heading-md text-white mb-6 gpu-accelerated"
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.6 }}
+                viewport={{ once: true, threshold: 0.2 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.4,
+                  type: 'tween',
+                  ease: 'easeOut'
+                }}
+                style={{
+                  willChange: 'transform, opacity',
+                  backfaceVisibility: 'hidden',
+                  transform: 'translate3d(0, 0, 0)'
+                }}
               >
                 온라인 광고는 처음이신가요?
               </motion.h3>
               
               <motion.p
-                className="figma-body-lg text-white mb-8 whitespace-pre-line"
-                initial={{ opacity: 0, y: 20 }}
+                className="figma-body-lg text-white mb-8 whitespace-pre-line gpu-accelerated"
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                viewport={{ once: true, threshold: 0.2 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.5,
+                  type: 'tween',
+                  ease: 'easeOut'
+                }}
+                style={{
+                  willChange: 'transform, opacity',
+                  backfaceVisibility: 'hidden',
+                  transform: 'translate3d(0, 0, 0)'
+                }}
               >
                 {ctaSection.description}
               </motion.p>
 
               <motion.button
-                className="bg-[var(--color-brand-accent)] text-black px-8 py-3 rounded-full figma-button hover:bg-[var(--color-brand-accent)]/90 transition-colors duration-200 inline-flex items-center gap-3"
-                initial={{ opacity: 0, scale: 0.9 }}
+                className="bg-[var(--color-brand-accent)] text-black px-8 py-3 rounded-full figma-button hover:bg-[var(--color-brand-accent)]/90 transition-colors duration-200 inline-flex items-center gap-3 touch-optimized gpu-accelerated"
+                initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 1.0 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                viewport={{ once: true, threshold: 0.2 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.6,
+                  type: 'tween',
+                  ease: 'easeOut'
+                }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                style={{ 
+                  minHeight: '44px',
+                  willChange: 'transform, opacity',
+                  backfaceVisibility: 'hidden'
+                }}
               >
                 {ctaSection.buttonText}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">

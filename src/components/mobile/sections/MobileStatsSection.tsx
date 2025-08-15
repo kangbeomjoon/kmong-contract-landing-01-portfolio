@@ -15,8 +15,10 @@ const stats = [
 export default function MobileStatsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { ref, inView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true
+    threshold: 0.2, // Android에서 더 낮은 임계값
+    triggerOnce: true,
+    rootMargin: '-5% 0px -5% 0px', // Android 최적화
+    delay: 50 // Android 렌더링 지연 고려
   });
 
   const { scrollYProgress } = useScroll({
@@ -24,12 +26,12 @@ export default function MobileStatsSection() {
     offset: ["start end", "end start"]
   });
 
-  // 통계 카드들의 parallax 효과 - 데스크탑과 유사한 강도로 조정
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -30]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -90]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const y5 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  // 통계 카드들의 parallax 효과 - Android 최적화 (더 부드러운 효과)
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -15]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -45]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const y5 = useTransform(scrollYProgress, [0, 1], [0, -75]);
 
   const parallaxYs = [y1, y2, y3, y4, y5];
 
@@ -37,7 +39,7 @@ export default function MobileStatsSection() {
     <section 
       id="stats"
       ref={containerRef} 
-      className="py-20 relative"
+      className="py-20 relative gpu-accelerated smooth-scroll"
       style={{
         background: 'linear-gradient(to bottom, #000000 0%, #000000 85%, rgba(246,222,53,0.3) 100%)',
         minHeight: '140vh'
@@ -47,10 +49,20 @@ export default function MobileStatsSection() {
         <div className="max-w-lg mx-auto">
           {/* 헤더 섹션 */}
           <motion.div
-            initial={{ opacity: 0, y: -50 }}
+            initial={{ opacity: 0, y: -30 }} // Android에서 더 부드러운 시작
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-left mb-16" style={{paddingLeft: '30px'}}
+            transition={{ 
+              duration: 0.6, // Android에서 더 빠른 애니메이션
+              type: 'tween',
+              ease: 'easeOut'
+            }}
+            className="text-left mb-16 gpu-accelerated" 
+            style={{
+              paddingLeft: '30px',
+              willChange: 'transform, opacity',
+              backfaceVisibility: 'hidden',
+              transform: 'translate3d(0, 0, 0)'
+            }}
           >
             <div className="figma-subtitle mb-8">ABOUT US</div>
             <h2 className="figma-heading-lg leading-tight">
@@ -64,15 +76,21 @@ export default function MobileStatsSection() {
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className="py-8 border-b border-white/20 last:border-b-0"
-                initial={{ opacity: 0, y: 50 }}
+                className="py-8 border-b border-white/20 last:border-b-0 gpu-accelerated"
+                initial={{ opacity: 0, y: 30 }} // Android에서 더 부드러운 시작
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.15,
-                  ease: 'easeOut'
+                  duration: 0.5, // Android에서 더 빠른 애니메이션
+                  delay: index * 0.1, // 더 짧은 딜레이
+                  ease: 'easeOut',
+                  type: 'tween' // Android에서 더 부드러운 애니메이션
                 }}
-                style={{ y: parallaxYs[index] }}
+                style={{ 
+                  y: parallaxYs[index],
+                  willChange: 'transform, opacity',
+                  backfaceVisibility: 'hidden',
+                  transform: 'translate3d(0, 0, 0)'
+                }}
               >
                 <div className="text-left" style={{paddingLeft: '30px'}}>
                   <div className="figma-stats-number mb-4">

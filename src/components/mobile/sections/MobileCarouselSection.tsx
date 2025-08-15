@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 const portfolioItems = [
   {
@@ -58,6 +58,8 @@ export default function MobileCarouselSection() {
   const [isPaused, setIsPaused] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isManualControl, setIsManualControl] = useState(false);
+  const animationFrameRef = useRef<number>();
+  const lastTimeRef = useRef<number>(0);
   
   const itemWidth = 280; // 모바일에서 카드 너비 (320 -> 280으로 조정)
 
@@ -101,27 +103,46 @@ export default function MobileCarouselSection() {
     }, 1500);
   };
 
-  // 자동 스크롤 효과 - 컨베이어벨트처럼 천천히
-  useEffect(() => {
+  // Android 최적화된 애니메이션 함수
+  const animate = useCallback((currentTime: number) => {
     if (!isManualControl && !isPaused) {
-      const interval = setInterval(() => {
+      // 60fps 타겟으로 16ms마다 업데이트
+      if (currentTime - lastTimeRef.current >= 100) { // 100ms마다 위치 업데이트
         setCurrentIndex((prev) => {
-          const newIndex = prev + 0.02; // 훨씬 더 천천히 이동 (컨베이어벨트처럼)
+          const newIndex = prev + 0.015; // Android에서 더 부드러운 이동
           if (newIndex >= portfolioItems.length * 2) {
             return portfolioItems.length;
           }
           return newIndex;
         });
-      }, 100); // 100ms마다 업데이트
-
-      return () => clearInterval(interval);
+        lastTimeRef.current = currentTime;
+      }
+      
+      animationFrameRef.current = requestAnimationFrame(animate);
     }
   }, [isManualControl, isPaused, portfolioItems.length]);
+
+  // 자동 스크롤 효과 - requestAnimationFrame 사용
+  useEffect(() => {
+    if (!isManualControl && !isPaused) {
+      animationFrameRef.current = requestAnimationFrame(animate);
+    } else {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    }
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [isManualControl, isPaused, animate]);
 
   return (
     <section 
       id="carousel"
-      className="py-20 relative overflow-hidden"
+      className="py-20 relative overflow-hidden gpu-accelerated smooth-scroll"
       style={{
         backgroundImage: 'url("/images/carousel/con_4.png")',
         backgroundSize: 'cover',
@@ -174,13 +195,15 @@ export default function MobileCarouselSection() {
           >
             <button 
               onClick={handlePrevious}
-              className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors text-white text-lg font-bold"
+              className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors text-white text-lg font-bold touch-optimized gpu-accelerated"
+              style={{ minHeight: '44px', minWidth: '44px' }}
             >
               &lt;
             </button>
             <button 
               onClick={handleNext}
-              className="w-12 h-12 rounded-full bg-[var(--color-brand-accent)] flex items-center justify-center hover:bg-[var(--color-brand-accent)]/80 transition-colors text-white text-lg font-bold"
+              className="w-12 h-12 rounded-full bg-[var(--color-brand-accent)] flex items-center justify-center hover:bg-[var(--color-brand-accent)]/80 transition-colors text-white text-lg font-bold touch-optimized gpu-accelerated"
+              style={{ minHeight: '44px', minWidth: '44px' }}
             >
               &gt;
             </button>
@@ -195,20 +218,31 @@ export default function MobileCarouselSection() {
             onMouseLeave={() => setIsPaused(false)}
           >
             <motion.div
-              className="flex gap-4"
+              className="flex gap-4 gpu-accelerated"
               animate={{
                 x: -currentIndex * itemWidth,
               }}
               transition={{
-                duration: isManualControl ? 0.8 : 0.1, // 버튼 클릭 시 더 부드럽게 (0.8초)
-                ease: isManualControl ? "easeOut" : "linear", // 버튼 클릭 시 easeOut easing
+                duration: isManualControl ? 0.6 : 0.1, // Android에서 더 빠른 전환
+                ease: isManualControl ? "easeOut" : "linear",
+                type: "tween" // Android에서 더 부드러운 애니메이션
+              }}
+              style={{
+                willChange: 'transform',
+                backfaceVisibility: 'hidden',
+                transform: 'translate3d(0, 0, 0)'
               }}
             >
               {duplicatedItems.map((item, index) => (
                 <motion.div
                   key={`${item.id}-${index}`}
-                  className="flex-shrink-0 w-64 group cursor-pointer"
+                  className="flex-shrink-0 w-64 group cursor-pointer gpu-accelerated touch-optimized"
                   whileHover={{ y: -5 }}
+                  transition={{ type: "tween", duration: 0.2 }}
+                  style={{
+                    willChange: 'transform',
+                    backfaceVisibility: 'hidden'
+                  }}
                 >
                   <div className="relative h-32 rounded-lg overflow-hidden mb-4">
                     <div
