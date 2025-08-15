@@ -34,7 +34,7 @@ export default function MobileCardsSection() {
             className="figma-subtitle mb-8 gpu-accelerated"
             initial={{ opacity: 0, y: -15 }} // Android에서 더 부드러운 시작
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, threshold: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ 
               duration: 0.5, // Android에서 더 빠른 애니메이션
               type: 'tween',
@@ -52,7 +52,7 @@ export default function MobileCardsSection() {
             className="figma-heading-lg leading-tight gpu-accelerated"
             initial={{ opacity: 0, y: 15 }} // Android에서 더 부드러운 시작
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, threshold: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ 
               duration: 0.6, // Android에서 더 빠른 애니메이션
               delay: 0.15, // 더 짧은 딜레이
@@ -78,7 +78,7 @@ export default function MobileCardsSection() {
               className="relative flex justify-center mb-12 gpu-accelerated"
               initial={{ opacity: 0, scale: 0.95 }} // Android에서 더 부드러운 스케일
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, threshold: 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ 
                 duration: 0.6, // Android에서 더 빠른 애니메이션
                 delay: 0.3, // 더 짧은 딜레이
@@ -105,7 +105,7 @@ export default function MobileCardsSection() {
               className="gpu-accelerated"
               initial={{ opacity: 0, y: 30 }} // Android에서 더 부드러운 시작
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, threshold: 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ 
                 duration: 0.6, // Android에서 더 빠른 애니메이션
                 delay: 0.4, // 더 짧은 딜레이
@@ -142,7 +142,7 @@ export default function MobileCardsSection() {
             className="figma-subtitle mb-8 gpu-accelerated"
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, threshold: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ 
               duration: 0.5,
               type: 'tween',
@@ -160,7 +160,7 @@ export default function MobileCardsSection() {
             className="figma-heading-lg text-center leading-tight mb-8 whitespace-pre-line gpu-accelerated"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, threshold: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ 
               duration: 0.6,
               delay: 0.15,
@@ -196,7 +196,7 @@ export default function MobileCardsSection() {
                 className="figma-heading-sm text-white mb-4 gpu-accelerated"
                 initial={{ opacity: 0, y: -15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, threshold: 0.2 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ 
                   duration: 0.5, 
                   delay: 0.3,
@@ -216,7 +216,7 @@ export default function MobileCardsSection() {
                 className="figma-heading-md text-white mb-6 gpu-accelerated"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, threshold: 0.2 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ 
                   duration: 0.6, 
                   delay: 0.4,
@@ -236,7 +236,7 @@ export default function MobileCardsSection() {
                 className="figma-body-lg text-white mb-8 whitespace-pre-line gpu-accelerated"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, threshold: 0.2 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ 
                   duration: 0.6, 
                   delay: 0.5,
@@ -256,7 +256,7 @@ export default function MobileCardsSection() {
                 className="bg-[var(--color-brand-accent)] text-black px-8 py-3 rounded-full figma-button hover:bg-[var(--color-brand-accent)]/90 transition-colors duration-200 inline-flex items-center gap-3 touch-optimized gpu-accelerated"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, threshold: 0.2 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ 
                   duration: 0.6, 
                   delay: 0.6,

@@ -4,9 +4,28 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:mobile": "next dev --turbopack --hostname 0.0.0.0 --port 3002",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:mobile": "playwright test --project='Android Chrome - Galaxy S21' --project='iOS Safari - iPhone 15 Pro'",
+    "test:cross-platform": "playwright test tests/e2e/cross-platform-compatibility.spec.ts",
+    "test:all-devices": "playwright test",
+    "test:android": "playwright test --project='Android Chrome - Galaxy S21' --project='Android Chrome - Pixel 5'",
+    "test:ios": "playwright test --project='iOS Safari - iPhone 15' --project='iOS Safari - iPhone 15 Pro'",
+    "test:tablet": "playwright test --project='Android Tablet - Galaxy Tab' --project='iOS Safari - iPad'",
+    "test:desktop": "playwright test --project='Desktop Chrome' --project='Desktop Safari'",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report",
+    "test:visual": "node scripts/run-mobile-tests.js visual",
+    "test:performance": "node scripts/run-mobile-tests.js performance",
+    "test:compatibility": "node scripts/run-mobile-tests.js compatibility",
+    "test:mobile-complete": "node scripts/run-mobile-tests.js mobile",
+    "test:full-suite": "node scripts/run-mobile-tests.js all",
+    "test:sections": "playwright test tests/e2e/mobile-sections-visual-regression.spec.ts",
+    "test:animation": "playwright test tests/e2e/mobile-animation-performance.spec.ts",
+    "test:accessibility": "playwright test tests/e2e/mobile-accessibility.spec.ts",
+    "test:a11y": "npm run test:accessibility"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.11",
@@ -25,6 +44,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.54.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

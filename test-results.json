@@ -1,0 +1,388 @@
+{
+  "config": {
+    "configFile": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/playwright.config.ts",
+    "rootDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "line",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "Android Chrome - Galaxy S21",
+        "name": "Android Chrome - Galaxy S21",
+        "testDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "Android Chrome - Pixel 5",
+        "name": "Android Chrome - Pixel 5",
+        "testDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "iOS Safari - iPhone 15",
+        "name": "iOS Safari - iPhone 15",
+        "testDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "iOS Safari - iPhone 15 Pro",
+        "name": "iOS Safari - iPhone 15 Pro",
+        "testDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "iOS Safari - iPhone 15 Pro Max",
+        "name": "iOS Safari - iPhone 15 Pro Max",
+        "testDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "Android Tablet - Galaxy Tab",
+        "name": "Android Tablet - Galaxy Tab",
+        "testDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "iOS Safari - iPad",
+        "name": "iOS Safari - iPad",
+        "testDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "Desktop Chrome",
+        "name": "Desktop Chrome",
+        "testDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "Desktop Safari",
+        "name": "Desktop Safari",
+        "testDir": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.54.2",
+    "workers": 5,
+    "webServer": {
+      "command": "PORT=3002 npm run dev",
+      "url": "http://localhost:3002",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "e2e/cross-platform-compatibility.spec.ts",
+      "file": "e2e/cross-platform-compatibility.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Cross-Platform Mobile Compatibility",
+          "file": "e2e/cross-platform-compatibility.spec.ts",
+          "line": 16,
+          "column": 6,
+          "specs": [
+            {
+              "title": "데스크톱과 모바일 간 컨텐츠 일관성",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Android Chrome - Galaxy S21",
+                  "projectName": "Android Chrome - Galaxy S21",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 20228,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at /Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests/e2e/cross-platform-compatibility.spec.ts:152:21",
+                        "location": {
+                          "file": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests/e2e/cross-platform-compatibility.spec.ts",
+                          "column": 21,
+                          "line": 152
+                        },
+                        "snippet": "  150 |       const elements = page.locator(selector);\n  151 |       const count = await elements.count();\n> 152 |       expect(count).toBeGreaterThan(0);\n      |                     ^\n  153 |     }\n  154 |     \n  155 |     // 전체 페이지 스크린샷 (디바이스별 비교용)"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests/e2e/cross-platform-compatibility.spec.ts",
+                            "column": 21,
+                            "line": 152
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  150 |       const elements = page.locator(selector);\n  151 |       const count = await elements.count();\n> 152 |       expect(count).toBeGreaterThan(0);\n      |                     ^\n  153 |     }\n  154 |     \n  155 |     // 전체 페이지 스크린샷 (디바이스별 비교용)\n    at /Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests/e2e/cross-platform-compatibility.spec.ts:152:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Section 2 not found: section:has(.stat-card), section:has(.figma-display-lg)\n"
+                        },
+                        {
+                          "text": "Section 6 not found: section:has(form), section:has(.accordion)\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-08-15T11:43:32.428Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results/e2e-cross-platform-compati-fbead-ibility-데스크톱과-모바일-간-컨텐츠-일관성-Android-Chrome---Galaxy-S21/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results/e2e-cross-platform-compati-fbead-ibility-데스크톱과-모바일-간-컨텐츠-일관성-Android-Chrome---Galaxy-S21/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results/e2e-cross-platform-compati-fbead-ibility-데스크톱과-모바일-간-컨텐츠-일관성-Android-Chrome---Galaxy-S21/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests/e2e/cross-platform-compatibility.spec.ts",
+                        "column": 21,
+                        "line": 152
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "709753a8ea3f3f5f575c-25b053281d6bb97f1660",
+              "file": "e2e/cross-platform-compatibility.spec.ts",
+              "line": 138,
+              "column": 7
+            },
+            {
+              "title": "데스크톱과 모바일 간 컨텐츠 일관성",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "iOS Safari - iPhone 15 Pro",
+                  "projectName": "iOS Safari - iPhone 15 Pro",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 20266,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n    at /Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests/e2e/cross-platform-compatibility.spec.ts:152:21",
+                        "location": {
+                          "file": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests/e2e/cross-platform-compatibility.spec.ts",
+                          "column": 21,
+                          "line": 152
+                        },
+                        "snippet": "  150 |       const elements = page.locator(selector);\n  151 |       const count = await elements.count();\n> 152 |       expect(count).toBeGreaterThan(0);\n      |                     ^\n  153 |     }\n  154 |     \n  155 |     // 전체 페이지 스크린샷 (디바이스별 비교용)"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests/e2e/cross-platform-compatibility.spec.ts",
+                            "column": 21,
+                            "line": 152
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: > \u001b[32m0\u001b[39m\nReceived:   \u001b[31m0\u001b[39m\n\n  150 |       const elements = page.locator(selector);\n  151 |       const count = await elements.count();\n> 152 |       expect(count).toBeGreaterThan(0);\n      |                     ^\n  153 |     }\n  154 |     \n  155 |     // 전체 페이지 스크린샷 (디바이스별 비교용)\n    at /Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests/e2e/cross-platform-compatibility.spec.ts:152:21"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [
+                        {
+                          "text": "Section 2 not found: section:has(.stat-card), section:has(.figma-display-lg)\n"
+                        },
+                        {
+                          "text": "Section 6 not found: section:has(form), section:has(.accordion)\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-08-15T11:43:32.430Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results/e2e-cross-platform-compati-fbead-ibility-데스크톱과-모바일-간-컨텐츠-일관성-iOS-Safari---iPhone-15-Pro/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results/e2e-cross-platform-compati-fbead-ibility-데스크톱과-모바일-간-컨텐츠-일관성-iOS-Safari---iPhone-15-Pro/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/test-results/e2e-cross-platform-compati-fbead-ibility-데스크톱과-모바일-간-컨텐츠-일관성-iOS-Safari---iPhone-15-Pro/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/jasonkang_1/kmong-contract-landing-01-portfolio/tests/e2e/cross-platform-compatibility.spec.ts",
+                        "column": 21,
+                        "line": 152
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "709753a8ea3f3f5f575c-6a18751b54f40da60827",
+              "file": "e2e/cross-platform-compatibility.spec.ts",
+              "line": 138,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-08-15T11:43:31.920Z",
+    "duration": 20933.319,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

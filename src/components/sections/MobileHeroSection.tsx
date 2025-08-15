@@ -11,13 +11,14 @@ const navigationItems = [
   { id: 'cards', label: '섹션4' }
 ];
 
-const dropdownItems = [
-  { id: 'stats', label: '섹션1' },
-  { id: 'progress', label: '섹션2' },
-  { id: 'carousel', label: '섹션3' },
-  { id: 'cards', label: '섹션4' },
-  { id: 'faq', label: '포트폴리오' }
-];
+// Note: dropdownItems available for future navigation implementation
+// const dropdownItems = [
+//   { id: 'stats', label: '섹션1' },
+//   { id: 'progress', label: '섹션2' },
+//   { id: 'carousel', label: '섹션3' },
+//   { id: 'cards', label: '섹션4' },
+//   { id: 'faq', label: '포트폴리오' }
+// ];
 
 // 메인 텍스트 모핑 애니메이션용 메시지 (데스크탑과 동일)
 const morphingMessages = [
@@ -28,12 +29,13 @@ const morphingMessages = [
 ];
 
 export default function MobileHeroSection() {
-  const [activeSection, setActiveSection] = useState('hero');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // Note: Navigation state variables available for future implementation
+  // const [activeSection, setActiveSection] = useState('hero');
+  // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  // const dropdownRef = useRef<HTMLDivElement>(null);
   const hamburgerRef = useRef<HTMLDivElement>(null);
 
   // 텍스트 모핑 애니메이션 (데스크탑과 동일)
@@ -50,41 +52,41 @@ export default function MobileHeroSection() {
     }
   }, []);
 
-  // 드롭다운 외부 클릭 감지
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsDropdownOpen(false);
-      }
-      if (hamburgerRef.current && !hamburgerRef.current.contains(event.target as Node)) {
-        setIsHamburgerMenuOpen(false);
-      }
-    };
+  // Note: Navigation click handlers available for future implementation
+  // useEffect(() => {
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+  //       // setIsDropdownOpen(false);
+  //     }
+  //     if (hamburgerRef.current && !hamburgerRef.current.contains(event.target as Node)) {
+  //       setIsHamburgerMenuOpen(false);
+  //     }
+  //   };
+  //
+  //   document.addEventListener('mousedown', handleClickOutside);
+  //   return () => document.removeEventListener('mousedown', handleClickOutside);
+  // }, []);
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  // Note: Scroll spy functionality available for future implementation
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const sections = ['hero', 'stats', 'progress', 'carousel', 'cards', 'faq'];
+  //     const currentPosition = window.scrollY + 100;
+  //
+  //     for (let i = sections.length - 1; i >= 0; i--) {
+  //       const section = document.getElementById(sections[i]);
+  //       if (section && section.offsetTop <= currentPosition) {
+  //         setActiveSection(sections[i]);
+  //         break;
+  //       }
+  //     }
+  //   };
+  //
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
 
-  // 스크롤 스파이 기능
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['hero', 'stats', 'progress', 'carousel', 'cards', 'faq'];
-      const currentPosition = window.scrollY + 100;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= currentPosition) {
-          setActiveSection(sections[i]);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // 스무스 스크롤 함수
+  // Note: Smooth scroll function available for future navigation implementation
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -93,9 +95,10 @@ export default function MobileHeroSection() {
         block: 'start'
       });
     }
-    setIsMobileMenuOpen(false);
-    setIsDropdownOpen(false);
-    setIsHamburgerMenuOpen(false);
+    // Note: Menu state setters available for future implementation
+    // setIsMobileMenuOpen(false);
+    // setIsDropdownOpen(false);
+    // setIsHamburgerMenuOpen(false);
   };
 
   // 메인페이지로 스크롤
@@ -104,8 +107,9 @@ export default function MobileHeroSection() {
       top: 0,
       behavior: 'smooth'
     });
-    setIsMobileMenuOpen(false);
-    setIsDropdownOpen(false);
+    // Note: Menu state setter available for future implementation
+    // setIsMobileMenuOpen(false);
+    // setIsDropdownOpen(false);
     setIsHamburgerMenuOpen(false);
   };
 

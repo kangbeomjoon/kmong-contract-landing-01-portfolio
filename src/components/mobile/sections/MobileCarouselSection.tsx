@@ -58,7 +58,7 @@ export default function MobileCarouselSection() {
   const [isPaused, setIsPaused] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isManualControl, setIsManualControl] = useState(false);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number>(0);
   
   const itemWidth = 280; // 모바일에서 카드 너비 (320 -> 280으로 조정)

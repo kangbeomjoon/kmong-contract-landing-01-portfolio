@@ -1,6 +1,95 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Android Device Performance Optimizations */
+/* 안드로이드 디바이스 성능 최적화 CSS */
+
+/* Performance-based conditional styles */
+.performance-low {
+  animation-duration: 0.2s !important;
+  transition-duration: 0.2s !important;
+}
+
+.performance-low * {
+  animation-duration: 0.2s !important;
+  transition-duration: 0.2s !important;
+  transform: none !important;
+}
+
+.performance-medium {
+  animation-duration: 0.4s !important;
+  transition-duration: 0.4s !important;
+}
+
+.performance-high {
+  animation-duration: 0.6s !important;
+  transition-duration: 0.6s !important;
+}
+
+/* Android-specific optimizations */
+.android-device {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+}
+
+.android-device * {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+/* WebView-specific optimizations */
+.webview-optimized {
+  animation-duration: 0.3s !important;
+  transition-duration: 0.3s !important;
+}
+
+.webview-optimized .parallax-element {
+  transform: none !important;
+}
+
+/* Fallback mode for severe performance issues */
+.fallback-mode * {
+  animation: none !important;
+  transform: none !important;
+  transition: opacity 0.1s ease !important;
+}
+
+.fallback-mode .parallax-disabled {
+  transform: none !important;
+}
+
+/* GPU acceleration utilities */
+.gpu-accelerated {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  perspective: 1000px;
+}
+
+.touch-optimized {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Android viewport height fix */
+.android-device {
+  height: 100vh; /* fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

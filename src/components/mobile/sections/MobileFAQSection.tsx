@@ -49,7 +49,7 @@ export default function MobileFAQSection() {
               className="text-left flex-1 min-w-0 gpu-accelerated"
               initial={{ opacity: 0, y: 20 }} // Android에서 더 부드러운 시작
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, threshold: 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ 
                 duration: 0.6, // Android에서 더 빠른 애니메이션
                 type: 'tween',
@@ -73,7 +73,7 @@ export default function MobileFAQSection() {
               className="flex-shrink-0 gpu-accelerated"
               initial={{ opacity: 0, y: 15 }} // Android에서 더 부드러운 시작
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, threshold: 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ 
                 duration: 0.6, 
                 delay: 0.15, // 더 짧은 딜레이
@@ -114,7 +114,7 @@ export default function MobileFAQSection() {
               className="bg-[rgba(0,0,0,0.3)] rounded-[10px] overflow-hidden cursor-pointer touch-optimized gpu-accelerated"
               initial={{ opacity: 0, y: 15 }} // Android에서 더 부드러운 시작
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, threshold: 0.2 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ 
                 duration: 0.5, // Android에서 더 빠른 애니메이션
                 delay: index * 0.08, // 더 짧은 딜레이

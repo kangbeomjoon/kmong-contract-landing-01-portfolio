@@ -26,11 +26,12 @@ export const useResponsive = (): ResponsiveState => {
       );
       
       // Handle Android dynamic viewport (address bar hide/show)
-      const height = Math.max(
-        document.documentElement.clientHeight || 0,
-        window.innerHeight || 0,
-        window.screen?.height || 0
-      );
+      // Note: Height tracking available for future viewport height state
+      // const height = Math.max(
+      //   document.documentElement.clientHeight || 0,
+      //   window.innerHeight || 0,
+      //   window.screen?.height || 0
+      // );
       
       setState({
         isMobile: width < 768,

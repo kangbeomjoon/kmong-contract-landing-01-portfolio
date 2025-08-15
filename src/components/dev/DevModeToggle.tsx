@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export const DevModeToggle = () => {
   const [currentMode, setCurrentMode] = useState<'mobile' | 'desktop' | 'auto'>('auto');
   const [screenWidth, setScreenWidth] = useState(0);
   
-  const toggleMode = (mode: 'mobile' | 'desktop' | 'auto') => {
+  const toggleMode = useCallback((mode: 'mobile' | 'desktop' | 'auto') => {
     const url = new URL(window.location.href);
     
     if (mode === 'mobile') {
@@ -19,7 +19,7 @@ export const DevModeToggle = () => {
     
     window.history.pushState({}, '', url.toString());
     window.dispatchEvent(new PopStateEvent('popstate'));
-  };
+  }, []);
   
   useEffect(() => {
     // 개발 환경에서만 렌더링
@@ -79,7 +79,8 @@ export const DevModeToggle = () => {
   }
 
   const autoMode = screenWidth < 768 ? 'mobile' : 'desktop';
-  const actualMode = currentMode === 'auto' ? autoMode : currentMode;
+  // Note: actualMode available for future display logic
+  // const actualMode = currentMode === 'auto' ? autoMode : currentMode;
 
   return (
     <div className="fixed bottom-4 right-4 z-50 bg-white border border-gray-300 rounded-lg shadow-lg p-3 text-xs font-mono max-w-xs">

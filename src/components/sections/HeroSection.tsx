@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 
 
 const navigationItems = [
@@ -216,9 +217,11 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <img 
+                <Image 
                   src="/images/hero/btn_menu.png" 
                   alt="메뉴" 
+                  width={24}
+                  height={24}
                   className="w-6 h-6"
                 />
               </motion.button>

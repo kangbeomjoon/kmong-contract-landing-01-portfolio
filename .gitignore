@@ -45,3 +45,25 @@ next-env.d.ts
 
 # MCP configuration (contains sensitive API keys)
 mcp.json
+
+# Playwright test results
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+
+# Lock files (prefer package-lock.json)
+yarn.lock
+pnpm-lock.yaml
+
+# Cache directories
+.eslintcache
+.stylelintcache

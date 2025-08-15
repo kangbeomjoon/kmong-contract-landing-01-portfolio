@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-// Pretendard 폰트를 외부 CDN에서 로드하기 위한 설정
-// globals.css에서 @import 대신 HTML head에서 로드
+// Next.js 최적화된 폰트 로딩
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter'
+});
 
 export const viewport = {
   width: 'device-width',
@@ -46,23 +51,8 @@ export default function RootLayout({
         <meta name="format-detection" content="telephone=no" />
         <meta name="renderer" content="webkit" />
         <meta name="force-rendering" content="webkit" />
-        
-        {/* Font optimization */}
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap"
-          rel="stylesheet"
-        />
       </head>
-      <body className="font-sans antialiased">
+      <body className={`${inter.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>
