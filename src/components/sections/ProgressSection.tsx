@@ -54,7 +54,7 @@ export default function ProgressSection() {
             </motion.div>
 
             {/* 탭 메뉴 */}
-            <div className="space-y-4">
+            <div className="space-y-4" style={{ paddingLeft: '30px' }}>
               {progressSteps.map((step, index) => (
                 <motion.button
                   key={step.id}
@@ -84,7 +84,7 @@ export default function ProgressSection() {
           </div>
 
           {/* 우측 이미지 및 콘텐츠 */}
-          <div className="relative mt-52">
+          <div className="relative mt-52" style={{ paddingLeft: '30px' }}>
             <motion.div
               className="relative h-96 rounded-2xl overflow-hidden"
               initial={{ opacity: 0, scale: 0.9 }}

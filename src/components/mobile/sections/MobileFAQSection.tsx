@@ -99,7 +99,7 @@ export default function MobileFAQSection() {
               >
                 더보기
                 <img
-                  src="/images/hero/icon_1.png"
+                  src="/images/hero/icon_2.png"
                   alt="arrow"
                   className="w-3.5 h-3.5"
                 />
