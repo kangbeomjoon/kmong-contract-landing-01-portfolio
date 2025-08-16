@@ -56,6 +56,7 @@ export default function CardsSection() {
             <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
               {/* 좌측 텍스트 */}
               <motion.div
+                style={{ paddingLeft: '30px' }}
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}

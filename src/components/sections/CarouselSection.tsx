@@ -137,6 +137,7 @@ export default function CarouselSection() {
           {/* 섹션 제목과 자세히 보기 버튼 */}
           <motion.div
             className="mb-16"
+            style={{ paddingLeft: '30px' }}
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

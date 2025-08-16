@@ -48,6 +48,7 @@ export default function StatsSection() {
           {/* 좌측 고정 텍스트 */}
           <div className="lg:sticky lg:top-32">
             <motion.div
+              style={{ paddingLeft: '30px' }}
               initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -65,7 +66,7 @@ export default function StatsSection() {
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className="py-8 border-b border-white/20 last:border-b-0"
+                className="py-16 border-b border-white/20 last:border-b-0"
                 initial={{ opacity: 0, y: 50 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ 
@@ -75,7 +76,7 @@ export default function StatsSection() {
                 }}
                 style={{ y: parallaxYs[index] }}
               >
-                <div className="text-right">
+                <div className="text-left">
                   <div className="figma-stats-number mb-4">
                     {stat.value}{stat.suffix}
                   </div>
