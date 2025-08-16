@@ -158,9 +158,11 @@ export default function CarouselSection() {
             >
               <button className="border border-white rounded-full px-8 py-3 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3">
                 자세히 보기
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
-                  <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                <img
+                  src="/images/hero/icon_1.png"
+                  alt="arrow"
+                  className="w-4 h-4"
+                />
               </button>
             </motion.div>
           </motion.div>

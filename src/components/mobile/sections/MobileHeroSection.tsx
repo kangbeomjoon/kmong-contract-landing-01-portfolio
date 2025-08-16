@@ -99,9 +99,11 @@ export function MobileHeroSection() {
               style={{ minHeight: '44px', minWidth: '44px' }} // Android 터치 타겟 최소 크기
             >
               문의하기
-              <svg className="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-              </svg>
+              <img
+                src="/images/hero/icon_1.png"
+                alt="arrow"
+                className="w-4 h-4 transition-transform duration-300"
+              />
             </button>
           </div>
 

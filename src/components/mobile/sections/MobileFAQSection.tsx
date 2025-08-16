@@ -98,9 +98,11 @@ export default function MobileFAQSection() {
                 }}
               >
                 더보기
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5">
-                  <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                <img
+                  src="/images/hero/icon_1.png"
+                  alt="arrow"
+                  className="w-3.5 h-3.5"
+                />
               </motion.button>
             </motion.div>
           </div>

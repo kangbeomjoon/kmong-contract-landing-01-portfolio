@@ -409,6 +409,7 @@ export default function HeroSection() {
               }}
               aria-live="polite"
               aria-label={`${morphingMessages[currentMessageIndex]} 해보세요`}
+              style={{ whiteSpace: 'nowrap' }}
             >
               {morphingMessages[currentMessageIndex]} 해보세요
             </motion.div>
@@ -449,20 +450,12 @@ export default function HeroSection() {
           aria-label="문의하기 - FAQ 섹션으로 이동"
         >
           문의하기
-          <motion.svg
+          <motion.img
+            src="/images/hero/icon_1.png"
+            alt="arrow"
             className="w-4 h-4 transition-transform duration-300"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
             whileHover={{ x: 3 }}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </motion.svg>
+          />
         </motion.button>
       </div>
 

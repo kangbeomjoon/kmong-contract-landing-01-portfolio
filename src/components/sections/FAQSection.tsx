@@ -70,9 +70,11 @@ export default function FAQSection() {
               whileTap={{ scale: 0.95 }}
             >
               더보기
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="w-4 h-4">
-                <path d="M1 8h14m-7-7l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <img
+                src="/images/hero/icon_1.png"
+                alt="arrow"
+                className="w-4 h-4"
+              />
             </motion.button>
           </motion.div>
         </div>
