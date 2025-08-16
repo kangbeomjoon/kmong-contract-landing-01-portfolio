@@ -179,7 +179,7 @@ export default function MobileCarouselSection() {
               <button className="border border-white rounded-full px-8 py-3 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3">
                 자세히 보기
                 <img
-                  src="/images/hero/icon_2.png"
+                  src="/images/hero/icon_1.png"
                   alt="arrow"
                   className="w-4 h-4"
                 />

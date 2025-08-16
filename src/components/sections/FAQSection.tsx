@@ -71,7 +71,7 @@ export default function FAQSection() {
             >
               더보기
               <img
-                src="/images/hero/icon_2.png"
+                src="/images/hero/icon_1.png"
                 alt="arrow"
                 className="w-4 h-4"
               />
