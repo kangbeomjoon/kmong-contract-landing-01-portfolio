@@ -451,7 +451,7 @@ export default function HeroSection() {
         >
           문의하기
           <motion.img
-            src="/images/hero/icon_1.png"
+            src="/images/hero/icon_2.png"
             alt="arrow"
             className="w-4 h-4 transition-transform duration-300"
             whileHover={{ x: 3 }}
