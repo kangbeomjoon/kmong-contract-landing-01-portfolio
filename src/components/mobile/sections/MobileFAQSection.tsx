@@ -141,14 +141,11 @@ export default function MobileFAQSection() {
                   
                   {/* 펼침/접힘 아이콘 */}
                   <div className="ml-4 flex-shrink-0">
-                    <div className="relative w-4 h-4 flex items-center justify-center">
-                      <div className="w-4 h-0.5 bg-white rounded-full" />
-                      <div 
-                        className={`absolute w-0.5 h-4 bg-white rounded-full transition-transform duration-300 ${
-                          expandedIndex === index ? 'rotate-0 opacity-0' : 'rotate-90 opacity-100'
-                        }`} 
-                      />
-                    </div>
+                    <img 
+                      src={expandedIndex === index ? "/btn-.svg" : "/btn+.svg"}
+                      alt="toggle"
+                      className="w-4 h-4 transition-opacity duration-300"
+                    />
                   </div>
                 </div>
 

@@ -58,7 +58,7 @@ export default function FAQSection() {
 
           {/* 더보기 버튼 */}
           <motion.div
-            className="flex justify-end mb-16"
+            className="flex justify-end mb-16 pr-30"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -100,14 +100,11 @@ export default function FAQSection() {
                   
                   {/* 펼침/접힘 아이콘 */}
                   <div className="ml-8 flex-shrink-0">
-                    <div className="relative w-5 h-5 flex items-center justify-center">
-                      <div className="w-5 h-0.5 bg-white rounded-full" />
-                      <div 
-                        className={`absolute w-0.5 h-5 bg-white rounded-full transition-transform duration-300 ${
-                          expandedIndex === index ? 'rotate-0 opacity-0' : 'rotate-90 opacity-100'
-                        }`} 
-                      />
-                    </div>
+                    <img 
+                      src={expandedIndex === index ? "/btn-.svg" : "/btn+.svg"}
+                      alt="toggle"
+                      className="w-5 h-5 transition-opacity duration-300"
+                    />
                   </div>
                 </div>
 
