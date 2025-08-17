@@ -80,7 +80,7 @@ export default function FAQSection() {
         </div>
 
         {/* FAQ 목록 */}
-        <div className="max-w-5xl mx-auto space-y-5">
+        <div className="max-w-5xl mx-auto space-y-5 pr-30">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
