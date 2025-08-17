@@ -378,28 +378,30 @@ export default function HeroSection() {
         </motion.div>
 
         {/* CTA 버튼 - Rectangle 9 */}
-        <button
-          className="bg-white text-black font-bold text-base flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer w-52 h-14 rounded-full hover:scale-105 pb-[70px]"
-          onClick={() => {
-            const contactSection = document.getElementById('faq');
-            if (contactSection) {
-              contactSection.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-              });
-            }
-          }}
-          aria-label="문의하기 - FAQ 섹션으로 이동"
-        >
-          문의하기
-          <Image
-            src="/images/hero/icon_2.png"
-            alt="화살표"
-            width={12}
-            height={12}
-            className="w-3 h-3 transition-transform duration-300 hover:translate-x-1"
-          />
-        </button>
+        <div className="pb-[70px]">
+          <button
+            className="bg-white text-black font-bold text-base inline-flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer px-12 py-4 rounded-full hover:scale-105"
+            onClick={() => {
+              const contactSection = document.getElementById('faq');
+              if (contactSection) {
+                contactSection.scrollIntoView({ 
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }}
+            aria-label="문의하기 - FAQ 섹션으로 이동"
+          >
+            문의하기
+            <Image
+              src="/images/hero/icon_2.png"
+              alt="화살표"
+              width={12}
+              height={12}
+              className="w-3 h-3 transition-transform duration-300 hover:translate-x-1"
+            />
+          </button>
+        </div>
       </div>
 
     </section>
