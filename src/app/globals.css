@@ -436,3 +436,52 @@
     scroll-behavior: smooth;
   }
 }
+
+/* 🔧 Windows-macOS 크로스 플랫폼 호환성 CSS */
+/* Windows/macOS 스크롤바 차이 보정 */
+html {
+  /* Windows 스크롤바 공간 예약으로 레이아웃 점프 방지 */
+  scrollbar-gutter: stable;
+}
+
+body {
+  /* 크로스 플랫폼 스크롤바 스타일 통일 */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+}
+
+/* Chrome/Safari/Edge Webkit 스크롤바 */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.5);
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(155, 155, 155, 0.8);
+}
+
+/* Windows ClearType 폰트 렌더링 최적화 */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Windows DPI 스케일링 대응 */
+@media (min-resolution: 144dpi) {
+  body {
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    text-size-adjust: none;
+  }
+}
