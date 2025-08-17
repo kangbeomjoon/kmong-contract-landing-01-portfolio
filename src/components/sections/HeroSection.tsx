@@ -125,7 +125,7 @@ export default function HeroSection() {
       {/* 새로운 네비게이션 바 - 배경에 자연스럽게 녹아들게 */}
       <nav className="fixed top-0 left-0 right-0 z-50 pt-4 pb-[68px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-16 pb-[68px]">
             {/* 좌측 로고 */}
             <motion.div
               className="flex items-center cursor-pointer"
@@ -379,7 +379,7 @@ export default function HeroSection() {
 
         {/* CTA 버튼 - Rectangle 9 */}
         <button
-          className="bg-white text-black font-bold text-base flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer w-52 h-14 rounded-full hover:scale-105"
+          className="bg-white text-black font-bold text-base flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer w-52 h-14 rounded-full hover:scale-105 pb-[70px]"
           onClick={() => {
             const contactSection = document.getElementById('faq');
             if (contactSection) {
