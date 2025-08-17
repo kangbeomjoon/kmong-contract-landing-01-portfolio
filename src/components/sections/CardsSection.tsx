@@ -84,9 +84,8 @@ export default function CardsSection() {
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
                 <div
-                  className="bg-center bg-cover bg-no-repeat rounded-3xl"
+                  className="bg-center bg-cover bg-no-repeat rounded-3xl w-full"
                   style={{
-                    width: '700px',
                     height: '450px',
                     backgroundImage: 'url("/images/cards/img_con.png")'
                   }}
