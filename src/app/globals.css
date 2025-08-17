@@ -362,6 +362,122 @@
     h3.figma-body-lg {
       font-size: 33px;
     }
+  }
+
+  /* 작은 모바일 기기 (iPhone Mini 등) - 더 작은 폰트 */
+  @media (max-width: 767px) and (max-width: 375px) {
+    .figma-heading-lg {
+      font-size: 38px;
+    }
+    
+    .figma-heading-md {
+      font-size: 38px;
+    }
+    
+    .figma-body-lg {
+      font-size: 20px;
+    }
+    
+    .figma-heading-sm {
+      font-size: 26px;
+    }
+    
+    h3.figma-body-lg {
+      font-size: 28px;
+    }
+  }
+
+  /* 큰 모바일 기기 (iPhone Pro Max 등) - 더 큰 폰트 */
+  @media (max-width: 767px) and (min-width: 414px) {
+    .figma-heading-lg {
+      font-size: 48px;
+    }
+    
+    .figma-heading-md {
+      font-size: 48px;
+    }
+    
+    .figma-body-lg {
+      font-size: 26px;
+    }
+    
+    .figma-heading-sm {
+      font-size: 32px;
+    }
+    
+    h3.figma-body-lg {
+      font-size: 36px;
+    }
+  }
+
+  /* 동적 패딩 클래스 - 화면 크기에 비례 */
+  @media (max-width: 767px) {
+    /* 작은 모바일 기기용 패딩 */
+    .mobile-padding-sm {
+      padding: 4vw;
+    }
+    
+    .mobile-padding-x-sm {
+      padding-left: 4vw;
+      padding-right: 4vw;
+    }
+    
+    .mobile-padding-y-sm {
+      padding-top: 4vw;
+      padding-bottom: 4vw;
+    }
+    
+    /* 일반 모바일 패딩 */
+    .mobile-padding {
+      padding: 6vw;
+    }
+    
+    .mobile-padding-x {
+      padding-left: 6vw;
+      padding-right: 6vw;
+    }
+    
+    .mobile-padding-y {
+      padding-top: 6vw;
+      padding-bottom: 6vw;
+    }
+    
+    /* 큰 모바일 기기용 패딩 */
+    .mobile-padding-lg {
+      padding: 8vw;
+    }
+    
+    .mobile-padding-x-lg {
+      padding-left: 8vw;
+      padding-right: 8vw;
+    }
+    
+    .mobile-padding-y-lg {
+      padding-top: 8vw;
+      padding-bottom: 8vw;
+    }
+
+    /* 마진도 동적으로 설정 */
+    .mobile-margin {
+      margin: 4vw;
+    }
+    
+    .mobile-margin-x {
+      margin-left: 4vw;
+      margin-right: 4vw;
+    }
+    
+    .mobile-margin-y {
+      margin-top: 4vw;
+      margin-bottom: 4vw;
+    }
+
+    /* 컨테이너 최대 너비도 반응형으로 */
+    .mobile-container {
+      max-width: min(90vw, 400px);
+      margin: 0 auto;
+    }
+  }
     
     /* Android optimization for mobile */
     * {

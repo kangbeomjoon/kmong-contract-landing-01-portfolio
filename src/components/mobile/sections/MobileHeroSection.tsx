@@ -52,22 +52,22 @@ export function MobileHeroSection() {
       <MobileNavigation />
       
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col justify-center min-h-screen px-6 pt-20 pb-12">
-        <div className="max-w-sm mx-auto text-center">
+      <div className="relative z-10 flex flex-col justify-center min-h-screen mobile-padding-x pt-20 pb-12">
+        <div className="mobile-container text-center">
 
           {/* 상단 구분선 */}
-          <div className="mb-8 pb-8 flex justify-center">
+          <div className="mobile-margin-y flex justify-center">
             <div className="w-px h-28 bg-white"></div>
           </div>
 
           {/* 메인 타이틀 */}
-          <div style={{marginTop: '60px', marginBottom: '94px'}}>
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-semibold text-white mb-6 pb-8">
+          <div className="mobile-padding-y">
+            <div className="text-center mobile-margin-y">
+              <h2 className="text-4xl font-semibold text-white mobile-margin-y">
                 온라인 광고
               </h2>
               {/* 애니메이션 텍스트 */}
-              <div className="h-32 flex items-center justify-center" style={{marginTop: '30px'}}>
+              <div className="h-32 flex items-center justify-center mobile-margin-y">
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={currentMessageIndex}
@@ -94,8 +94,8 @@ export function MobileHeroSection() {
           </div>
 
           {/* CTA 버튼 */}
-          <div className="mb-16 flex justify-center">
-            <button className="bg-white text-black font-medium py-4 px-12 rounded-full transition-all duration-300 hover:bg-gray-100 hover:shadow-lg inline-flex items-center gap-3 touch-optimized gpu-accelerated"
+          <div className="mobile-margin-y flex justify-center">
+            <button className="bg-white text-black font-medium mobile-padding-sm rounded-full transition-all duration-300 hover:bg-gray-100 hover:shadow-lg inline-flex items-center gap-3 touch-optimized gpu-accelerated"
               style={{ minHeight: '44px', minWidth: '44px' }} // Android 터치 타겟 최소 크기
             >
               문의하기
