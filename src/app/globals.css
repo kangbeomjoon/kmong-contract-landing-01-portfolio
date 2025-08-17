@@ -477,8 +477,6 @@
       max-width: min(90vw, 400px);
       margin: 0 auto;
     }
-  }
-    
     /* Android optimization for mobile */
     * {
       /* Hardware acceleration for better performance */
