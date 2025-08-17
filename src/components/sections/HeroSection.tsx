@@ -331,7 +331,7 @@ export default function HeroSection() {
           className="absolute w-px h-28 bg-white"
           style={{
             left: '50%',
-            top: '280px',
+            top: '348px',
             transform: 'translateX(-50%)'
           }}
           initial={{ opacity: 0, scaleY: 0 }}
@@ -348,7 +348,7 @@ export default function HeroSection() {
           className="absolute text-white text-center text-4xl font-semibold whitespace-nowrap"
           style={{
             left: '50%',
-            top: '420px',
+            top: '488px',
             transform: 'translateX(-50%)',
             fontFamily: 'Pretendard'
           }}
@@ -368,7 +368,7 @@ export default function HeroSection() {
           className="absolute text-white text-center max-w-4xl text-5xl lg:text-6xl font-bold leading-tight"
           style={{
             left: '50%',
-            top: '490px',
+            top: '558px',
             transform: 'translateX(-50%)',
             fontFamily: 'Pretendard'
           }}
