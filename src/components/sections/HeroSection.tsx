@@ -123,7 +123,7 @@ export default function HeroSection() {
       aria-label="히어로 섹션 - 온라인 광고 서비스 소개"
     >
       {/* 새로운 네비게이션 바 - 배경에 자연스럽게 녹아들게 */}
-      <nav className="fixed top-0 left-0 right-0 z-50 pt-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 pt-4 pb-[68px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* 좌측 로고 */}
@@ -328,7 +328,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 relative z-20 flex flex-col items-center justify-center h-screen max-w-7xl">
         {/* 수직선 - Rectangle 5 */}
         <motion.div
-          className="w-px h-28 bg-white mb-8"
+          className="w-px h-28 bg-white mb-8 mt-[68px]"
           initial={{ opacity: 0, scaleY: 0 }}
           animate={{ opacity: 1, scaleY: 1 }}
           transition={{ 
@@ -355,7 +355,7 @@ export default function HeroSection() {
 
         {/* 메인 텍스트 - 버즈비 애드 전문가들과 함께 해보세요 */}
         <motion.div
-          className="text-white text-center mb-16 max-w-4xl text-5xl lg:text-6xl font-bold leading-tight"
+          className="text-white text-center mb-[439px] max-w-4xl text-5xl lg:text-6xl font-bold leading-tight"
           style={{ fontFamily: 'Pretendard' }}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
