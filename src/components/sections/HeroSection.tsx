@@ -325,7 +325,7 @@ export default function HeroSection() {
       </nav>
 
       {/* 메인 콘텐츠 영역 - 다른 섹션과 동일한 구조 */}
-      <div className="container mx-auto px-4 relative z-20 flex flex-col items-center justify-center h-screen max-w-7xl">
+      <div className="container mx-auto px-4 relative z-20 flex flex-col items-center justify-center h-screen max-w-7xl pb-[70px]">
         {/* 수직선 - Rectangle 5 */}
         <motion.div
           className="w-px h-28 bg-white mb-8 mt-[68px]"
@@ -386,7 +386,8 @@ export default function HeroSection() {
 
         {/* CTA 버튼 - Rectangle 9 */}
         <motion.button
-          className="bg-white text-black font-bold text-base flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer w-52 h-14 rounded-full"
+          className="bg-white text-black font-bold text-base flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer rounded-full"
+          style={{ width: '200px', height: '56px' }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ 
