@@ -41,7 +41,7 @@ export default function MobileStatsSection() {
       ref={containerRef} 
       className="py-20 relative gpu-accelerated smooth-scroll"
       style={{
-        background: 'linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.1) 10%, rgba(123,111,27,0.05) 50%, rgba(246,222,53,0.3) 100%)',
+        background: 'linear-gradient(to bottom, #000000 0%, #000000 85%, rgba(246,222,53,0.3) 100%)',
         minHeight: '140vh'
       }}
     >
