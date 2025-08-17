@@ -123,9 +123,9 @@ export default function HeroSection() {
       aria-label="히어로 섹션 - 온라인 광고 서비스 소개"
     >
       {/* 새로운 네비게이션 바 - 배경에 자연스럽게 녹아들게 */}
-      <nav className="fixed top-0 left-0 right-0 z-50 pt-4 pb-[68px]">
+      <nav className="fixed top-0 left-0 right-0 z-50 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 pb-[68px]">
+          <div className="flex justify-between items-center h-12">
             {/* 좌측 로고 */}
             <motion.div
               className="flex items-center cursor-pointer"
@@ -174,7 +174,7 @@ export default function HeroSection() {
                     alt="포트폴리오 아이콘" 
                     width={8}
                     height={8}
-                    className="w-2 h-2 ml-2.5 -translate-y-0.5"
+                    className="w-3 h-3 ml-2.5"
                   />
                 </motion.button>
                 
