@@ -325,17 +325,10 @@ export default function HeroSection() {
       </nav>
 
       {/* 메인 콘텐츠 영역 - 다른 섹션과 동일한 구조 */}
-      <div className="container mx-auto px-4 relative z-20 flex flex-col items-center justify-center h-screen max-w-7xl">
+      <div className="container mx-auto px-4 relative z-20 flex flex-col items-center justify-center min-h-screen max-w-7xl">
         {/* 수직선 - Rectangle 5 */}
-        <motion.div
+        <div
           className="w-px h-28 bg-white mb-8 mt-[68px]"
-          initial={{ opacity: 0, scaleY: 0 }}
-          animate={{ opacity: 1, scaleY: 1 }}
-          transition={{ 
-            duration: 1.2, 
-            delay: 0.5,
-            ease: "easeOut"
-          }}
         />
 
         {/* 온라인 광고 텍스트 */}
@@ -385,20 +378,8 @@ export default function HeroSection() {
         </motion.div>
 
         {/* CTA 버튼 - Rectangle 9 */}
-        <motion.button
-          className="bg-white text-black font-bold text-base flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer w-52 h-14 rounded-full"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ 
-            duration: 0.8, 
-            delay: 2,
-            ease: "easeOut"
-          }}
-          whileHover={{ 
-            scale: 1.05,
-            boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)"
-          }}
-          whileTap={{ scale: 0.95 }}
+        <button
+          className="bg-white text-black font-bold text-base flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer w-52 h-14 rounded-full hover:scale-105"
           onClick={() => {
             const contactSection = document.getElementById('faq');
             if (contactSection) {
@@ -411,13 +392,14 @@ export default function HeroSection() {
           aria-label="문의하기 - FAQ 섹션으로 이동"
         >
           문의하기
-          <motion.img
+          <Image
             src="/images/hero/icon_2.png"
-            alt="arrow"
-            className="w-3 h-3 transition-transform duration-300"
-            whileHover={{ x: 3 }}
+            alt="화살표"
+            width={12}
+            height={12}
+            className="w-3 h-3 transition-transform duration-300 hover:translate-x-1"
           />
-        </motion.button>
+        </button>
       </div>
 
     </section>
