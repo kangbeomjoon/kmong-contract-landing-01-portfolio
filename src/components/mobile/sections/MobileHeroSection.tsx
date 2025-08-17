@@ -71,7 +71,7 @@ export function MobileHeroSection() {
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={currentMessageIndex}
-                    className="text-5xl font-bold text-white leading-tight text-center whitespace-pre-line gpu-accelerated"
+                    className="figma-heading-lg font-bold text-white leading-tight text-center whitespace-pre-line gpu-accelerated"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}

@@ -44,10 +44,10 @@ export default function Footer() {
               <span>대표자 : 홍길동</span>
               <span>고객센터 : 1588-1200</span>
               <span>이메일 : honggildong@naver.com</span>
+              <span>사업자등록번호 : 110-25-85473</span>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
               <span>서울시 송파구 송파대로 200 25-5</span>
-              <span>사업자등록번호 : 110-25-85473</span>
             </div>
           </div>
 

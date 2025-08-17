@@ -42,45 +42,47 @@ export default function FAQSection() {
     <section id="faq" className="py-20 bg-[var(--color-bg-secondary)]">
       <div className="container mx-auto px-4">
         {/* 제목 영역 */}
-        <div className="text-center mb-16 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="figma-subtitle mb-8">Q & A</div>
-            <h2 className="figma-heading-lg leading-tight mb-8">
-              궁금한 점이 있으면<br />
-              문의해 주세요
-            </h2>
-          </motion.div>
-
-          {/* 더보기 버튼 */}
-          <motion.div
-            className="flex justify-end mb-16 pr-30"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <motion.button 
-              className="border border-white rounded-full px-8 py-3 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+        <div className="mb-16 max-w-[1200px] mx-auto">
+          <div className="flex justify-between items-center mb-8">
+            <motion.div
+              className="text-left"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
             >
-              더보기
-              <img
-                src="/images/hero/icon_1.png"
-                alt="arrow"
-                className="w-3 h-3"
-              />
-            </motion.button>
-          </motion.div>
+              <div className="figma-subtitle mb-8">Q & A</div>
+              <h2 className="figma-heading-lg leading-tight">
+                궁금한 점이 있으면<br />
+                문의해 주세요
+              </h2>
+            </motion.div>
+
+            {/* 더보기 버튼 */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <motion.button 
+                className="border border-white rounded-full px-8 py-3 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                더보기
+                <img
+                  src="/images/hero/icon_1.png"
+                  alt="arrow"
+                  className="w-3 h-3"
+                />
+              </motion.button>
+            </motion.div>
+          </div>
         </div>
 
         {/* FAQ 목록 */}
-        <div className="max-w-5xl mx-auto space-y-5 pr-30">
+        <div className="max-w-[1200px] mx-auto space-y-5">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
