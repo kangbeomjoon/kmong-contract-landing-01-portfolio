@@ -45,14 +45,6 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        {/* Pretendard 폰트 CDN 추가 - Windows/macOS 크로스 플랫폼 호환성 */}
-        <link 
-          rel="stylesheet" 
-          as="style" 
-          crossOrigin="anonymous"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" 
-        />
-        
         {/* Android optimization meta tags */}
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-status-bar-style" content="black-translucent" />
