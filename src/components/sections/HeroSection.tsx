@@ -324,17 +324,11 @@ export default function HeroSection() {
         </div>
       </nav>
 
-      {/* 메인 콘텐츠 영역 - 피그마 CSS 스펙 적용 */}
-      <div className="relative z-20 w-full h-screen">
+      {/* 메인 콘텐츠 영역 - 다른 섹션과 동일한 구조 */}
+      <div className="container mx-auto px-4 relative z-20 flex flex-col items-center justify-center h-screen max-w-7xl">
         {/* 수직선 - Rectangle 5 */}
         <motion.div
-          className="absolute bg-white"
-          style={{
-            width: '1px',
-            height: '111px',
-            left: '981px',
-            top: '84px'
-          }}
+          className="w-px h-28 bg-white mb-8"
           initial={{ opacity: 0, scaleY: 0 }}
           animate={{ opacity: 1, scaleY: 1 }}
           transition={{ 
@@ -346,21 +340,8 @@ export default function HeroSection() {
 
         {/* 온라인 광고 텍스트 */}
         <motion.div
-          className="absolute text-white"
-          style={{
-            width: '250px',
-            height: '43px',
-            left: 'calc(981px - 250px/2)',
-            top: '225px',
-            fontFamily: 'Pretendard',
-            fontStyle: 'normal',
-            fontWeight: '600',
-            fontSize: '36px',
-            lineHeight: '43px',
-            color: '#FFFFFF',
-            whiteSpace: 'nowrap',
-            textAlign: 'center'
-          }}
+          className="text-white text-center mb-8 text-4xl font-semibold whitespace-nowrap"
+          style={{ fontFamily: 'Pretendard' }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ 
@@ -374,20 +355,8 @@ export default function HeroSection() {
 
         {/* 메인 텍스트 - 버즈비 애드 전문가들과 함께 해보세요 */}
         <motion.div
-          className="absolute text-white"
-          style={{
-            width: '885px',
-            height: '72px',
-            left: '539px',
-            top: '318px',
-            fontFamily: 'Pretendard',
-            fontStyle: 'normal',
-            fontWeight: '700',
-            fontSize: '60px',
-            lineHeight: '72px',
-            textAlign: 'center',
-            color: '#FFFFFF'
-          }}
+          className="text-white text-center mb-16 max-w-4xl text-5xl lg:text-6xl font-bold leading-tight"
+          style={{ fontFamily: 'Pretendard' }}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ 
@@ -417,14 +386,7 @@ export default function HeroSection() {
 
         {/* CTA 버튼 - Rectangle 9 */}
         <motion.button
-          className="absolute bg-white text-black font-bold text-base flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer"
-          style={{
-            width: '200px',
-            height: '56px',
-            left: '881px',
-            top: '829px',
-            borderRadius: '999px'
-          }}
+          className="bg-white text-black font-bold text-base flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer w-52 h-14 rounded-full"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ 
