@@ -64,12 +64,6 @@ export default function CardsSection() {
               >
                 <div className="mb-12">
                   <div className="w-12 h-2.5 mb-4">
-                    <div
-                      className="w-full h-full bg-center bg-cover bg-no-repeat"
-                      style={{
-                        backgroundImage: 'url("/images/hero/btn_menu.png")'
-                      }}
-                    />
                   </div>
                   <div className="text-[var(--color-brand-accent)] figma-heading-sm mb-4">01</div>
                   <h3 className="figma-heading-md text-white mb-6 whitespace-pre-line">
@@ -186,7 +180,7 @@ export default function CardsSection() {
                 <img
                   src="/images/hero/icon_2.png"
                   alt="arrow"
-                  className="w-4 h-4"
+                  className="w-3 h-3"
                 />
               </motion.button>
             </div>

@@ -42,7 +42,7 @@ export function MobileNavigation({ className = '' }: MobileNavigationProps) {
   return (
     <>
       {/* Fixed Navigation Header */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md ${className}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 ${className}`}>
         <div className="flex items-center justify-between px-4 py-3 h-16">
           {/* 카페24 로고 */}
           <div className="flex items-center">

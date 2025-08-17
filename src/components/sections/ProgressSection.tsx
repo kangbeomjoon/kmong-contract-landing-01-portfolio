@@ -58,9 +58,9 @@ export default function ProgressSection() {
               {progressSteps.map((step, index) => (
                 <motion.button
                   key={step.id}
-                  className={`block w-full text-left transition-all duration-300 ${
+                  className={`flex items-center w-full text-left transition-all duration-300 ${
                     activeStep === index 
-                      ? 'border-b-2 border-[var(--color-brand-accent)] pb-2' 
+                      ? '' 
                       : 'text-[var(--color-text-muted)] hover:text-white'
                   }`}
                   onClick={() => setActiveStep(index)}
@@ -68,6 +68,11 @@ export default function ProgressSection() {
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                 >
+                  <div className={`w-[60px] h-1 rounded mr-8 ${
+                    activeStep === index
+                      ? 'bg-[var(--color-brand-accent)]'
+                      : 'bg-transparent'
+                  }`} />
                   <div className={`figma-heading-sm ${
                     activeStep === index 
                       ? 'text-[var(--color-brand-accent)]' 
@@ -75,9 +80,6 @@ export default function ProgressSection() {
                   }`}>
                     {step.title}
                   </div>
-                  {activeStep === index && (
-                    <div className="w-16 h-1 bg-[var(--color-brand-accent)] mt-2 rounded" />
-                  )}
                 </motion.button>
               ))}
             </div>
@@ -101,11 +103,13 @@ export default function ProgressSection() {
               
               {/* 전체 클릭 버튼 */}
               <motion.div
-                className="absolute inset-0 cursor-pointer"
+                className="absolute cursor-pointer"
                 style={{
-                  backgroundImage: 'url("/images/progress/list.png")',
+                  backgroundImage: 'url("/images/carousel/list_2.png")',
                   backgroundSize: 'cover',
-                  backgroundPosition: 'center'
+                  backgroundPosition: '30% center',
+                  width: '700px',
+                  height: '400px'
                 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

@@ -6,9 +6,9 @@ import { MobileNavigation } from '../ui/MobileNavigation'
 
 // 메인 텍스트 모핑 애니메이션용 메시지
 const morphingMessages = [
-  "성공적인 온라인 광고를\n해보세요",
-  "버즈비 애드 전문가들과 함께\n해보세요", 
-  "차별화된 부동산 광고를\n해보세요"
+  "성공적인 온라인\n광고를 해보세요",
+  "버즈비 애드 전문가들과\n함께 해보세요", 
+  "차별화된 부동산\n광고를 해보세요"
 ];
 
 export function MobileHeroSection() {
@@ -43,7 +43,7 @@ export function MobileHeroSection() {
     <section 
       className="relative min-h-screen bg-cover bg-center bg-no-repeat overflow-hidden gpu-accelerated smooth-scroll"
       style={{
-        backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url("/images/hero/main_bg_1 1.png")',
+        backgroundImage: 'url("/images/hero/main_bg_1 1.png")',
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}
@@ -56,14 +56,14 @@ export function MobileHeroSection() {
         <div className="max-w-sm mx-auto text-center">
 
           {/* 상단 구분선 */}
-          <div className="mb-8 flex justify-center">
+          <div className="mb-8 pb-8 flex justify-center">
             <div className="w-px h-28 bg-white"></div>
           </div>
 
           {/* 메인 타이틀 */}
           <div style={{marginTop: '60px', marginBottom: '94px'}}>
             <div className="text-center mb-8">
-              <h2 className="text-4xl font-semibold text-white mb-6">
+              <h2 className="text-4xl font-semibold text-white mb-6 pb-8">
                 온라인 광고
               </h2>
               {/* 애니메이션 텍스트 */}
@@ -102,7 +102,7 @@ export function MobileHeroSection() {
               <img
                 src="/images/hero/icon_2.png"
                 alt="arrow"
-                className="w-4 h-4 transition-transform duration-300"
+                className="w-3 h-3 transition-transform duration-300"
               />
             </button>
           </div>

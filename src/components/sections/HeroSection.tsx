@@ -147,7 +147,7 @@ export default function HeroSection() {
                 <motion.button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`figma-button text-white transition-colors duration-200 hover:text-white/80 ${
+                  className={`figma-button text-white transition-colors duration-200 hover:text-white/80 font-semibold text-lg ${
                     activeSection === item.id ? 'text-white' : 'text-white/70'
                   }`}
                   whileHover={{ scale: 1.05 }}
@@ -164,19 +164,18 @@ export default function HeroSection() {
               <div className="relative" ref={dropdownRef}>
                 <motion.button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="figma-button text-white transition-colors duration-200 hover:text-white/80 flex items-center gap-2"
+                  className="figma-button text-white transition-colors duration-200 hover:text-white/80 flex items-center font-semibold text-lg"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   포트폴리오
-                  <svg 
-                    className="w-4 h-4 transition-transform duration-200"
-                    style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
+                  <Image 
+                    src="/images/hero/icon_1.png" 
+                    alt="포트폴리오 아이콘" 
+                    width={8}
+                    height={8}
+                    className="w-2 h-2 ml-2.5 -translate-y-0.5"
+                  />
                 </motion.button>
                 
                 {/* 드롭다운 메뉴 */}
@@ -196,7 +195,7 @@ export default function HeroSection() {
                       <motion.button
                         key={item.id}
                         onClick={() => scrollToSection(item.id)}
-                        className={`block w-full text-left px-4 py-2 text-gray-800 font-medium transition-colors duration-200 hover:bg-gray-100 ${
+                        className={`block w-full text-left px-4 py-2 text-gray-800 font-semibold text-lg transition-colors duration-200 hover:bg-gray-100 ${
                           activeSection === item.id ? 'bg-gray-100 text-blue-600' : ''
                         }`}
                         whileTap={{ scale: 0.98 }}
@@ -418,7 +417,7 @@ export default function HeroSection() {
 
         {/* CTA 버튼 - Rectangle 9 */}
         <motion.button
-          className="absolute bg-white text-black font-medium flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer"
+          className="absolute bg-white text-black font-bold text-base flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer"
           style={{
             width: '200px',
             height: '56px',
@@ -453,7 +452,7 @@ export default function HeroSection() {
           <motion.img
             src="/images/hero/icon_2.png"
             alt="arrow"
-            className="w-4 h-4 transition-transform duration-300"
+            className="w-3 h-3 transition-transform duration-300"
             whileHover={{ x: 3 }}
           />
         </motion.button>
