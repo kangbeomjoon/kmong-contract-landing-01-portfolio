@@ -170,7 +170,7 @@ export default function CarouselSection() {
 
         {/* 네비게이션 버튼들 - 캐러셀 바로 위에 위치 */}
         <motion.div
-          className="flex justify-end gap-4 mb-8"
+          className="flex justify-end gap-4 mb-8 pr-8"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
