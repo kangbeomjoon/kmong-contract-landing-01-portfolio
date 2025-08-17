@@ -549,4 +549,36 @@
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
   }
+
+  /* Windows-specific optimizations */
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    /* IE11+ and Edge Legacy */
+    button {
+      font-feature-settings: normal;
+    }
+  }
+
+  /* Windows Chrome/Edge specific */
+  @supports (-webkit-appearance: none) {
+    .figma-button {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    
+    /* Windows DPI scaling support */
+    @media (min-resolution: 1.25dppx) {
+      .figma-button {
+        font-size: calc(1em * 1.05);
+        letter-spacing: 0.025em;
+      }
+    }
+    
+    @media (min-resolution: 1.5dppx) {
+      .figma-button {
+        font-size: calc(1em * 1.1);
+        letter-spacing: 0.05em;
+      }
+    }
+  }
 }

@@ -324,11 +324,16 @@ export default function HeroSection() {
         </div>
       </nav>
 
-      {/* 메인 콘텐츠 영역 - 다른 섹션과 동일한 구조 */}
-      <div className="container mx-auto px-4 relative z-20 flex flex-col items-center justify-center h-screen max-w-7xl pb-[70px]">
+      {/* 메인 콘텐츠 영역 - 절대 위치 지정으로 변경 */}
+      <div className="relative z-20 w-full h-screen">
         {/* 수직선 - Rectangle 5 */}
         <motion.div
-          className="w-px h-28 bg-white mb-8 mt-[68px]"
+          className="absolute w-px h-28 bg-white"
+          style={{
+            left: '50%',
+            top: '280px',
+            transform: 'translateX(-50%)'
+          }}
           initial={{ opacity: 0, scaleY: 0 }}
           animate={{ opacity: 1, scaleY: 1 }}
           transition={{ 
@@ -340,8 +345,13 @@ export default function HeroSection() {
 
         {/* 온라인 광고 텍스트 */}
         <motion.div
-          className="text-white text-center mb-8 text-4xl font-semibold whitespace-nowrap"
-          style={{ fontFamily: 'Pretendard' }}
+          className="absolute text-white text-center text-4xl font-semibold whitespace-nowrap"
+          style={{
+            left: '50%',
+            top: '420px',
+            transform: 'translateX(-50%)',
+            fontFamily: 'Pretendard'
+          }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ 
@@ -355,8 +365,13 @@ export default function HeroSection() {
 
         {/* 메인 텍스트 - 버즈비 애드 전문가들과 함께 해보세요 */}
         <motion.div
-          className="text-white text-center mb-[439px] max-w-4xl text-5xl lg:text-6xl font-bold leading-tight"
-          style={{ fontFamily: 'Pretendard' }}
+          className="absolute text-white text-center max-w-4xl text-5xl lg:text-6xl font-bold leading-tight"
+          style={{
+            left: '50%',
+            top: '490px',
+            transform: 'translateX(-50%)',
+            fontFamily: 'Pretendard'
+          }}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ 
@@ -386,8 +401,16 @@ export default function HeroSection() {
 
         {/* CTA 버튼 - Rectangle 9 */}
         <motion.button
-          className="bg-white text-black font-bold text-base flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer rounded-full"
-          style={{ width: '200px', height: '56px' }}
+          className="absolute bg-white text-black font-bold text-lg flex items-center justify-center gap-3 hover:bg-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer rounded-full figma-button"
+          style={{
+            width: '200px',
+            height: '56px',
+            left: '50%',
+            bottom: '70px',
+            transform: 'translateX(-50%)',
+            fontFamily: 'Pretendard, "Segoe UI", "Malgun Gothic", system-ui, sans-serif',
+            lineHeight: '1.2'
+          }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ 
@@ -412,11 +435,13 @@ export default function HeroSection() {
           aria-label="문의하기 - FAQ 섹션으로 이동"
         >
           문의하기
-          <motion.img
+          <Image
             src="/images/hero/icon_2.png"
-            alt="arrow"
-            className="w-3 h-3 transition-transform duration-300"
-            whileHover={{ x: 3 }}
+            alt="화살표 아이콘"
+            width={16}
+            height={16}
+            className="w-4 h-4 transition-transform duration-300"
+            style={{ transform: 'translateX(0px)' }}
           />
         </motion.button>
       </div>
