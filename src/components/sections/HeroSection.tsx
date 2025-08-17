@@ -328,7 +328,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 relative z-20 flex flex-col items-center justify-center min-h-screen max-w-7xl">
         {/* 수직선 - Rectangle 5 */}
         <div
-          className="w-px h-28 bg-white mb-8 mt-20"
+          className="w-px h-28 bg-white mb-8 mt-24"
         />
 
         {/* 온라인 광고 텍스트 */}
