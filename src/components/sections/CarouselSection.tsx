@@ -169,13 +169,15 @@ export default function CarouselSection() {
         </div>
 
         {/* 네비게이션 버튼들 - 캐러셀 바로 위에 위치 */}
-        <motion.div
-          className="flex justify-end gap-4 mb-8"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
+        <div className="grid lg:grid-cols-2 gap-12">
+          <div></div>
+          <motion.div
+            className="flex justify-end gap-4 mb-8"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
           <button 
             onClick={handlePrevious}
             className="w-15 h-15 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors text-white text-2xl font-bold"
@@ -188,7 +190,8 @@ export default function CarouselSection() {
           >
             &gt;
           </button>
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* 무한 스크롤 캐러셀 */}
         <div className="relative">
