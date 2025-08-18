@@ -199,7 +199,7 @@ export default function MobileCardsSection() {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-[15px] h-[15px] rounded-full transition-all duration-300 touch-optimized relative before:absolute before:inset-[-15px] before:content-[''] ${
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     index === currentIndex 
                       ? 'bg-[var(--color-brand-accent)] scale-125' 
                       : 'bg-white/30 hover:bg-white/50'
