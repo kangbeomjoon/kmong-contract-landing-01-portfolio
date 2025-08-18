@@ -135,7 +135,7 @@ export default function MobileCardsSection() {
               }}
             >
               {/* 이미지 컨테이너 */}
-              <div className="relative overflow-hidden rounded-3xl w-full max-w-sm h-[200px]">
+              <div className="relative overflow-hidden rounded-3xl w-full max-w-[660px] h-[424px] sm:h-[300px] xs:h-[250px]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentImage.id}
@@ -157,32 +157,39 @@ export default function MobileCardsSection() {
                   />
                 </AnimatePresence>
 
-                {/* 자동재생 인디케이터 (모바일용 - 작게) */}
-                <div className="absolute top-2 right-2 z-10">
-                  <button
-                    onClick={isPlaying ? pauseAutoPlay : resumeAutoPlay}
-                    className="w-6 h-6 bg-black/50 text-white rounded-full flex items-center justify-center transition-all duration-200 touch-optimized"
-                    style={{ 
-                      willChange: 'transform, background-color',
-                      backfaceVisibility: 'hidden',
-                      minHeight: '44px',
-                      minWidth: '44px',
-                      padding: '20px'
-                    }}
-                    aria-label={isPlaying ? '자동재생 정지' : '자동재생 시작'}
-                  >
-                    {isPlaying ? (
-                      <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor">
-                        <rect x="6" y="4" width="4" height="16" />
-                        <rect x="14" y="4" width="4" height="16" />
-                      </svg>
-                    ) : (
-                      <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="5,3 19,12 5,21" />
-                      </svg>
-                    )}
-                  </button>
-                </div>
+                {/* 네비게이션 버튼들 - 이미지 오버레이 */}
+                <button
+                  onClick={goToPrevious}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all duration-200 touch-optimized gpu-accelerated z-10"
+                  style={{ 
+                    willChange: 'transform, background-color',
+                    backfaceVisibility: 'hidden',
+                    minHeight: '44px',
+                    minWidth: '44px'
+                  }}
+                  aria-label="이전 이미지"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+
+                <button
+                  onClick={goToNext}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all duration-200 touch-optimized gpu-accelerated z-10"
+                  style={{ 
+                    willChange: 'transform, background-color',
+                    backfaceVisibility: 'hidden',
+                    minHeight: '44px',
+                    minWidth: '44px'
+                  }}
+                  aria-label="다음 이미지"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+
               </div>
             </motion.div>
 
@@ -192,7 +199,7 @@ export default function MobileCardsSection() {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 touch-optimized ${
+                  className={`w-[15px] h-[15px] rounded-full transition-all duration-300 touch-optimized ${
                     index === currentIndex 
                       ? 'bg-[var(--color-brand-accent)] scale-125' 
                       : 'bg-white/30 hover:bg-white/50'
@@ -266,44 +273,6 @@ export default function MobileCardsSection() {
               </div>
             </motion.div>
 
-            {/* 모바일 네비게이션 버튼들 (스와이프 힌트) */}
-            <div className="flex justify-center items-center gap-8 mt-4">
-              <button
-                onClick={goToPrevious}
-                className="w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-all duration-200 touch-optimized gpu-accelerated"
-                style={{ 
-                  willChange: 'transform, background-color',
-                  backfaceVisibility: 'hidden',
-                  minHeight: '44px',
-                  minWidth: '44px'
-                }}
-                aria-label="이전 이미지"
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                  <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-
-              <div className="text-white/60 figma-body-sm text-center px-4">
-                스와이프하여 이미지 변경
-              </div>
-
-              <button
-                onClick={goToNext}
-                className="w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-all duration-200 touch-optimized gpu-accelerated"
-                style={{ 
-                  willChange: 'transform, background-color',
-                  backfaceVisibility: 'hidden',
-                  minHeight: '44px',
-                  minWidth: '44px'
-                }}
-                aria-label="다음 이미지"
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                  <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-            </div>
           </div>
         </div>
       </section>
