@@ -82,41 +82,35 @@ export function MobileNavigation({ className = '' }: MobileNavigationProps) {
                   transition={{ duration: 0.2 }}
                 >
                   <div className="py-2">
-                    <motion.button
-                      onClick={() => scrollToSection('stats')}
-                      className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 transition-colors"
-                      whileHover={{ x: 4 }}
-                    >
-                      섹션1
-                    </motion.button>
-                    <motion.button
-                      onClick={() => scrollToSection('progress')}
-                      className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 transition-colors"
-                      whileHover={{ x: 4 }}
-                    >
-                      섹션2
-                    </motion.button>
-                    <motion.button
-                      onClick={() => scrollToSection('carousel')}
-                      className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 transition-colors"
-                      whileHover={{ x: 4 }}
-                    >
-                      섹션3
-                    </motion.button>
-                    <motion.button
-                      onClick={() => scrollToSection('cards')}
-                      className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 transition-colors"
-                      whileHover={{ x: 4 }}
-                    >
-                      섹션4
-                    </motion.button>
+                    {[
+                      { id: 'stats', label: '섹션1' },
+                      { id: 'progress', label: '섹션2' },
+                      { id: 'carousel', label: '섹션3' },
+                      { id: 'cards', label: '섹션4' }
+                    ].map((item) => (
+                      <motion.button
+                        key={item.id}
+                        onClick={() => {
+                          scrollToSection(item.id);
+                          setIsMenuOpen(false);
+                        }}
+                        className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 transition-colors figma-button"
+                        whileHover={{ x: 4 }}
+                      >
+                        {item.label}
+                      </motion.button>
+                    ))}
                     
                     {/* 구분선 */}
                     <div className="border-t border-gray-200 my-2" />
                     
+                    {/* 포트폴리오 메뉴 */}
                     <motion.button
-                      onClick={() => scrollToSection('faq')}
-                      className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 transition-colors"
+                      onClick={() => {
+                        scrollToSection('carousel');
+                        setIsMenuOpen(false);
+                      }}
+                      className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 transition-colors figma-button"
                       whileHover={{ x: 4 }}
                     >
                       포트폴리오
