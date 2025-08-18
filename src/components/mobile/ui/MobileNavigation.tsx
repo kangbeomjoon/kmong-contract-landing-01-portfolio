@@ -58,16 +58,16 @@ export function MobileNavigation({ className = '' }: MobileNavigationProps) {
           <div className="relative" ref={menuRef}>
             <motion.button
               onClick={toggleMenu}
-              className="w-[50px] h-[33px] flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors"
+              className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
               aria-label="메뉴 열기"
               aria-expanded={isMenuOpen}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <img 
-                src="/images/hero/icon_1.png" 
-                alt="메뉴 아이콘" 
-                className="w-[50px] h-[33px]"
+                src="/images/hero/btn_menu.png" 
+                alt="메뉴" 
+                className="w-6 h-6"
               />
             </motion.button>
 
