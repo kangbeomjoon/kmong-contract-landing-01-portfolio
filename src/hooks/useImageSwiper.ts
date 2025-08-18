@@ -30,11 +30,11 @@ interface UseSwiperReturn {
   dragHandlers: {
     onMouseDown: (e: React.MouseEvent) => void;
     onMouseMove: (e: React.MouseEvent) => void;
-    onMouseUp: () => void;
+    onMouseUp: (e: React.MouseEvent) => void;
     onMouseLeave: () => void;
     onTouchStart: (e: React.TouchEvent) => void;
     onTouchMove: (e: React.TouchEvent) => void;
-    onTouchEnd: () => void;
+    onTouchEnd: (e: React.TouchEvent) => void;
   };
 }
 
