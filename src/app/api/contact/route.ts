@@ -31,13 +31,13 @@ export async function POST(request: NextRequest) {
     }
 
     // 실제 환경에서는 이메일 발송, 데이터베이스 저장 등의 로직이 들어갑니다.
-    // 현재는 콘솔에 로그만 출력합니다.
-    console.log('문의 접수:', {
-      name,
-      email,
-      phone,
-      message,
-      timestamp: new Date().toISOString()
+    // 개인정보 보호를 위해 상세 정보는 로그에 출력하지 않습니다.
+    console.log('문의 접수 완료:', {
+      timestamp: new Date().toISOString(),
+      hasName: !!name,
+      hasEmail: !!email,
+      hasPhone: !!phone,
+      hasMessage: !!message
     });
 
     // 성공 응답
