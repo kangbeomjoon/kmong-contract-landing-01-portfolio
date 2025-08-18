@@ -108,6 +108,29 @@ export default function CardsSection() {
                 <div className="mb-12">
                   <div className="w-12 h-2.5 mb-4">
                   </div>
+                  
+                  {/* 슬라이드 인디케이터 - "02" 숫자 바로 위에 위치 */}
+                  <div style={{ paddingTop: '50px' }} className="mb-4">
+                    <div className="flex gap-2">
+                      {swiperImages.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => goToSlide(index)}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            index === currentIndex 
+                              ? 'bg-[var(--color-brand-accent)] scale-125' 
+                              : 'bg-white/50 hover:bg-white/70'
+                          }`}
+                          style={{ 
+                            willChange: 'transform, background-color',
+                            backfaceVisibility: 'hidden'
+                          }}
+                          aria-label={`슬라이드 ${index + 1}로 이동`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  
                   <div className="text-[var(--color-brand-accent)] figma-heading-sm mb-4">
                     {String(currentIndex + 1).padStart(2, '0')}
                   </div>
@@ -199,52 +222,10 @@ export default function CardsSection() {
                     </svg>
                   </button>
 
-                  {/* 인디케이터 도트들 */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                    {swiperImages.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => goToSlide(index)}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          index === currentIndex 
-                            ? 'bg-white scale-125' 
-                            : 'bg-white/50 hover:bg-white/70'
-                        }`}
-                        style={{ 
-                          willChange: 'transform, background-color',
-                          backfaceVisibility: 'hidden'
-                        }}
-                        aria-label={`슬라이드 ${index + 1}로 이동`}
-                      />
-                    ))}
-                  </div>
-
-                  {/* 자동재생 인디케이터 */}
-                  <div className="absolute top-4 right-4 z-10">
-                    <button
-                      onClick={isPlaying ? pauseAutoPlay : resumeAutoPlay}
-                      className="w-8 h-8 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-200"
-                      style={{ 
-                        willChange: 'transform, background-color',
-                        backfaceVisibility: 'hidden'
-                      }}
-                      aria-label={isPlaying ? '자동재생 정지' : '자동재생 시작'}
-                    >
-                      {isPlaying ? (
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                          <rect x="6" y="4" width="4" height="16" />
-                          <rect x="14" y="4" width="4" height="16" />
-                        </svg>
-                      ) : (
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                          <polygon points="5,3 19,12 5,21" />
-                        </svg>
-                      )}
-                    </button>
-                  </div>
                 </div>
               </motion.div>
             </div>
+            
         </div>
       </section>
 

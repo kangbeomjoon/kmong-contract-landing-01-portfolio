@@ -192,29 +192,6 @@ export default function CarouselSection() {
           </motion.div>
         </div>
 
-        {/* 슬라이드 인디케이터 - Future 텍스트와 동일한 위치 */}
-        <div 
-          className="mb-8"
-          style={{ paddingLeft: '30px', paddingTop: '50px' }}
-        >
-          <div className="flex gap-2">
-            {portfolioItems.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setIsManualControl(true);
-                  setCurrentIndex(portfolioItems.length + index);
-                  setTimeout(() => setIsManualControl(false), 1500);
-                }}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  Math.floor(currentIndex % portfolioItems.length) === index
-                    ? 'bg-[var(--color-brand-accent)] scale-125'
-                    : 'bg-white/50 hover:bg-white/70'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
 
         {/* 무한 스크롤 캐러셀 */}
         <div className="relative">
