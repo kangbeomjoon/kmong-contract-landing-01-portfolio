@@ -199,17 +199,14 @@ export default function MobileCardsSection() {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-[15px] h-[15px] rounded-full transition-all duration-300 touch-optimized ${
+                  className={`w-[15px] h-[15px] rounded-full transition-all duration-300 touch-optimized p-5 ${
                     index === currentIndex 
                       ? 'bg-[var(--color-brand-accent)] scale-125' 
                       : 'bg-white/30 hover:bg-white/50'
                   }`}
                   style={{ 
                     willChange: 'transform, background-color',
-                    backfaceVisibility: 'hidden',
-                    minHeight: '44px',
-                    minWidth: '44px',
-                    padding: '20px'
+                    backfaceVisibility: 'hidden'
                   }}
                   aria-label={`슬라이드 ${index + 1}로 이동`}
                 />

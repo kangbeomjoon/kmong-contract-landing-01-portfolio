@@ -55,7 +55,6 @@ const portfolioItems = [
 ];
 
 export default function CarouselSection() {
-  const [isPaused, setIsPaused] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isManualControl, setIsManualControl] = useState(false);
   
@@ -103,7 +102,7 @@ export default function CarouselSection() {
 
   // 자동 스크롤 효과 - 컨베이어벨트처럼 천천히
   useEffect(() => {
-    if (!isManualControl && !isPaused) {
+    if (!isManualControl) {
       const interval = setInterval(() => {
         setCurrentIndex((prev) => {
           const newIndex = prev + 0.02; // 훨씬 더 천천히 이동 (컨베이어벨트처럼)
@@ -116,7 +115,7 @@ export default function CarouselSection() {
 
       return () => clearInterval(interval);
     }
-  }, [isManualControl, isPaused, portfolioItems.length]);
+  }, [isManualControl, portfolioItems.length]);
 
   return (
     <section 
@@ -156,7 +155,7 @@ export default function CarouselSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <button className="border border-white rounded-full px-8 py-3 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3">
+              <button className="border border-white rounded-full w-[200px] h-[56px] figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-3">
                 자세히 보기
                 <img
                   src="/images/hero/icon_1.png"
@@ -193,13 +192,33 @@ export default function CarouselSection() {
           </motion.div>
         </div>
 
+        {/* 슬라이드 인디케이터 - Future 텍스트와 동일한 위치 */}
+        <div 
+          className="mb-8"
+          style={{ paddingLeft: '30px', paddingTop: '50px' }}
+        >
+          <div className="flex gap-2">
+            {portfolioItems.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setIsManualControl(true);
+                  setCurrentIndex(portfolioItems.length + index);
+                  setTimeout(() => setIsManualControl(false), 1500);
+                }}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  Math.floor(currentIndex % portfolioItems.length) === index
+                    ? 'bg-[var(--color-brand-accent)] scale-125'
+                    : 'bg-white/50 hover:bg-white/70'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
         {/* 무한 스크롤 캐러셀 */}
         <div className="relative">
-          <div 
-            className="overflow-hidden"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
+          <div className="overflow-hidden">
             <motion.div
               className="flex gap-6"
               animate={{

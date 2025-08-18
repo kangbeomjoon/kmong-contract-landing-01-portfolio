@@ -55,7 +55,6 @@ const portfolioItems = [
 ];
 
 export default function MobileCarouselSection() {
-  const [isPaused, setIsPaused] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isManualControl, setIsManualControl] = useState(false);
   const animationFrameRef = useRef<number | null>(null);
@@ -105,7 +104,7 @@ export default function MobileCarouselSection() {
 
   // Android 최적화된 애니메이션 함수
   const animate = useCallback((currentTime: number) => {
-    if (!isManualControl && !isPaused) {
+    if (!isManualControl) {
       // 60fps 타겟으로 16ms마다 업데이트
       if (currentTime - lastTimeRef.current >= 100) { // 100ms마다 위치 업데이트
         setCurrentIndex((prev) => {
@@ -120,11 +119,11 @@ export default function MobileCarouselSection() {
       
       animationFrameRef.current = requestAnimationFrame(animate);
     }
-  }, [isManualControl, isPaused, portfolioItems.length]);
+  }, [isManualControl, portfolioItems.length]);
 
   // 자동 스크롤 효과 - requestAnimationFrame 사용
   useEffect(() => {
-    if (!isManualControl && !isPaused) {
+    if (!isManualControl) {
       animationFrameRef.current = requestAnimationFrame(animate);
     } else {
       if (animationFrameRef.current) {
@@ -137,7 +136,7 @@ export default function MobileCarouselSection() {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [isManualControl, isPaused, animate]);
+  }, [isManualControl, animate]);
 
   return (
     <section 
@@ -176,7 +175,7 @@ export default function MobileCarouselSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <button className="border border-white rounded-full px-8 py-3 figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3">
+              <button className="border border-white rounded-full w-[220px] h-[75px] figma-button text-white hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-3">
                 자세히 보기
                 <img
                   src="/images/hero/icon_1.png"
@@ -212,13 +211,30 @@ export default function MobileCarouselSection() {
           </motion.div>
         </div>
 
+        {/* 슬라이드 인디케이터 */}
+        <div className="flex justify-center mb-8 px-4">
+          <div className="flex gap-2">
+            {portfolioItems.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setIsManualControl(true);
+                  setCurrentIndex(portfolioItems.length + index);
+                  setTimeout(() => setIsManualControl(false), 1500);
+                }}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  Math.floor(currentIndex % portfolioItems.length) === index
+                    ? 'bg-[var(--color-brand-accent)] scale-125'
+                    : 'bg-white/50 hover:bg-white/70'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
         {/* 무한 스크롤 캐러셀 */}
         <div className="relative">
-          <div 
-            className="overflow-hidden"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
+          <div className="overflow-hidden">
             <motion.div
               className="flex gap-4 gpu-accelerated"
               animate={{

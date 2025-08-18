@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Menu } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface MobileNavigationProps {
@@ -59,13 +58,17 @@ export function MobileNavigation({ className = '' }: MobileNavigationProps) {
           <div className="relative" ref={menuRef}>
             <motion.button
               onClick={toggleMenu}
-              className="w-11 h-11 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors"
+              className="w-[50px] h-[33px] flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors"
               aria-label="메뉴 열기"
               aria-expanded={isMenuOpen}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Menu className="w-6 h-6 text-white" />
+              <img 
+                src="/images/hero/icon_1.png" 
+                alt="메뉴 아이콘" 
+                className="w-[50px] h-[33px]"
+              />
             </motion.button>
 
             {/* Dropdown Menu */}
