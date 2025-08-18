@@ -1,7 +1,32 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useImageSwiper, SwiperImage } from '@/hooks';
 
+// 모바일용 스와이퍼 이미지 데이터
+const swiperImages: SwiperImage[] = [
+  {
+    id: '1',
+    src: '/images/cards/img_con.png',
+    alt: '버즈비 전용 스토어 메인 화면',
+    title: '버즈비 관리에\n최적화된 전용 스토어',
+    description: '상품 등록부터 결제, 고객관리, 마케팅,애널리스트까지 모든 것을 한곳에서 처리하세요.'
+  },
+  {
+    id: '2', 
+    src: '/images/cards/con_5.png',
+    alt: '버즈비 관리 대시보드',
+    title: '통합 관리\n대시보드',
+    description: '모든 데이터를 한눈에 확인하고\n효율적으로 관리할 수 있습니다.'
+  },
+  {
+    id: '3',
+    src: '/images/cards/Mask group.png', 
+    alt: '버즈비 애드 전문가 상담',
+    title: '전문가와 함께하는\n성공적인 광고',
+    description: '버즈비 애드 전문가들의 노하우로\n더 나은 결과를 만들어보세요.'
+  }
+];
 
 const futureFeatures = [
   {
@@ -21,6 +46,24 @@ const ctaSection = {
 };
 
 export default function MobileCardsSection() {
+  const {
+    currentIndex,
+    isPlaying,
+    goToSlide,
+    goToPrevious,
+    goToNext,
+    pauseAutoPlay,
+    resumeAutoPlay,
+    dragHandlers
+  } = useImageSwiper({
+    images: swiperImages,
+    autoPlayInterval: 4000,
+    enableAutoPlay: true,
+    loop: true
+  });
+
+  const currentImage = swiperImages[currentIndex];
+
   return (
     <>
       {/* Future Section (con_5) */}
@@ -32,11 +75,11 @@ export default function MobileCardsSection() {
         <div className="text-center mb-20">
           <motion.div
             className="figma-subtitle mb-8 gpu-accelerated"
-            initial={{ opacity: 0, y: -15 }} // Android에서 더 부드러운 시작
+            initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ 
-              duration: 0.5, // Android에서 더 빠른 애니메이션
+              duration: 0.5,
               type: 'tween',
               ease: 'easeOut'
             }}
@@ -50,12 +93,12 @@ export default function MobileCardsSection() {
           </motion.div>
           <motion.h2
             className="figma-heading-lg leading-tight gpu-accelerated"
-            initial={{ opacity: 0, y: 15 }} // Android에서 더 부드러운 시작
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ 
-              duration: 0.6, // Android에서 더 빠른 애니메이션
-              delay: 0.15, // 더 짧은 딜레이
+              duration: 0.6,
+              delay: 0.15,
               type: 'tween',
               ease: 'easeOut'
             }}
@@ -73,15 +116,15 @@ export default function MobileCardsSection() {
         {/* 하단 컨텐츠 영역 */}
         <div className="container mx-auto px-4">
           <div className="max-w-lg mx-auto">
-            {/* 이미지 */}
+            {/* 이미지 스와이퍼 */}
             <motion.div
-              className="relative flex justify-center mb-12 gpu-accelerated"
-              initial={{ opacity: 0, scale: 0.95 }} // Android에서 더 부드러운 스케일
+              className="relative flex justify-center mb-8 gpu-accelerated"
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ 
-                duration: 0.6, // Android에서 더 빠른 애니메이션
-                delay: 0.3, // 더 짧은 딜레이
+                duration: 0.6,
+                delay: 0.3,
                 type: 'tween',
                 ease: 'easeOut'
               }}
@@ -91,24 +134,90 @@ export default function MobileCardsSection() {
                 transform: 'translate3d(0, 0, 0)'
               }}
             >
-              <div
-                className="bg-center bg-cover bg-no-repeat rounded-3xl w-full max-w-sm"
-                style={{
-                  height: '200px',
-                  backgroundImage: 'url("/images/cards/img_con.png")'
-                }}
-              />
+              {/* 이미지 컨테이너 */}
+              <div className="relative overflow-hidden rounded-3xl w-full max-w-sm h-[200px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentImage.id}
+                    className="absolute inset-0 bg-center bg-cover bg-no-repeat gpu-accelerated"
+                    style={{
+                      backgroundImage: `url("${currentImage.src}")`,
+                      willChange: 'transform, opacity',
+                      backfaceVisibility: 'hidden',
+                      touchAction: 'pan-y'
+                    }}
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ 
+                      duration: 0.5,
+                      ease: 'easeInOut'
+                    }}
+                    {...dragHandlers}
+                  />
+                </AnimatePresence>
+
+                {/* 자동재생 인디케이터 (모바일용 - 작게) */}
+                <div className="absolute top-2 right-2 z-10">
+                  <button
+                    onClick={isPlaying ? pauseAutoPlay : resumeAutoPlay}
+                    className="w-6 h-6 bg-black/50 text-white rounded-full flex items-center justify-center transition-all duration-200 touch-optimized"
+                    style={{ 
+                      willChange: 'transform, background-color',
+                      backfaceVisibility: 'hidden',
+                      minHeight: '44px',
+                      minWidth: '44px',
+                      padding: '20px'
+                    }}
+                    aria-label={isPlaying ? '자동재생 정지' : '자동재생 시작'}
+                  >
+                    {isPlaying ? (
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16" />
+                        <rect x="14" y="4" width="4" height="16" />
+                      </svg>
+                    ) : (
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5,3 19,12 5,21" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+              </div>
             </motion.div>
+
+            {/* 인디케이터 도트들 (모바일 중앙) */}
+            <div className="flex justify-center gap-2 mb-8">
+              {swiperImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 touch-optimized ${
+                    index === currentIndex 
+                      ? 'bg-[var(--color-brand-accent)] scale-125' 
+                      : 'bg-white/30 hover:bg-white/50'
+                  }`}
+                  style={{ 
+                    willChange: 'transform, background-color',
+                    backfaceVisibility: 'hidden',
+                    minHeight: '44px',
+                    minWidth: '44px',
+                    padding: '20px'
+                  }}
+                  aria-label={`슬라이드 ${index + 1}로 이동`}
+                />
+              ))}
+            </div>
 
             {/* 텍스트 및 콘텐츠 */}
             <motion.div
               className="gpu-accelerated"
-              initial={{ opacity: 0, y: 30 }} // Android에서 더 부드러운 시작
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ 
-                duration: 0.6, // Android에서 더 빠른 애니메이션
-                delay: 0.4, // 더 짧은 딜레이
+                duration: 0.6,
+                delay: 0.4,
                 type: 'tween',
                 ease: 'easeOut'
               }}
@@ -119,15 +228,82 @@ export default function MobileCardsSection() {
               }}
             >
               <div className="mb-12">
-                <div className="text-[var(--color-brand-accent)] figma-heading-sm mb-4 text-center">01</div>
-                <h3 className="figma-heading-md text-white mb-6 whitespace-pre-line text-center">
-                  {futureFeatures[0].title}
-                </h3>
-                <p className="figma-body text-[var(--color-text-secondary)] whitespace-pre-line text-center">
-                  {futureFeatures[0].description}
-                </p>
+                <div className="text-[var(--color-brand-accent)] figma-heading-sm mb-4 text-center">
+                  {String(currentIndex + 1).padStart(2, '0')}
+                </div>
+                <AnimatePresence mode="wait">
+                  <motion.h3
+                    key={currentImage.id}
+                    className="figma-heading-md text-white mb-6 whitespace-pre-line text-center gpu-accelerated"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4 }}
+                    style={{
+                      willChange: 'transform, opacity',
+                      backfaceVisibility: 'hidden'
+                    }}
+                  >
+                    {currentImage.title}
+                  </motion.h3>
+                </AnimatePresence>
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={currentImage.id}
+                    className="figma-body text-[var(--color-text-secondary)] whitespace-pre-line text-center gpu-accelerated"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                    style={{
+                      willChange: 'transform, opacity',
+                      backfaceVisibility: 'hidden'
+                    }}
+                  >
+                    {currentImage.description}
+                  </motion.p>
+                </AnimatePresence>
               </div>
             </motion.div>
+
+            {/* 모바일 네비게이션 버튼들 (스와이프 힌트) */}
+            <div className="flex justify-center items-center gap-8 mt-4">
+              <button
+                onClick={goToPrevious}
+                className="w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-all duration-200 touch-optimized gpu-accelerated"
+                style={{ 
+                  willChange: 'transform, background-color',
+                  backfaceVisibility: 'hidden',
+                  minHeight: '44px',
+                  minWidth: '44px'
+                }}
+                aria-label="이전 이미지"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              <div className="text-white/60 figma-body-sm text-center px-4">
+                스와이프하여 이미지 변경
+              </div>
+
+              <button
+                onClick={goToNext}
+                className="w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-all duration-200 touch-optimized gpu-accelerated"
+                style={{ 
+                  willChange: 'transform, background-color',
+                  backfaceVisibility: 'hidden',
+                  minHeight: '44px',
+                  minWidth: '44px'
+                }}
+                aria-label="다음 이미지"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </section>

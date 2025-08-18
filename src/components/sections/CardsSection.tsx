@@ -1,7 +1,32 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useImageSwiper, SwiperImage } from '@/hooks';
 
+// 스와이퍼 이미지 데이터
+const swiperImages: SwiperImage[] = [
+  {
+    id: '1',
+    src: '/images/cards/img_con.png',
+    alt: '버즈비 전용 스토어 메인 화면',
+    title: '버즈비 관리에\n최적화된 전용 스토어',
+    description: '상품 등록부터 결제, 고객관리, 마케팅,\n애널리스트까지 모든 것을 한곳에서 처리하세요.'
+  },
+  {
+    id: '2', 
+    src: '/images/cards/con_5.png',
+    alt: '버즈비 관리 대시보드',
+    title: '통합 관리\n대시보드',
+    description: '모든 데이터를 한눈에 확인하고\n효율적으로 관리할 수 있습니다.'
+  },
+  {
+    id: '3',
+    src: '/images/cards/Mask group.png', 
+    alt: '버즈비 애드 전문가 상담',
+    title: '전문가와 함께하는\n성공적인 광고',
+    description: '버즈비 애드 전문가들의 노하우로\n더 나은 결과를 만들어보세요.'
+  }
+];
 
 const futureFeatures = [
   {
@@ -21,6 +46,24 @@ const ctaSection = {
 };
 
 export default function CardsSection() {
+  const {
+    currentIndex,
+    isPlaying,
+    goToSlide,
+    goToPrevious,
+    goToNext,
+    pauseAutoPlay,
+    resumeAutoPlay,
+    dragHandlers
+  } = useImageSwiper({
+    images: swiperImages,
+    autoPlayInterval: 4000,
+    enableAutoPlay: true,
+    loop: true
+  });
+
+  const currentImage = swiperImages[currentIndex];
+
   return (
     <>
       {/* Future Section (con_5) */}
@@ -65,31 +108,141 @@ export default function CardsSection() {
                 <div className="mb-12">
                   <div className="w-12 h-2.5 mb-4">
                   </div>
-                  <div className="text-[var(--color-brand-accent)] figma-heading-sm mb-4">01</div>
-                  <h3 className="figma-heading-md text-white mb-6 whitespace-pre-line">
-                    {futureFeatures[0].title}
-                  </h3>
-                  <p className="figma-body text-[var(--color-text-secondary)] whitespace-pre-line">
-                    {futureFeatures[0].description}
-                  </p>
+                  <div className="text-[var(--color-brand-accent)] figma-heading-sm mb-4">
+                    {String(currentIndex + 1).padStart(2, '0')}
+                  </div>
+                  <AnimatePresence mode="wait">
+                    <motion.h3
+                      key={currentImage.id}
+                      className="figma-heading-md text-white mb-6 whitespace-pre-line"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {currentImage.title}
+                    </motion.h3>
+                  </AnimatePresence>
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={currentImage.id}
+                      className="figma-body text-[var(--color-text-secondary)] whitespace-pre-line"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                    >
+                      {currentImage.description}
+                    </motion.p>
+                  </AnimatePresence>
                 </div>
               </motion.div>
 
-              {/* 우측 이미지 */}
+              {/* 우측 이미지 스와이퍼 */}
               <motion.div
-                className="relative"
+                className="relative group"
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.6 }}
+                onMouseEnter={pauseAutoPlay}
+                onMouseLeave={resumeAutoPlay}
               >
-                <div
-                  className="bg-center bg-cover bg-no-repeat rounded-3xl w-full"
-                  style={{
-                    height: '450px',
-                    backgroundImage: 'url("/images/cards/img_con.png")'
-                  }}
-                />
+                {/* 이미지 컨테이너 */}
+                <div className="relative overflow-hidden rounded-3xl w-full h-[450px] cursor-grab active:cursor-grabbing">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentImage.id}
+                      className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+                      style={{
+                        backgroundImage: `url("${currentImage.src}")`,
+                        willChange: 'transform, opacity',
+                        backfaceVisibility: 'hidden'
+                      }}
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ 
+                        duration: 0.6,
+                        ease: 'easeInOut'
+                      }}
+                      {...dragHandlers}
+                    />
+                  </AnimatePresence>
+
+                  {/* 네비게이션 버튼들 */}
+                  <button
+                    onClick={goToPrevious}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-200 opacity-0 group-hover:opacity-100 z-10"
+                    style={{ 
+                      willChange: 'transform, opacity',
+                      backfaceVisibility: 'hidden'
+                    }}
+                    aria-label="이전 이미지"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                      <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+
+                  <button
+                    onClick={goToNext}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-200 opacity-0 group-hover:opacity-100 z-10"
+                    style={{ 
+                      willChange: 'transform, opacity',
+                      backfaceVisibility: 'hidden'
+                    }}
+                    aria-label="다음 이미지"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                      <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+
+                  {/* 인디케이터 도트들 */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                    {swiperImages.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => goToSlide(index)}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === currentIndex 
+                            ? 'bg-white scale-125' 
+                            : 'bg-white/50 hover:bg-white/70'
+                        }`}
+                        style={{ 
+                          willChange: 'transform, background-color',
+                          backfaceVisibility: 'hidden'
+                        }}
+                        aria-label={`슬라이드 ${index + 1}로 이동`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* 자동재생 인디케이터 */}
+                  <div className="absolute top-4 right-4 z-10">
+                    <button
+                      onClick={isPlaying ? pauseAutoPlay : resumeAutoPlay}
+                      className="w-8 h-8 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-200"
+                      style={{ 
+                        willChange: 'transform, background-color',
+                        backfaceVisibility: 'hidden'
+                      }}
+                      aria-label={isPlaying ? '자동재생 정지' : '자동재생 시작'}
+                    >
+                      {isPlaying ? (
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                          <rect x="6" y="4" width="4" height="16" />
+                          <rect x="14" y="4" width="4" height="16" />
+                        </svg>
+                      ) : (
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                          <polygon points="5,3 19,12 5,21" />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+                </div>
               </motion.div>
             </div>
         </div>

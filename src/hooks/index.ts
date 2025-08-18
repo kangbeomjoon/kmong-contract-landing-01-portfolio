@@ -4,3 +4,7 @@
 // Mobile-specific hooks
 export { useMobileCounter } from './useMobileCounter';
 export { useResponsive, useIsMobile, useIsTablet, useIsDesktop } from './useResponsive';
+
+// UI hooks
+export { useImageSwiper } from './useImageSwiper';
+export type { SwiperImage } from './useImageSwiper';
