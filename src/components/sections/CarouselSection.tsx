@@ -142,10 +142,10 @@ export default function CarouselSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="figma-subtitle mb-8">Portfolio</div>
+            <div className="figma-subtitle mb-8">HOW TO</div>
             <h2 className="figma-heading-lg leading-tight mb-8">
-              버즈비의 포트폴리오를<br />
-              소개합니다
+              부동산 종합광고<br />
+              어떻게 시작하면 되나요?
             </h2>
             
             {/* 자세히 보기 버튼 */}

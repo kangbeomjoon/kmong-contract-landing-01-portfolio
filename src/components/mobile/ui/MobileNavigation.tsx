@@ -2,6 +2,15 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
+
+// 데스크톱과 동일한 navigationItems 사용
+const navigationItems = [
+  { id: 'stats', label: '섹션1' },
+  { id: 'progress', label: '섹션2' },
+  { id: 'carousel', label: '섹션3' },
+  { id: 'cards', label: '섹션4' }
+]
 
 interface MobileNavigationProps {
   className?: string
@@ -10,10 +19,6 @@ interface MobileNavigationProps {
 export function MobileNavigation({ className = '' }: MobileNavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
 
   // 외부 클릭 감지
   useEffect(() => {
@@ -46,7 +51,7 @@ export function MobileNavigation({ className = '' }: MobileNavigationProps) {
           {/* 카페24 로고 */}
           <div className="flex items-center">
             <div 
-              className="h-8 w-24 bg-contain bg-center bg-no-repeat cursor-pointer"
+              className="h-[51px] w-[165px] bg-contain bg-center bg-no-repeat cursor-pointer"
               style={{
                 backgroundImage: 'url("/images/hero/logo 1.png")',
               }}
@@ -57,16 +62,18 @@ export function MobileNavigation({ className = '' }: MobileNavigationProps) {
           {/* Hamburger Menu Button with Dropdown */}
           <div className="relative" ref={menuRef}>
             <motion.button
-              onClick={toggleMenu}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
               aria-label="메뉴 열기"
               aria-expanded={isMenuOpen}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <img 
+              <Image 
                 src="/images/hero/btn_menu.png" 
                 alt="메뉴" 
+                width={24}
+                height={24}
                 className="w-6 h-6"
               />
             </motion.button>
@@ -82,12 +89,7 @@ export function MobileNavigation({ className = '' }: MobileNavigationProps) {
                   transition={{ duration: 0.2 }}
                 >
                   <div className="py-2">
-                    {[
-                      { id: 'stats', label: '섹션1' },
-                      { id: 'progress', label: '섹션2' },
-                      { id: 'carousel', label: '섹션3' },
-                      { id: 'cards', label: '섹션4' }
-                    ].map((item) => (
+                    {navigationItems.map((item) => (
                       <motion.button
                         key={item.id}
                         onClick={() => {
